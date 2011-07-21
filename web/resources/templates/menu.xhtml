@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                xmlns:h="http://java.sun.com/jsf/html">
+    <h:form>
+        <p:menubar>
+            <p:submenu label="#{msg['admin.menu.title']}">
+                <p:submenu label="#{msg['admin.menu.category.title']}">
+                    <p:menuitem value="#{msg['admin.menu.category.new.title']}"
+                                url="/faces/admin/categories/new.xhtml"/>
+                    <p:menuitem value="#{msg['admin.menu.category.list.title']}"
+                                url="/faces/admin/categories/list.xhtml"/>
+                </p:submenu>
+            </p:submenu>
+            <p:submenu label="#{msg['reports.menu.title']}">
+            </p:submenu>
+            <p:submenu label="#{msg['config.menu.title']}">
+                <p:menuitem value="#{msg['config.menu.skins.title']}"
+                            url="/faces/config/skins.xhtml"/>
+            </p:submenu>
+        </p:menubar>
+    </h:form>
+</ui:composition>

@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type"
+              content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="layout.css" library="css"/>
+        <h:outputStylesheet name="main.css" library="css"/>
+        <title>#{msg['application.title']}</title>
+    </h:head>
+    <h:body>
+        <p:panel styleClass="pageContainer">
+            <f:facet name="header">
+                <div class="pageHeader">
+                    <h:outputLabel value="#{msg['application.title']}"/>
+                </div>
+            </f:facet>
+            <f:facet name="footer">
+                <div class="pageFooter">
+                    #{msg['application.poweredBy']}
+                </div>
+            </f:facet>
+            <ui:include src="menu.xhtml"/>
+            <div class="pageTitle">
+                <ui:insert name="title"/>
+            </div>
+            <p:messages globalOnly="true"
+                        showSummary="true"
+                        showDetail="true"/>
+            <div class="pageContent">
+                <ui:insert name="content"/>
+            </div>
+        </p:panel>
+    </h:body>
+</html>

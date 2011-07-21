@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                template="#{context_path}/resources/templates/page.xhtml">
+    <ui:define name="title">#{msg['admin.category.new.title']}</ui:define>
+    <ui:define name="content">
+        <h:form>
+            <h:panelGrid columns="3">
+                <h:outputLabel for="name">
+                    #{msg['admin.category.new.entity.name']}
+                </h:outputLabel>
+                <p:inputText id="name"
+                             value="#{categoryHome.instance.name}">
+                    <p:ajax event="blur"
+                            immediate="true"
+                            update="name, nameMessage"/>
+                </p:inputText>
+                <p:message id="nameMessage"
+                           for="name"
+                           display="text"/>
+            </h:panelGrid>
+            <div style="clear:both;"/>
+            <div class="actions">
+                <p:commandButton action="#{categoryHome.persist}"
+                                 value="#{msg['actions.persist']}"
+                                 ajax="false"/>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>
