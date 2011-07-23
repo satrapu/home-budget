@@ -12,7 +12,9 @@
                     #{msg['admin.category.new.entity.name']}
                 </h:outputLabel>
                 <p:inputText id="name"
-                             value="#{categoryHome.instance.name}">
+                             value="#{categoryHome.instance.name}"
+                             required="true"
+                             requiredMessage="#{msg['global.fields.required']}">
                     <p:ajax event="blur"
                             immediate="true"
                             update="name, nameMessage"/>
@@ -24,7 +26,7 @@
             <div style="clear:both;"/>
             <div class="actions">
                 <p:commandButton action="#{categoryHome.persist}"
-                                 value="#{msg['actions.persist']}"
+                                 value="#{msg['global.actions.persist']}"
                                  ajax="false"/>
             </div>
         </h:form>
