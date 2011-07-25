@@ -14,7 +14,8 @@
                 <p:inputText id="name"
                              value="#{categoryHome.instance.name}"
                              required="true"
-                             requiredMessage="#{msg['global.fields.required']}">
+                             requiredMessage="#{msg['global.fields.required']}"
+                             styleClass="#{not component.valid ? 'ui-input-invalid' : ''}">
                     <p:ajax event="blur"
                             immediate="true"
                             update="name, nameMessage"/>
@@ -23,6 +24,7 @@
                            for="name"
                            display="text"/>
             </h:panelGrid>
+            <div>* Required fields</div>
             <div style="clear:both;"/>
             <div class="actions">
                 <p:commandButton action="#{categoryHome.persist}"

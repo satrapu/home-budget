@@ -25,6 +25,15 @@
                 </div>
             </f:facet>
             <ui:include src="menu.xhtml"/>
+            <p:ajaxStatus style="width:16px;height:16px;">
+                <f:facet name="start">
+                    <h:graphicImage value="#{context_path}/resources/images/ajax-loader.gif" />
+                </f:facet>
+
+                <f:facet name="complete">
+                    <h:outputText value="" />
+                </f:facet>
+            </p:ajaxStatus>
             <div class="pageTitle">
                 <ui:insert name="title"/>
             </div>

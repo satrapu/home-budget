@@ -59,3 +59,8 @@ a:link:hover, a:visited:hover  {
     padding: 10px;
     font-weight: bold;
 }
+
+.ui-input-invalid {
+    border-color: red !important;
+    border-width: 2px !important;
+}
