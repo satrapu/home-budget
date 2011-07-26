@@ -25,21 +25,36 @@
                 </div>
             </f:facet>
             <ui:include src="menu.xhtml"/>
-            <p:ajaxStatus style="width:16px;height:16px;">
-                <f:facet name="start">
-                    <h:graphicImage value="#{context_path}/resources/images/ajax-loader.gif" />
+            <!--
+            <p:ajaxStatus>
+                <f:facet name="prestart">
+                    <h:outputText value="Starting..."/>
                 </f:facet>
-
+                <f:facet name="error">
+                    <h:outputText value="Error"/>
+                </f:facet>
+                <f:facet name="success">
+                    <h:outputText value="Success"/>
+                </f:facet>
+                <f:facet name="default">
+                    <h:outputText value="Idle"/>
+                </f:facet>
+                <f:facet name="start">
+                    <h:graphicImage library="primefaces"
+                                    name="jquery/ui/ui-anim_basic_16x16.gif"/>
+                    <h:graphicImage value="#{context_path}/resources/images/ajax-loader.gif"/>
+                </f:facet>
                 <f:facet name="complete">
-                    <h:outputText value="" />
+                    <h:outputText value="Done"/>
                 </f:facet>
             </p:ajaxStatus>
-            <div class="pageTitle">
-                <ui:insert name="title"/>
-            </div>
+            -->
             <p:messages globalOnly="true"
                         showSummary="true"
                         showDetail="true"/>
+            <div class="pageTitle">
+                <ui:insert name="title"/>
+            </div>
             <div class="pageContent">
                 <ui:insert name="content"/>
             </div>

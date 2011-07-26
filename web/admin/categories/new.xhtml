@@ -7,7 +7,8 @@
     <ui:define name="title">#{msg['admin.category.new.title']}</ui:define>
     <ui:define name="content">
         <h:form>
-            <h:panelGrid columns="3">
+            <h:panelGrid id="grid"
+                         columns="3">
                 <h:outputLabel for="name">
                     #{msg['admin.category.new.entity.name']}
                 </h:outputLabel>
@@ -18,13 +19,12 @@
                              styleClass="#{not component.valid ? 'ui-input-invalid' : ''}">
                     <p:ajax event="blur"
                             immediate="true"
-                            update="name, nameMessage"/>
+                            update="grid"/>
                 </p:inputText>
                 <p:message id="nameMessage"
-                           for="name"
-                           display="text"/>
+                           for="name"/>
             </h:panelGrid>
-            <div>* Required fields</div>
+            <div class="requiredFields">#{msg['global.fields.requiredInfo']}</div>
             <div style="clear:both;"/>
             <div class="actions">
                 <p:commandButton action="#{categoryHome.persist}"
