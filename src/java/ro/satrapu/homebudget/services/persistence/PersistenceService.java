@@ -1,5 +1,6 @@
 package ro.satrapu.homebudget.services.persistence;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,11 +9,13 @@ import java.util.List;
  */
 public interface PersistenceService {
 
-    public <T> T persist(T entity);
+    public <T extends Serializable> T persist(T entity);
 
-    public <T> void remove(T entity);
+    public <T extends Serializable> void remove(T entity);
 
-    public <T> T merge(T entity);
+    public <T extends Serializable> T merge(T entity);
 
-    public <T> List<T> findAll(Class<T> entityClass);
+    public <T extends Serializable> List<T> findAll(Class<T> entityClass);
+
+    public <T extends Serializable> EntityPage<T> getPageFor(Class<T> entityClass, int firstResult, int maxResults);
 }
