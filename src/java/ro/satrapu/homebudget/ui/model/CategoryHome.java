@@ -28,10 +28,6 @@ public class CategoryHome {
         return instance;
     }
 
-    public void setInstance(Category category) {
-        this.instance = category;
-    }
-
     public void persist() {
         try {
             persistenceService.persist(instance);
@@ -39,18 +35,6 @@ public class CategoryHome {
             FacesContext.getCurrentInstance().addMessage(null, facesMessage);
         } catch (Exception ex) {
             FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Category could not be saved",
-                                                         ex.getMessage());
-            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-        }
-    }
-
-    public void remove() {
-        try {
-            persistenceService.remove(instance);
-            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Category was successfully removed", "");
-            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-        } catch (Exception ex) {
-            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Category could not be removed",
                                                          ex.getMessage());
             FacesContext.getCurrentInstance().addMessage(null, facesMessage);
         }

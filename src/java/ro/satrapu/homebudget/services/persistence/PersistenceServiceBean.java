@@ -37,8 +37,7 @@ public class PersistenceServiceBean
 
     @Override
     public <T extends Serializable> T merge(T entity) {
-        entityManager.merge(entity);
-        return entity;
+        return entityManager.merge(entity);
     }
 
     @Override

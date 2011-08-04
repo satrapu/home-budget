@@ -16,18 +16,20 @@
                     </f:facet>
                     <p:commandButton value="#{msg['global.actions.edit']}"/>
                     <p:commandButton value="#{msg['global.actions.remove']}"
-                                     onclick="confirmation.show()"
-                                     type="button"/>
+                                     onclick="confirmation.show()">
+                        <f:setPropertyActionListener target="#{categoryList.selectedCategory}"
+                                                     value="#{category}"/>
+                    </p:commandButton>
                 </p:column>
                 <p:column>
                     <f:facet name="header">
-                        #{msg['admin.category.list.entity.id']}
+                        #{msg['entities.category.id']}
                     </f:facet>
                     <h:outputText value="#{category.id}" />
                 </p:column>
                 <p:column>
                     <f:facet name="header">
-                        #{msg['admin.category.list.entity.name']}
+                        #{msg['entities.category.name']}
                     </f:facet>
                     <h:outputText value="#{category.name}" />
                 </p:column>
@@ -40,9 +42,9 @@
                              appendToBody="true"
                              widgetVar="confirmation">
                 <p:commandButton value="#{msg['global.actions.yes']}"
-                                 action="#{categoryHome.remove}"
                                  update="messages"
-                                 oncomplete="confirmation.hide()"/>
+                                 oncomplete="confirmation.hide()"
+                                 action="#{categoryList.remove}"/>
                 <p:commandButton value="#{msg['global.actions.no']}"
                                  onclick="confirmation.hide()"
                                  update="messages"/>

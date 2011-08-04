@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                template="#{context_path}/resources/templates/page.xhtml">
+    <ui:define name="title">#{msg['admin.category.delete.title']}</ui:define>
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="categoryId" value="#{categoryHome.instance.id}"/>
+        </f:metadata>
+        <h:form>
+            <h:panelGrid id="grid"
+                         columns="2">
+                <h:outputLabel for="id">
+                    #{msg['entities.category.id']}
+                </h:outputLabel>
+                <h:outputText id="id"
+                              value="#{categoryHome.instance.id}"/>
+                <h:outputLabel for="name">
+                    #{msg['entities.category.name']}
+                </h:outputLabel>
+                <h:outputText id="name"
+                              value="#{categoryHome.instance.name}"/>
+            </h:panelGrid>
+            <div style="clear:both;"/>
+            <div class="actions">
+                <p:commandButton action="#{categoryHome.remove}"
+                                 value="#{msg['global.actions.remove']}"
+                                 ajax="false"/>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>
