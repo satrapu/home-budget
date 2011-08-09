@@ -7,9 +7,6 @@
                 template="#{context_path}/resources/templates/page.xhtml">
     <ui:define name="title">#{msg['admin.category.delete.title']}</ui:define>
     <ui:define name="content">
-        <f:metadata>
-            <f:viewParam name="categoryId" value="#{categoryHome.instance.id}"/>
-        </f:metadata>
         <h:form>
             <h:panelGrid id="grid"
                          columns="2">
@@ -17,12 +14,12 @@
                     #{msg['entities.category.id']}
                 </h:outputLabel>
                 <h:outputText id="id"
-                              value="#{categoryHome.instance.id}"/>
+                              value="#{flash.category.id}"/>
                 <h:outputLabel for="name">
                     #{msg['entities.category.name']}
                 </h:outputLabel>
                 <h:outputText id="name"
-                              value="#{categoryHome.instance.name}"/>
+                              value="#{flash.category.name}"/>
             </h:panelGrid>
             <div style="clear:both;"/>
             <div class="actions">

@@ -9,17 +9,16 @@
     <ui:define name="content">
         <h:form>
             <p:dataTable value="#{categoryList.categories}"
-                         var="category">
+                         var="category"
+                         selection="#{categoryList.selectedCategory}"
+                         selectionMode="single">
                 <p:column>
                     <f:facet name="header">
                         #{msg['global.actions']}
                     </f:facet>
                     <p:commandButton value="#{msg['global.actions.edit']}"/>
                     <p:commandButton value="#{msg['global.actions.remove']}"
-                                     onclick="confirmation.show()">
-                        <f:setPropertyActionListener target="#{categoryList.selectedCategory}"
-                                                     value="#{category}"/>
-                    </p:commandButton>
+                                     onclick="confirmation.show()"/>
                 </p:column>
                 <p:column>
                     <f:facet name="header">
@@ -44,9 +43,10 @@
                 <p:commandButton value="#{msg['global.actions.yes']}"
                                  update="messages"
                                  oncomplete="confirmation.hide()"
-                                 action="#{categoryList.remove}"/>
+                                 actionListener="#{categoryList.remove}"/>
                 <p:commandButton value="#{msg['global.actions.no']}"
                                  onclick="confirmation.hide()"
+                                 immediate="true"
                                  update="messages"/>
             </p:confirmDialog>
         </h:form>

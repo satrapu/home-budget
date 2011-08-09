@@ -18,7 +18,8 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "CATEGORIES", uniqueConstraints =
 @UniqueConstraint(columnNames = {"NAME"}))
-public class Category implements Serializable {
+public class Category
+        implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id

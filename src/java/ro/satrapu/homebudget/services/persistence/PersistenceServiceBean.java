@@ -6,7 +6,6 @@ import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -32,7 +31,8 @@ public class PersistenceServiceBean
 
     @Override
     public <T extends Serializable> void remove(T entity) {
-        entityManager.remove(entity);
+        T mergedEntity = entityManager.merge(entity);
+        entityManager.remove(mergedEntity);
     }
 
     @Override
