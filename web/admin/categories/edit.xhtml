@@ -41,6 +41,10 @@
                 <p:commandButton action="#{categoryHome.update}"
                                  value="#{msg['global.actions.update']}"
                                  ajax="false"/>
+                <p:commandButton action="/admin/categories/list"
+                                 value="#{msg['global.actions.cancel']}"
+                                 ajax="false"
+                                 immediate="true"/>
             </div>
         </h:form>
     </ui:define>

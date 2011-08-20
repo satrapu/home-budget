@@ -30,6 +30,10 @@
                 <p:commandButton action="#{categoryHome.remove}"
                                  value="#{msg['global.actions.remove']}"
                                  ajax="false"/>
+                <p:commandButton action="/admin/categories/list"
+                                 value="#{msg['global.actions.cancel']}"
+                                 ajax="false"
+                                 immediate="true"/>
             </div>
         </h:form>
     </ui:define>

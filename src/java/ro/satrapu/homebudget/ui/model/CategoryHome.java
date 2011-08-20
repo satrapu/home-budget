@@ -4,12 +4,11 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import ro.satrapu.homebudget.services.persistence.PersistenceService;
 import ro.satrapu.homebudget.services.persistence.entities.Category;
+import ro.satrapu.homebudget.ui.resources.Messages;
 
 /**
  *
@@ -21,13 +20,15 @@ public class CategoryHome
         implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Inject
-    private PersistenceService persistenceService;
     private Category instance;
     private Integer instanceId;
     private boolean managedInstance;
     @Inject
     private Conversation conversation;
+    @Inject
+    private PersistenceService persistenceService;
+    @Inject
+    private Messages messages;
 
     @PostConstruct
     public void init() {
@@ -73,14 +74,10 @@ public class CategoryHome
     public String persist() {
         try {
             persistenceService.persist(instance);
-            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Category was successfully saved", "");
-            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-            conversation.end();
+            messages.info("entities.category.events.persisted.successful");
             return "/admin/categories/list";
         } catch (Exception ex) {
-            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Category could not be saved",
-                                                         ex.getMessage());
-            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+            messages.error("entities.category.events.persisted.failed");
         }
 
         return null;
@@ -89,14 +86,10 @@ public class CategoryHome
     public String remove() {
         try {
             persistenceService.remove(instance);
-            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Category was successfully removed", "");
-            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-            conversation.end();
+            messages.info("entities.category.events.removed.successful");
             return "/admin/categories/list";
         } catch (Exception ex) {
-            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Category could not be removed",
-                                                         ex.getMessage());
-            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+            messages.error("entities.category.events.removed.failed");
         }
 
         return null;
@@ -105,14 +98,10 @@ public class CategoryHome
     public String update() {
         try {
             persistenceService.merge(instance);
-            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Category was successfully updated", "");
-            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
-            conversation.end();
+            messages.info("entities.category.events.updated.successful");
             return "/admin/categories/list";
         } catch (Exception ex) {
-            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Category could not be updated",
-                                                         ex.getMessage());
-            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+            messages.error("entities.category.events.updated.failed");
         }
 
         return null;

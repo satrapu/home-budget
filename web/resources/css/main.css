@@ -72,3 +72,11 @@ a:link:hover, a:visited:hover  {
     padding-bottom: 5px;
     font-size: 80%;
 }
+
+.actions button{
+    margin-right: 5px;
+}
+
+.actions a{
+    margin-right: 5px;
+}
