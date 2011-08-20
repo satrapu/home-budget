@@ -8,8 +8,13 @@
     <ui:define name="title">#{msg['admin.category.list.title']}</ui:define>
     <ui:define name="content">
         <h:form>
-            <p:dataTable value="#{categoryList.categories}"
-                         var="category">
+            <p:dataTable value="#{categoryList.data}"
+                         var="category"
+                         lazy="true"
+                         rows="#{categoryList.pageSize}"
+                         paginator="true"
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"  
+                         rowsPerPageTemplate="5, 10, 25, 50">
                 <p:column>
                     <f:facet name="header">
                         #{msg['global.actions']}

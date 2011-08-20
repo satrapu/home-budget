@@ -68,29 +68,6 @@ public class PersistenceServiceBean
     }
 
     @Override
-    public <T extends Serializable> EntityList<T> list(Class<T> entityClass, int firstResult, int maxResults) {
-        if (entityClass == null) {
-            throw new RuntimeException("Cannot query for entities by using null as entity class");
-        }
-
-        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<T> criteria = builder.createQuery(entityClass);
-        Root<T> root = criteria.from(entityClass);
-        criteria.select(root);
-
-        CriteriaQuery<Long> countCriteria = builder.createQuery(Long.class);
-        countCriteria.select(builder.count(root));
-
-        TypedQuery<T> query = entityManager.createQuery(criteria);
-        query.setFirstResult(firstResult);
-        query.setMaxResults(maxResults);
-
-        TypedQuery<Long> countQuery = entityManager.createQuery(countCriteria);
-
-        return new EntityList<T>(query.getResultList(), countQuery.getSingleResult());
-    }
-
-    @Override
     public <T extends Serializable> T find(Class<T> entityClass, Serializable entityId) {
         if (entityClass == null) {
             throw new RuntimeException("Cannot find entity by using null as entity class");
@@ -101,5 +78,39 @@ public class PersistenceServiceBean
         }
 
         return entityManager.find(entityClass, entityId);
+    }
+
+    @Override
+    public <T extends Serializable> List<T> list(Class<T> entityClass, int firstResult, int maxResults) {
+        if (entityClass == null) {
+            throw new RuntimeException("Cannot query for entities by using null as entity class");
+        }
+
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<T> criteria = builder.createQuery(entityClass);
+        Root<T> root = criteria.from(entityClass);
+        criteria.select(root);
+
+        TypedQuery<T> query = entityManager.createQuery(criteria);
+        query.setFirstResult(firstResult);
+        query.setMaxResults(maxResults);
+        return query.getResultList();
+    }
+
+    @Override
+    public <T extends Serializable> long count(Class<T> entityClass) {
+        if (entityClass == null) {
+            throw new RuntimeException("Cannot count entities by using null as entity class");
+        }
+
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<T> criteria = builder.createQuery(entityClass);
+        Root<T> root = criteria.from(entityClass);
+
+        CriteriaQuery<Long> countCriteria = builder.createQuery(Long.class);
+        countCriteria.select(builder.count(root));
+
+        TypedQuery<Long> countQuery = entityManager.createQuery(countCriteria);
+        return countQuery.getSingleResult();
     }
 }

@@ -19,5 +19,7 @@ public interface PersistenceService {
 
     public <T extends Serializable> List<T> listAll(Class<T> entityClass);
 
-    public <T extends Serializable> EntityList<T> list(Class<T> entityClass, int firstResult, int maxResults);
+    public <T extends Serializable> List<T> list(Class<T> entityClass, int firstResult, int maxResults);
+
+    public <T extends Serializable> long count(Class<T> entityClass);
 }
