@@ -10,10 +10,8 @@
         <f:metadata>
             <f:viewParam name="id"
                          value="#{categoryHome.instanceId}"/>
-            <f:event type="preRenderView"
-                     listener="#{categoryHome.find}"/>
         </f:metadata>
-        <h:form rendered="#{categoryHome.hasInstance()}">
+        <h:form rendered="#{categoryHome.managedInstance}">
             <h:panelGrid id="grid"
                          columns="2">
                 <h:outputLabel for="id">
