@@ -36,12 +36,12 @@
                            for="name"/>
             </h:panelGrid>
             <div class="requiredFields">#{msg['global.fields.requiredInfo']}</div>
-            <div style="clear:both;"/>
+            <p:separator/>
             <div class="actions">
                 <p:commandButton action="#{categoryHome.update}"
                                  value="#{msg['global.actions.update']}"
                                  ajax="false"/>
-                <p:commandButton action="/admin/categories/list"
+                <p:commandButton action="#{categoryHome.cancelAndBackToList}"
                                  value="#{msg['global.actions.cancel']}"
                                  ajax="false"
                                  immediate="true"/>

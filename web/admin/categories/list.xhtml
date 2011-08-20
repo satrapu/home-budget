@@ -11,10 +11,11 @@
             <p:dataTable value="#{categoryList.data}"
                          var="category"
                          lazy="true"
-                         rows="#{categoryList.pageSize}"
+                         dynamic="true"
                          paginator="true"
                          paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"  
-                         rowsPerPageTemplate="5, 10, 25, 50">
+                         rowsPerPageTemplate="5, 10, 25, 50"
+                         rows="#{categoryList.pageSize}">
                 <p:column>
                     <f:facet name="header">
                         #{msg['global.actions']}
@@ -45,6 +46,13 @@
                     <h:outputText value="#{category.name}" />
                 </p:column>
             </p:dataTable>
+            <p:separator/>
+            <div class="actions">
+                <p:commandButton action="/admin/categories/new"
+                                 value="#{msg['admin.category.list.actions.new.title']}"
+                                 ajax="false"
+                                 immediate="true"/>
+            </div>
         </h:form>
     </ui:define>
 </ui:composition>

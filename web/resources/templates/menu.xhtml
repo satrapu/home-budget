@@ -5,16 +5,8 @@
     <h:form>
         <p:menubar>
             <p:submenu label="#{msg['admin.menu.title']}">
-                <p:submenu label="#{msg['admin.menu.category.title']}">
-                    <p:menuitem value="#{msg['admin.menu.category.new.title']}"
-                                url="/faces/admin/categories/new.xhtml"/>
-                    <p:menuitem value="#{msg['admin.menu.category.list.title']}"
-                                url="/faces/admin/categories/list.xhtml"/>
-                    <!--
-                    <p:menuitem value="#{msg['admin.menu.category.list.title']}"
-                                url="/faces/admin/category/List.xhtml"/>
-                    -->
-                </p:submenu>
+                <p:menuitem value="#{msg['admin.menu.category.title']}"
+                            url="/faces/admin/categories/list.xhtml"/>
             </p:submenu>
             <p:submenu label="#{msg['reports.menu.title']}">
             </p:submenu>

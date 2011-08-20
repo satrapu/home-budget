@@ -20,6 +20,7 @@ public class CategoryHome
         implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    private static final String CATEGORY_LIST_PAGE = "/admin/categories/list";
     private Category instance;
     private Integer instanceId;
     private boolean managedInstance;
@@ -75,7 +76,8 @@ public class CategoryHome
         try {
             persistenceService.persist(instance);
             messages.info("entities.category.events.persisted.successful");
-            return "/admin/categories/list";
+            conversation.end();
+            return CATEGORY_LIST_PAGE;
         } catch (Exception ex) {
             messages.error("entities.category.events.persisted.failed");
         }
@@ -83,11 +85,17 @@ public class CategoryHome
         return null;
     }
 
+    public void persistAndAddAnother() {
+        persist();
+        instance = new Category();
+    }
+
     public String remove() {
         try {
             persistenceService.remove(instance);
             messages.info("entities.category.events.removed.successful");
-            return "/admin/categories/list";
+            conversation.end();
+            return CATEGORY_LIST_PAGE;
         } catch (Exception ex) {
             messages.error("entities.category.events.removed.failed");
         }
@@ -99,11 +107,17 @@ public class CategoryHome
         try {
             persistenceService.merge(instance);
             messages.info("entities.category.events.updated.successful");
-            return "/admin/categories/list";
+            conversation.end();
+            return CATEGORY_LIST_PAGE;
         } catch (Exception ex) {
             messages.error("entities.category.events.updated.failed");
         }
 
         return null;
+    }
+
+    public String cancelAndBackToList() {
+        conversation.end();
+        return CATEGORY_LIST_PAGE;
     }
 }

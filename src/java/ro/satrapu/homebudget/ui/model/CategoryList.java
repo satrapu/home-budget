@@ -28,7 +28,6 @@ public class CategoryList
 
     @PostConstruct
     public void init() {
-        //categories = persistenceService.listAll(Category.class);
         categories = new LazyDataModel<Category>() {
 
             private static final long serialVersionUID = 1L;

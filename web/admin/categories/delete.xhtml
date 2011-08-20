@@ -25,12 +25,12 @@
                 <h:outputText id="name" 
                               value="#{categoryHome.instance.name}"/>
             </h:panelGrid>
-            <div style="clear:both;"/>
+            <p:separator/>
             <div class="actions">
                 <p:commandButton action="#{categoryHome.remove}"
                                  value="#{msg['global.actions.remove']}"
                                  ajax="false"/>
-                <p:commandButton action="/admin/categories/list"
+                <p:commandButton action="#{categoryHome.cancelAndBackToList}"
                                  value="#{msg['global.actions.cancel']}"
                                  ajax="false"
                                  immediate="true"/>

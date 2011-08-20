@@ -26,11 +26,18 @@
                            for="name"/>
             </h:panelGrid>
             <div class="requiredFields">#{msg['global.fields.requiredInfo']}</div>
-            <div style="clear:both;"/>
+            <p:separator/>
             <div class="actions">
                 <p:commandButton action="#{categoryHome.persist}"
                                  value="#{msg['global.actions.persist']}"
                                  ajax="false"/>
+                <p:commandButton action="#{categoryHome.persistAndAddAnother}"
+                                 value="#{msg['global.actions.persistAndAddAnother']}"
+                                 ajax="false"/>
+                <p:commandButton action="#{categoryHome.cancelAndBackToList}"
+                                 value="#{msg['global.actions.cancel']}"
+                                 ajax="false"
+                                 immediate="true"/>
             </div>
         </h:form>
     </ui:define>
