@@ -9,16 +9,22 @@
     <ui:define name="content">
         <h:form>
             <p:dataTable value="#{categoryList.categories}"
-                         var="category"
-                         selection="#{categoryList.selectedCategory}"
-                         selectionMode="single">
+                         var="category">
                 <p:column>
                     <f:facet name="header">
                         #{msg['global.actions']}
                     </f:facet>
-                    <p:commandButton value="#{msg['global.actions.edit']}"/>
-                    <p:commandButton value="#{msg['global.actions.remove']}"
-                                     onclick="confirmation.show()"/>
+                    <h:link outcome="/admin/categories/edit"
+                            value="#{msg['global.actions.edit']}">
+                        <f:param name="id" 
+                                 value="#{category.id}"/>
+                    </h:link>
+                    <f:verbatim>&amp;nbsp;&amp;nbsp;</f:verbatim>
+                    <h:link outcome="/admin/categories/delete"
+                            value="#{msg['global.actions.remove']}">
+                        <f:param name="id" 
+                                 value="#{category.id}"/>
+                    </h:link> 
                 </p:column>
                 <p:column>
                     <f:facet name="header">
@@ -33,22 +39,6 @@
                     <h:outputText value="#{category.name}" />
                 </p:column>
             </p:dataTable>
-            <p:confirmDialog message="#{msg['admin.category.list.actions.remove.confirmation']}"
-                             header="#{msg['admin.category.list.actions.remove.title']}"
-                             modal="true"
-                             closable="false"
-                             draggable="false"
-                             appendToBody="true"
-                             widgetVar="confirmation">
-                <p:commandButton value="#{msg['global.actions.yes']}"
-                                 update="messages"
-                                 oncomplete="confirmation.hide()"
-                                 actionListener="#{categoryList.remove}"/>
-                <p:commandButton value="#{msg['global.actions.no']}"
-                                 onclick="confirmation.hide()"
-                                 immediate="true"
-                                 update="messages"/>
-            </p:confirmDialog>
         </h:form>
     </ui:define>
 </ui:composition>

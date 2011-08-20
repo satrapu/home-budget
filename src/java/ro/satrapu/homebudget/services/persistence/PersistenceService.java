@@ -9,13 +9,15 @@ import java.util.List;
  */
 public interface PersistenceService {
 
+    public <T extends Serializable> T find(Class<T> entityClass, Serializable entityId);
+
     public <T extends Serializable> T persist(T entity);
 
     public <T extends Serializable> void remove(T entity);
 
     public <T extends Serializable> T merge(T entity);
 
-    public <T extends Serializable> List<T> findAll(Class<T> entityClass);
+    public <T extends Serializable> List<T> listAll(Class<T> entityClass);
 
-    public <T extends Serializable> EntityPage<T> getPageFor(Class<T> entityClass, int firstResult, int maxResults);
+    public <T extends Serializable> EntityList<T> list(Class<T> entityClass, int firstResult, int maxResults);
 }

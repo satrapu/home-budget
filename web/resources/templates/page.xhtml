@@ -13,52 +13,54 @@
         <title>#{msg['application.title']}</title>
     </h:head>
     <h:body>
-        <p:panel styleClass="pageContainer">
-            <f:facet name="header">
-                <div class="pageHeader">
-                    <h:outputLabel value="#{msg['application.title']}"/>
+        <f:view>
+            <p:panel styleClass="pageContainer">
+                <f:facet name="header">
+                    <div class="pageHeader">
+                        <h:outputLabel value="#{msg['application.title']}"/>
+                    </div>
+                </f:facet>
+                <f:facet name="footer">
+                    <div class="pageFooter">
+                        #{msg['application.poweredBy']}
+                    </div>
+                </f:facet>
+                <ui:include src="menu.xhtml"/>
+                <!--
+                <p:ajaxStatus>
+                    <f:facet name="prestart">
+                        <h:outputText value="Starting..."/>
+                    </f:facet>
+                    <f:facet name="error">
+                        <h:outputText value="Error"/>
+                    </f:facet>
+                    <f:facet name="success">
+                        <h:outputText value="Success"/>
+                    </f:facet>
+                    <f:facet name="default">
+                        <h:outputText value="Idle"/>
+                    </f:facet>
+                    <f:facet name="start">
+                        <h:graphicImage library="primefaces"
+                                        name="jquery/ui/ui-anim_basic_16x16.gif"/>
+                        <h:graphicImage value="#{context_path}/resources/images/ajax-loader.gif"/>
+                    </f:facet>
+                    <f:facet name="complete">
+                        <h:outputText value="Done"/>
+                    </f:facet>
+                </p:ajaxStatus>
+                -->
+                <p:messages id="messages"
+                            globalOnly="true"
+                            showSummary="true"
+                            showDetail="false"/>
+                <div class="pageTitle">
+                    <ui:insert name="title"/>
                 </div>
-            </f:facet>
-            <f:facet name="footer">
-                <div class="pageFooter">
-                    #{msg['application.poweredBy']}
+                <div class="pageContent">
+                    <ui:insert name="content"/>
                 </div>
-            </f:facet>
-            <ui:include src="menu.xhtml"/>
-            <!--
-            <p:ajaxStatus>
-                <f:facet name="prestart">
-                    <h:outputText value="Starting..."/>
-                </f:facet>
-                <f:facet name="error">
-                    <h:outputText value="Error"/>
-                </f:facet>
-                <f:facet name="success">
-                    <h:outputText value="Success"/>
-                </f:facet>
-                <f:facet name="default">
-                    <h:outputText value="Idle"/>
-                </f:facet>
-                <f:facet name="start">
-                    <h:graphicImage library="primefaces"
-                                    name="jquery/ui/ui-anim_basic_16x16.gif"/>
-                    <h:graphicImage value="#{context_path}/resources/images/ajax-loader.gif"/>
-                </f:facet>
-                <f:facet name="complete">
-                    <h:outputText value="Done"/>
-                </f:facet>
-            </p:ajaxStatus>
-            -->
-            <p:messages id="messages"
-                        globalOnly="true"
-                        showSummary="true"
-                        showDetail="false"/>
-            <div class="pageTitle">
-                <ui:insert name="title"/>
-            </div>
-            <div class="pageContent">
-                <ui:insert name="content"/>
-            </div>
-        </p:panel>
+            </p:panel>
+        </f:view>
     </h:body>
 </html>

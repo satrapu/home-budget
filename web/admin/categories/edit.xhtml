@@ -3,9 +3,9 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.prime.com.tr/ui"
-                template="#{context_path}/resources/templates/page.xhtml"
-                xmlns:f="http://java.sun.com/jsf/core">
-    <ui:define name="title">#{msg['admin.category.delete.title']}</ui:define>
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="#{context_path}/resources/templates/page.xhtml">
+    <ui:define name="title">#{msg['admin.category.edit.title']}</ui:define>
     <ui:define name="content">
         <f:metadata>
             <f:viewParam name="id"
@@ -13,24 +13,35 @@
             <f:event type="preRenderView"
                      listener="#{categoryHome.find}"/>
         </f:metadata>
-        <h:form rendered="#{categoryHome.hasInstance()}">
+        <h:form>
             <h:panelGrid id="grid"
-                         columns="2">
+                         columns="3">
                 <h:outputLabel for="id">
                     #{msg['entities.category.id']}
                 </h:outputLabel>
                 <h:outputText id="id" 
                               value="#{categoryHome.instance.id}"/>
+                <h:outputText/>
                 <h:outputLabel for="name">
                     #{msg['entities.category.name']}
                 </h:outputLabel>
-                <h:outputText id="name" 
-                              value="#{categoryHome.instance.name}"/>
+                <p:inputText id="name"
+                             value="#{categoryHome.instance.name}"
+                             required="true"
+                             requiredMessage="#{msg['global.fields.required']}"
+                             styleClass="#{not component.valid ? 'ui-input-invalid' : ''}">
+                    <p:ajax event="blur"
+                            immediate="true"
+                            update="name, nameMessage"/>
+                </p:inputText>
+                <p:message id="nameMessage"
+                           for="name"/>
             </h:panelGrid>
+            <div class="requiredFields">#{msg['global.fields.requiredInfo']}</div>
             <div style="clear:both;"/>
             <div class="actions">
-                <p:commandButton action="#{categoryHome.remove}"
-                                 value="#{msg['global.actions.remove']}"
+                <p:commandButton action="#{categoryHome.update}"
+                                 value="#{msg['global.actions.update']}"
                                  ajax="false"/>
             </div>
         </h:form>
