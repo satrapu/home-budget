@@ -16,14 +16,15 @@ import javax.faces.context.FacesContext;
 public class Messages
         implements Serializable {
 
-    private static final String MISSING_MESSAGE_KEY_PATTERN = "???{0}???";
     private static final long serialVersionUID = 1L;
+    private static final String MISSING_MESSAGE_KEY_PATTERN = "???{0}???";
+    private static final String BUNDLE_NAME = "msg";
     private ResourceBundle bundle;
 
     @PostConstruct
     public void init() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
-        bundle = facesContext.getApplication().getResourceBundle(facesContext, "msg");
+        bundle = facesContext.getApplication().getResourceBundle(facesContext, BUNDLE_NAME);
     }
 
     public void info(String messageKey) {

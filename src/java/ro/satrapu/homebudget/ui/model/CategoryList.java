@@ -24,7 +24,6 @@ public class CategoryList
     @Inject
     private PersistenceService persistenceService;
     private LazyDataModel<Category> categories;
-    private static final int pageSize = 10;
 
     @PostConstruct
     public void init() {
@@ -43,9 +42,5 @@ public class CategoryList
 
     public LazyDataModel<Category> getData() {
         return categories;
-    }
-
-    public int getPageSize() {
-        return pageSize;
     }
 }

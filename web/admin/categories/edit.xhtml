@@ -5,21 +5,27 @@
                 xmlns:p="http://primefaces.prime.com.tr/ui"
                 xmlns:f="http://java.sun.com/jsf/core"
                 template="#{context_path}/resources/templates/page.xhtml">
-    <ui:define name="title">#{msg['admin.category.edit.title']}</ui:define>
+    <ui:define name="title">#{categoryHome.managed ? msg['admin.category.edit.title']: msg['admin.category.new.title']}</ui:define>
     <ui:define name="content">
         <f:metadata>
             <f:viewParam name="id"
-                         value="#{categoryHome.instanceId}"/>
+                         value="#{categoryHome.id}"
+                         converter="#{integerConverter}"/>
+            <f:event type="preRenderView"
+                     listener="#{categoryHome.initConversation}" />
         </f:metadata>
         <h:form>
-            <h:panelGrid id="grid"
-                         columns="3">
+            <h:panelGrid rendered="#{categoryHome.managed}"
+                         columns="2">
                 <h:outputLabel for="id">
                     #{msg['entities.category.id']}
                 </h:outputLabel>
                 <h:outputText id="id" 
                               value="#{categoryHome.instance.id}"/>
                 <h:outputText/>
+            </h:panelGrid>
+            <h:panelGrid id="nameEditor"
+                         columns="3">
                 <h:outputLabel for="name">
                     #{msg['entities.category.name']}
                 </h:outputLabel>
@@ -30,18 +36,21 @@
                              styleClass="#{not component.valid ? 'ui-input-invalid' : ''}">
                     <p:ajax event="blur"
                             immediate="true"
-                            update="name, nameMessage"/>
+                            update="nameEditor"/>
                 </p:inputText>
-                <p:message id="nameMessage"
-                           for="name"/>
+                <p:message for="name"/>
             </h:panelGrid>
             <div class="requiredFields">#{msg['global.fields.requiredInfo']}</div>
             <p:separator/>
             <div class="actions">
-                <p:commandButton action="#{categoryHome.update}"
-                                 value="#{msg['global.actions.update']}"
+                <p:commandButton action="#{categoryHome.save}"
+                                 value="#{msg['global.actions.save']}"
                                  ajax="false"/>
-                <p:commandButton action="#{categoryHome.cancelAndBackToList}"
+                <p:commandButton action="#{categoryHome.remove}"
+                                 value="#{msg['global.actions.remove']}"
+                                 ajax="false"
+                                 rendered="#{categoryHome.managed}"/>
+                <p:commandButton action="#{categoryHome.cancel}"
                                  value="#{msg['global.actions.cancel']}"
                                  ajax="false"
                                  immediate="true"/>
