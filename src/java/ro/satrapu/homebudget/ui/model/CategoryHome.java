@@ -16,12 +16,13 @@ public class CategoryHome
     private static final long serialVersionUID = 1L;
 
     @Override
-    public Category createInstance() {
-        return new Category();
+    public Category getInstance() {
+        return super.getInstance();
     }
 
     @Override
-    public Category getInstance() {
-        return super.getInstance();
+    public String cancel() {
+        super.cancel();
+        return "admin/categories/list";
     }
 }

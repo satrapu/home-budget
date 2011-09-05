@@ -97,6 +97,6 @@ public class EntityHome<T extends ManagedEntity>
     public String remove() {
         persistenceService.remove(getInstance());
         conversation.end();
-        return "deleted";
+        return "removed";
     }
 }

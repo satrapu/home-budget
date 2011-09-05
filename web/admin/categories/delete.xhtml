@@ -9,10 +9,13 @@
     <ui:define name="content">
         <f:metadata>
             <f:viewParam name="id"
-                         value="#{categoryHome.instanceId}"/>
+                         value="#{categoryHome.id}"
+                         converter="#{integerConverter}"/>
+            <f:event type="preRenderView"
+                     listener="#{categoryHome.initConversation}" />
         </f:metadata>
-        <h:form rendered="#{categoryHome.managedInstance}">
-            <h:panelGrid id="grid"
+        <h:form>
+            <h:panelGrid rendered="#{categoryHome.managed}"
                          columns="2">
                 <h:outputLabel for="id">
                     #{msg['entities.category.id']}
@@ -29,8 +32,9 @@
             <div class="actions">
                 <p:commandButton action="#{categoryHome.remove}"
                                  value="#{msg['global.actions.remove']}"
-                                 ajax="false"/>
-                <p:commandButton action="#{categoryHome.cancelAndBackToList}"
+                                 ajax="false"
+                                 rendered="#{categoryHome.managed}"/>
+                <p:commandButton action="#{categoryHome.cancel}"
                                  value="#{msg['global.actions.cancel']}"
                                  ajax="false"
                                  immediate="true"/>

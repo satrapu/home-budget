@@ -11,11 +11,12 @@
             <p:dataTable value="#{categoryList.data}"
                          var="category"
                          lazy="true"
-                         dynamic="true"
                          paginator="true"
+                         paginatorPosition="top"
                          paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"  
                          rowsPerPageTemplate="5, 10, 25, 50"
                          rows="25"
+                         rowKey="#{category.id}"
                          selectionMode="single"
                          emptyMessage="#{msg['global.noRecordFound']}">
                 <p:column>
@@ -25,6 +26,11 @@
                     <div class="actions">
                         <h:link outcome="/admin/categories/edit"
                                 value="#{msg['global.actions.edit']}">
+                            <f:param name="id" 
+                                     value="#{category.id}"/>
+                        </h:link>
+                        <h:link outcome="/admin/categories/delete"
+                                value="#{msg['global.actions.remove']}">
                             <f:param name="id" 
                                      value="#{category.id}"/>
                         </h:link>

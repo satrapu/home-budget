@@ -8,6 +8,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortOrder;
 import ro.satrapu.homebudget.services.persistence.PersistenceService;
 import ro.satrapu.homebudget.services.persistence.entities.Category;
 
@@ -32,7 +33,7 @@ public class CategoryList
             private static final long serialVersionUID = 1L;
 
             @Override
-            public List<Category> load(int first, int pageSize, String sortField, boolean sortOrder,
+            public List<Category> load(int first, int pageSize, String sortField, SortOrder sortOrder,
                                        Map<String, String> filters) {
                 return persistenceService.list(Category.class, first, pageSize);
             }
