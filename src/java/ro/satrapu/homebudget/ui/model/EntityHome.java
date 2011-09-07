@@ -7,6 +7,7 @@ import javax.enterprise.context.Conversation;
 import javax.inject.Inject;
 import ro.satrapu.homebudget.services.persistence.ManagedEntity;
 import ro.satrapu.homebudget.services.persistence.PersistenceService;
+import ro.satrapu.homebudget.ui.resources.Messages;
 
 /**
  * 
@@ -23,6 +24,8 @@ public class EntityHome<T extends ManagedEntity>
     private T instance;
     @Inject
     private Conversation conversation;
+    @Inject
+    private Messages messages;
     private Class<T> entityType;
 
     public T getInstance() {
@@ -74,17 +77,31 @@ public class EntityHome<T extends ManagedEntity>
 
     public String save() {
         if (isManaged()) {
-            persistenceService.merge(getInstance());
+            try {
+                persistenceService.merge(getInstance());
+                showSuccessfulMergeMessage();
+                conversation.end();
+                return "merged";
+            } catch (Exception e) {
+                showFailedMergeMessage();
+            }
         } else {
-            persistenceService.persist(getInstance());
+            try {
+                persistenceService.persist(getInstance());
+                showSuccessfulPersistMessage();
+                conversation.end();
+                return "persisted";
+            } catch (Exception e) {
+                showFailedPersistMessage();
+            }
         }
 
-        conversation.end();
-        return "saved";
+        return null;
     }
 
     public String cancel() {
         conversation.end();
+        showCrudOperationCancelledMessage();
         return "cancelled";
     }
 
@@ -95,8 +112,75 @@ public class EntityHome<T extends ManagedEntity>
     }
 
     public String remove() {
-        persistenceService.remove(getInstance());
-        conversation.end();
-        return "removed";
+        try {
+            persistenceService.remove(getInstance());
+            showSuccessfulRemoveMessage();
+            conversation.end();
+            return "removed";
+        } catch (Exception e) {
+            showFailedRemoveMessage();
+        }
+
+        return null;
+    }
+
+    protected String getSuccessfulPersistMessageKey() {
+        return getEntityCrudMessageIdentifier() + ".persist.successful";
+    }
+
+    protected String getFailedPersistMessageKey() {
+        return getEntityCrudMessageIdentifier() + ".persist.failed";
+    }
+
+    protected String getSuccessfulMergeMessageKey() {
+        return getEntityCrudMessageIdentifier() + ".merge.successful";
+    }
+
+    protected String getFailedMergeMessageKey() {
+        return getEntityCrudMessageIdentifier() + ".merge.failed";
+    }
+
+    protected String getSuccessfulRemoveMessageKey() {
+        return getEntityCrudMessageIdentifier() + ".remove.successful";
+    }
+
+    protected String getFailedRemoveMessageKey() {
+        return getEntityCrudMessageIdentifier() + ".remove.failed";
+    }
+
+    protected String getCrudOperationCancelledMessageKey() {
+        return "global.actions.crudCancelled";
+    }
+
+    protected void showSuccessfulPersistMessage() {
+        messages.info(getSuccessfulPersistMessageKey());
+    }
+
+    protected void showFailedPersistMessage() {
+        messages.error(getFailedPersistMessageKey());
+    }
+
+    protected void showSuccessfulMergeMessage() {
+        messages.info(getSuccessfulMergeMessageKey());
+    }
+
+    protected void showFailedMergeMessage() {
+        messages.error(getFailedMergeMessageKey());
+    }
+
+    protected void showSuccessfulRemoveMessage() {
+        messages.info(getSuccessfulRemoveMessageKey());
+    }
+
+    protected void showFailedRemoveMessage() {
+        messages.error(getFailedRemoveMessageKey());
+    }
+
+    protected void showCrudOperationCancelledMessage() {
+        messages.warning(getCrudOperationCancelledMessageKey());
+    }
+
+    protected String getEntityCrudMessageIdentifier() {
+        return getEntityType().getSimpleName().toLowerCase();
     }
 }

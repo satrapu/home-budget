@@ -19,10 +19,4 @@ public class CategoryHome
     public Category getInstance() {
         return super.getInstance();
     }
-
-    @Override
-    public String cancel() {
-        super.cancel();
-        return "admin/categories/list";
-    }
 }
