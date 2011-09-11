@@ -12,6 +12,8 @@ import ro.satrapu.homebudget.ui.resources.Messages;
 /**
  * Manages an entity from an persistent storage.
  * Base class for all CRUD related JSF beans.
+ * @see <a href="http://www.andygibson.net/blog/tutorial/pattern-for-conversational-crud-in-java-ee-6/">
+ * Conversational CRUD in Java EE 6 by Andy Gibson.</a>
  * @author satrapu
  * @param <T>
  */
