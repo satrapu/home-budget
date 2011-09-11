@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
@@ -17,7 +17,7 @@ import ro.satrapu.homebudget.services.persistence.entities.Category;
  * @author satrapu
  */
 @Named
-@SessionScoped
+@RequestScoped
 public class CategoryList
         implements Serializable {
 

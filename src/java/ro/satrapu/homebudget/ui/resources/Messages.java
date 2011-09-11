@@ -1,6 +1,5 @@
 package ro.satrapu.homebudget.ui.resources;
 
-import java.io.Serializable;
 import java.text.MessageFormat;
 import java.util.ResourceBundle;
 import javax.annotation.PostConstruct;
@@ -9,12 +8,11 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 /**
- *
+ * Helper class used for displaying {@link FacesMessage} instances.
  * @author satrapu
  */
 @Model
-public class Messages
-        implements Serializable {
+public class Messages {
 
     private static final long serialVersionUID = 1L;
     private static final String MISSING_MESSAGE_KEY_PATTERN = "???{0}???";

@@ -10,7 +10,8 @@ import ro.satrapu.homebudget.services.persistence.PersistenceService;
 import ro.satrapu.homebudget.ui.resources.Messages;
 
 /**
- * 
+ * Manages an entity from an persistent storage.
+ * Base class for all CRUD related JSF beans.
  * @author satrapu
  * @param <T>
  */
@@ -20,14 +21,18 @@ public class EntityHome<T extends ManagedEntity>
     private static final long serialVersionUID = 1L;
     @Inject
     private PersistenceService persistenceService;
-    private Serializable id;
-    private T instance;
     @Inject
     private Conversation conversation;
     @Inject
     private Messages messages;
+    private Serializable id;
+    private T instance;
     private Class<T> entityType;
 
+    /**
+     * Gets the entity managed by this instance.
+     * @return An entity managed by this instance.
+     */
     public T getInstance() {
         if (instance == null) {
             if (id != null) {
@@ -40,18 +45,34 @@ public class EntityHome<T extends ManagedEntity>
         return instance;
     }
 
+    /**
+     * Gets the entity identifier.
+     * @return The entity identifier.
+     */
     public Serializable getId() {
         return id;
     }
 
+    /**
+     * Sets the entity identifier.
+     * @param id The identifier to set.
+     */
     public void setId(Serializable id) {
         this.id = id;
     }
 
+    /**
+     * Loads an entity based on the value returned by the {@link EntityHome#getId()} method.
+     * @return 
+     */
     public T loadInstance() {
         return persistenceService.find(getEntityType(), getId());
     }
 
+    /**
+     * Creates a new entity.
+     * @return A new entity.
+     */
     public T createInstance() {
         try {
             return getEntityType().newInstance();
@@ -71,10 +92,18 @@ public class EntityHome<T extends ManagedEntity>
         return entityType;
     }
 
+    /**
+     * Gets whether the current entity is managed or not.
+     * @return True, if the entity is managed; false, otherwise.
+     */
     public boolean isManaged() {
         return getInstance().getId() != null;
     }
 
+    /**
+     * Saves the changes of the current entity to the underlying persistent storage.
+     * @return The operation outcome, if successful; null, otherwise.
+     */
     public String save() {
         if (isManaged()) {
             try {
@@ -99,18 +128,29 @@ public class EntityHome<T extends ManagedEntity>
         return null;
     }
 
+    /**
+     * Cancels the current operation and closes the current conversation.
+     * @return The operation outcome.
+     */
     public String cancel() {
         conversation.end();
         showCrudOperationCancelledMessage();
         return "cancelled";
     }
 
+    /**
+     * Initializes a long-running conversation.
+     */
     public void initConversation() {
         if (conversation.isTransient()) {
             conversation.begin();
         }
     }
 
+    /**
+     * Removes the current entity from the underlying persistent storage.
+     * @return The operation outcome, if successful; null, otherwise.
+     */
     public String remove() {
         try {
             persistenceService.remove(getInstance());
