@@ -32,7 +32,6 @@
                 <p:inputText id="name"
                              value="#{categoryHome.instance.name}"
                              required="true"
-                             requiredMessage="#{msg['global.fields.required']}"
                              styleClass="#{not component.valid ? 'ui-input-invalid' : ''}">
                     <p:ajax event="blur"
                             immediate="true"

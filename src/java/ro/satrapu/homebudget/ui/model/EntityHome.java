@@ -1,7 +1,6 @@
 package ro.satrapu.homebudget.ui.model;
 
 import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
 import java.text.MessageFormat;
 import javax.enterprise.context.Conversation;
 import javax.inject.Inject;
@@ -18,7 +17,7 @@ import ro.satrapu.homebudget.ui.resources.Messages;
  * @param <T>
  */
 public class EntityHome<T extends ManagedEntity>
-        implements Serializable {
+        extends EntityManager<T> {
 
     private static final long serialVersionUID = 1L;
     @Inject
@@ -29,7 +28,6 @@ public class EntityHome<T extends ManagedEntity>
     private Messages messages;
     private Serializable id;
     private T instance;
-    private Class<T> entityType;
 
     /**
      * Gets the entity managed by this instance.
@@ -82,16 +80,6 @@ public class EntityHome<T extends ManagedEntity>
             throw new RuntimeException(MessageFormat.format("Could not instantiate class {0} using default ctor.",
                                                             getEntityType().getCanonicalName()), e);
         }
-    }
-
-    @SuppressWarnings("unchecked")
-    private Class<T> getEntityType() {
-        if (entityType == null) {
-            ParameterizedType parameterizedType = (ParameterizedType) getClass().getGenericSuperclass();
-            entityType = (Class<T>) parameterizedType.getActualTypeArguments()[0];
-        }
-
-        return entityType;
     }
 
     /**

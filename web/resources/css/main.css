@@ -66,6 +66,10 @@ a:link:hover, a:visited:hover  {
     border-width: 2px !important;
 }
 
+.ui-label-invalid {
+    color: red !important;
+}
+
 .requiredFields{
     padding-left: 2px;
     padding-top: 5px;
