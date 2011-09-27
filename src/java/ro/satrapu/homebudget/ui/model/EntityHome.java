@@ -95,24 +95,35 @@ public class EntityHome<T extends ManagedEntity>
      * @return The operation outcome, if successful; null, otherwise.
      */
     public String save() {
+//        if (isManaged()) {
+//            try {
+//                persistenceService.merge(getInstance());
+//                showSuccessfulMergeMessage();
+//                conversation.end();
+//                return "merged";
+//            } catch (Exception e) {
+//                showFailedMergeMessage();
+//            }
+//        } else {
+//            try {
+//                persistenceService.persist(getInstance());
+//                showSuccessfulPersistMessage();
+//                conversation.end();
+//                return "persisted";
+//            } catch (Exception e) {
+//                showFailedPersistMessage();
+//            }
+//        }
+//
+//        return null;
         if (isManaged()) {
-            try {
-                persistenceService.merge(getInstance());
-                showSuccessfulMergeMessage();
-                conversation.end();
-                return "merged";
-            } catch (Exception e) {
-                showFailedMergeMessage();
-            }
+            persistenceService.merge(getInstance());
+            showSuccessfulMergeMessage();
+            conversation.end();
         } else {
-            try {
-                persistenceService.persist(getInstance());
-                showSuccessfulPersistMessage();
-                conversation.end();
-                return "persisted";
-            } catch (Exception e) {
-                showFailedPersistMessage();
-            }
+            persistenceService.persist(getInstance());
+            showSuccessfulPersistMessage();
+            conversation.end();
         }
 
         return null;
@@ -142,14 +153,19 @@ public class EntityHome<T extends ManagedEntity>
      * @return The operation outcome, if successful; null, otherwise.
      */
     public String remove() {
-        try {
-            persistenceService.remove(getInstance());
-            showSuccessfulRemoveMessage();
-            conversation.end();
-            return "removed";
-        } catch (Exception e) {
-            showFailedRemoveMessage();
-        }
+//        try {
+//            persistenceService.remove(getInstance());
+//            showSuccessfulRemoveMessage();
+//            conversation.end();
+//            return "removed";
+//        } catch (Exception e) {
+//            showFailedRemoveMessage();
+//        }
+//
+//        return null;
+        persistenceService.remove(getInstance());
+        showSuccessfulRemoveMessage();
+        conversation.end();
 
         return null;
     }

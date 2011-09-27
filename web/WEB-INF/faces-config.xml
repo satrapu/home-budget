@@ -13,6 +13,9 @@
             <var>msg</var>
         </resource-bundle>
     </application>
+    <factory>
+        <exception-handler-factory>ro.satrapu.homebudget.ui.exceptionhandler.ExceptionHandlerFactory</exception-handler-factory>
+    </factory>
     <navigation-rule>
         <from-view-id>/admin/categories/edit.xhtml</from-view-id>
         <navigation-case>
