@@ -15,8 +15,12 @@ import org.slf4j.LoggerFactory;
 @Singleton
 public class LoggerProducer {
 
+    /**
+     * Creates a new {@link Logger} instance.
+     * @param injectionPoint
+     * @return
+     */
     @Produces
-    @Logging
     public Logger getLogger(InjectionPoint injectionPoint) {
         return LoggerFactory.getLogger(injectionPoint.getBean().getBeanClass());
     }

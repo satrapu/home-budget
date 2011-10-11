@@ -23,7 +23,7 @@
     <logger name="ro.satrapu.homebudget" level="DEBUG">
         <appender-ref ref="RollingFileAppender"/>
     </logger>
-    <root level="ERROR">
+    <root level="DEBUG">
         <appender-ref ref="ConsoleAppender"/>
     </root>
 </configuration>

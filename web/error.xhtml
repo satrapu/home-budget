@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                template="#{context_path}/resources/templates/page.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <ui:define name="title">#{msg['application.error.title']}</ui:define>
+    <ui:define name="content">
+        <p class="unexpectedError">
+            #{msg['application.error.detail.title']}
+        </p>
+        <br/>
+        <br/>
+        <p:scrollPanel style="width:99%; height:500px">
+            <pre>
+                #{unexpectedErrorDetails}
+            </pre>
+        </p:scrollPanel>
+    </ui:define>
+</ui:composition>

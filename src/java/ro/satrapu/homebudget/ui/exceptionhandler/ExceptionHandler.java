@@ -1,7 +1,10 @@
 package ro.satrapu.homebudget.ui.exceptionhandler;
 
 import java.util.Iterator;
+import java.util.Map;
 import javax.faces.FacesException;
+import javax.faces.application.NavigationHandler;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ExceptionQueuedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,14 +30,27 @@ public class ExceptionHandler
 
     @Override
     public void handle() throws FacesException {
-        logger.debug("handle() - start");
-                
         for (final Iterator<ExceptionQueuedEvent> it = getUnhandledExceptionQueuedEvents().iterator(); it.hasNext();) {
             Throwable throwable = it.next().getContext().getException();
-            logger.error("Error to be handled ...", throwable);
+            logger.error("Caught an unexpected exception", throwable);
+
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            Map<String, Object> requestMap = facesContext.getExternalContext().getRequestMap();
+            NavigationHandler navigationHandler = facesContext.getApplication().getNavigationHandler();
+
+            try {
+                String unexpectedErrorDetails = ExceptionPrettyPrinter.prettyPrint(throwable);
+                requestMap.put("unexpectedErrorDetails", unexpectedErrorDetails);
+
+                navigationHandler.handleNavigation(facesContext, null, "unexpectedException");
+                facesContext.renderResponse();
+            } catch (Exception ex) {
+                logger.error("Could not redirect user to error page", ex);
+            } finally {
+                it.remove();
+            }
         }
 
         getWrapped().handle();
-        logger.debug("handle() - end");
     }
 }

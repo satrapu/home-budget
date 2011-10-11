@@ -84,3 +84,8 @@ a:link:hover, a:visited:hover  {
 .actions a{
     margin-right: 5px;
 }
+
+.unexpectedError{
+    font-weight: bold;
+    color: red;
+}

@@ -12,7 +12,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import org.slf4j.Logger;
-import ro.satrapu.homebudget.services.logging.Logging;
 
 /**
  *
@@ -23,7 +22,6 @@ import ro.satrapu.homebudget.services.logging.Logging;
 public class PersistenceService {
 
     @Inject
-    @Logging
     private Logger logger;
     @PersistenceContext
     private EntityManager entityManager;
