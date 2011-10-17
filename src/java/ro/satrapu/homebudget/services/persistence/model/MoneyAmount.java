@@ -1,4 +1,4 @@
-package ro.satrapu.homebudget.services.persistence.entities;
+package ro.satrapu.homebudget.services.persistence.model;
 
 import java.util.Date;
 import javax.persistence.CascadeType;
@@ -11,7 +11,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.Data;
-import ro.satrapu.homebudget.services.persistence.ManagedEntity;
+import lombok.EqualsAndHashCode;
 
 /**
  *
@@ -19,8 +19,8 @@ import ro.satrapu.homebudget.services.persistence.ManagedEntity;
  */
 @MappedSuperclass
 @Data
-public abstract class MoneyAmount
-        implements ManagedEntity {
+@EqualsAndHashCode(callSuper = true)
+public abstract class MoneyAmount extends EntityBase {
 
     @NotNull
     @Size(min = 2, max = 4000)

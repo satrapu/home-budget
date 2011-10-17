@@ -2,7 +2,7 @@ package ro.satrapu.homebudget.ui.model;
 
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Named;
-import ro.satrapu.homebudget.services.persistence.entities.Expense;
+import ro.satrapu.homebudget.services.persistence.model.Expense;
 
 /**
  *

@@ -10,7 +10,7 @@ import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 import ro.satrapu.homebudget.services.persistence.PersistenceService;
-import ro.satrapu.homebudget.services.persistence.entities.Category;
+import ro.satrapu.homebudget.services.persistence.model.Category;
 
 /**
  *

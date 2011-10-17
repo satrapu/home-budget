@@ -6,16 +6,16 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
-import ro.satrapu.homebudget.services.persistence.ManagedEntity;
+import ro.satrapu.homebudget.services.persistence.Entity;
 import ro.satrapu.homebudget.services.persistence.PersistenceService;
-import ro.satrapu.homebudget.services.persistence.entities.Category;
+import ro.satrapu.homebudget.services.persistence.model.Category;
 
 /**
  *
  * @param <T> 
  * @author satrapu
  */
-public class EntityList<T extends ManagedEntity>
+public class EntityList<T extends Entity>
         extends EntityManager<T> {
 
     private static final long serialVersionUID = 1L;

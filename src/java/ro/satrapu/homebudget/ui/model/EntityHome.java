@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.text.MessageFormat;
 import javax.enterprise.context.Conversation;
 import javax.inject.Inject;
-import ro.satrapu.homebudget.services.persistence.ManagedEntity;
+import ro.satrapu.homebudget.services.persistence.Entity;
 import ro.satrapu.homebudget.services.persistence.PersistenceService;
 import ro.satrapu.homebudget.ui.resources.Messages;
 
@@ -16,7 +16,7 @@ import ro.satrapu.homebudget.ui.resources.Messages;
  * @author satrapu
  * @param <T>
  */
-public class EntityHome<T extends ManagedEntity>
+public class EntityHome<T extends Entity>
         extends EntityManager<T> {
 
     private static final long serialVersionUID = 1L;

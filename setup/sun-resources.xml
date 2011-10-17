@@ -31,7 +31,7 @@
                           validate-atmost-once-period-in-seconds="0" 
                           wrap-jdbc-objects="false">
         <description>Connection pool for the homebudget database</description>
-        <property name="URL" value="jdbc:derby://localhost:1527/homebudget"/>
+        <property name="URL" value="jdbc:derby://localhost:1527/homebudget;create=true"/>
         <property name="serverName" value="localhost"/>
         <property name="PortNumber" value="1527"/>
         <property name="DatabaseName" value="homebudget"/>
