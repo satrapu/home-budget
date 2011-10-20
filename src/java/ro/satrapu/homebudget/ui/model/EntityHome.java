@@ -87,7 +87,7 @@ public class EntityHome<T extends Entity>
      * @return True, if the entity is managed; false, otherwise.
      */
     public boolean isManaged() {
-        return getInstance().getId() != null;
+        return getInstance().isManaged();
     }
 
     /**
@@ -95,35 +95,24 @@ public class EntityHome<T extends Entity>
      * @return The operation outcome, if successful; null, otherwise.
      */
     public String save() {
-//        if (isManaged()) {
-//            try {
-//                persistenceService.merge(getInstance());
-//                showSuccessfulMergeMessage();
-//                conversation.end();
-//                return "merged";
-//            } catch (Exception e) {
-//                showFailedMergeMessage();
-//            }
-//        } else {
-//            try {
-//                persistenceService.persist(getInstance());
-//                showSuccessfulPersistMessage();
-//                conversation.end();
-//                return "persisted";
-//            } catch (Exception e) {
-//                showFailedPersistMessage();
-//            }
-//        }
-//
-//        return null;
         if (isManaged()) {
-            persistenceService.merge(getInstance());
-            showSuccessfulMergeMessage();
-            conversation.end();
+            try {
+                persistenceService.merge(getInstance());
+                showSuccessfulMergeMessage();
+                conversation.end();
+                return "merged";
+            } catch (Exception e) {
+                showFailedMergeMessage();
+            }
         } else {
-            persistenceService.persist(getInstance());
-            showSuccessfulPersistMessage();
-            conversation.end();
+            try {
+                persistenceService.persist(getInstance());
+                showSuccessfulPersistMessage();
+                conversation.end();
+                return "persisted";
+            } catch (Exception e) {
+                showFailedPersistMessage();
+            }
         }
 
         return null;
@@ -135,7 +124,6 @@ public class EntityHome<T extends Entity>
      */
     public String cancel() {
         conversation.end();
-        showCrudOperationCancelledMessage();
         return "cancelled";
     }
 
@@ -153,19 +141,14 @@ public class EntityHome<T extends Entity>
      * @return The operation outcome, if successful; null, otherwise.
      */
     public String remove() {
-//        try {
-//            persistenceService.remove(getInstance());
-//            showSuccessfulRemoveMessage();
-//            conversation.end();
-//            return "removed";
-//        } catch (Exception e) {
-//            showFailedRemoveMessage();
-//        }
-//
-//        return null;
-        persistenceService.remove(getInstance());
-        showSuccessfulRemoveMessage();
-        conversation.end();
+        try {
+            persistenceService.remove(getInstance());
+            showSuccessfulRemoveMessage();
+            conversation.end();
+            return "removed";
+        } catch (Exception e) {
+            showFailedRemoveMessage();
+        }
 
         return null;
     }

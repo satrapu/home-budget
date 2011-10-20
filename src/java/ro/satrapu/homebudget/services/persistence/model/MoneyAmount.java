@@ -10,8 +10,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Setter;
 
 /**
  *
@@ -39,5 +41,10 @@ public abstract class MoneyAmount extends EntityBase {
     @NotNull
     @Temporal(TemporalType.DATE)
     @Column(nullable = false, name = "CREATE_DATE")
+    @Setter(AccessLevel.PRIVATE)
     private Date createDate;
+    @NotNull
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = false, name = "INPUT_DATE")
+    private Date inputDate;
 }
