@@ -6,22 +6,20 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
-import ro.satrapu.homebudget.services.persistence.Entity;
 import ro.satrapu.homebudget.services.persistence.PersistenceService;
-import ro.satrapu.homebudget.services.persistence.model.Category;
+import ro.satrapu.homebudget.services.persistence.Category;
+import ro.satrapu.homebudget.services.persistence.Entity;
 
 /**
  *
  * @param <T> 
  * @author satrapu
  */
-public class EntityList<T extends Entity>
-        extends EntityManager<T> {
+public class EntityList<T extends Entity> extends EntityManager<T> {
 
-    private static final long serialVersionUID = 1L;
     @Inject
-    private PersistenceService persistenceService;
-    private LazyDataModel<T> data;
+    PersistenceService persistenceService;
+    LazyDataModel<T> data;
 
     @PostConstruct
     public void init() {
@@ -31,7 +29,7 @@ public class EntityList<T extends Entity>
 
             @Override
             public List<T> load(int first, int pageSize, String sortField, SortOrder sortOrder,
-                                Map<String, String> filters) {
+                    Map<String, String> filters) {
                 return persistenceService.list(getEntityType(), first, pageSize);
             }
         };

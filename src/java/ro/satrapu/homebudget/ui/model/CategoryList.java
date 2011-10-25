@@ -1,17 +1,18 @@
 package ro.satrapu.homebudget.ui.model;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
-import ro.satrapu.homebudget.services.persistence.model.Category;
+import javax.enterprise.inject.Model;
+import org.primefaces.model.LazyDataModel;
+import ro.satrapu.homebudget.services.persistence.Category;
 
 /**
  *
  * @author satrapu
  */
-@Named
-@RequestScoped
-public class CategoryList
-        extends EntityList<Category> {
+@Model
+public class CategoryList extends EntityList<Category> {
 
-    private static final long serialVersionUID = 1L;
+    @Override
+    public LazyDataModel<Category> getData() {
+        return super.getData();
+    }
 }

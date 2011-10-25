@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.text.MessageFormat;
 import javax.enterprise.context.Conversation;
 import javax.inject.Inject;
-import ro.satrapu.homebudget.services.persistence.Entity;
 import ro.satrapu.homebudget.services.persistence.PersistenceService;
-import ro.satrapu.homebudget.ui.resources.Messages;
+import ro.satrapu.homebudget.services.persistence.Entity;
+import ro.satrapu.homebudget.services.internationalization.Messages;
 
 /**
  * Manages an entity from an persistent storage.
@@ -16,8 +16,7 @@ import ro.satrapu.homebudget.ui.resources.Messages;
  * @author satrapu
  * @param <T>
  */
-public class EntityHome<T extends Entity>
-        extends EntityManager<T> {
+public class EntityHome<T extends Entity> extends EntityManager<T> {
 
     private static final long serialVersionUID = 1L;
     @Inject
@@ -78,7 +77,7 @@ public class EntityHome<T extends Entity>
             return getEntityType().newInstance();
         } catch (InstantiationException | IllegalAccessException e) {
             throw new RuntimeException(MessageFormat.format("Could not instantiate class {0} using default ctor.",
-                                                            getEntityType().getCanonicalName()), e);
+                    getEntityType().getCanonicalName()), e);
         }
     }
 
@@ -130,7 +129,7 @@ public class EntityHome<T extends Entity>
     /**
      * Initializes a long-running conversation.
      */
-    public void initConversation() {
+    public void beginConversation() {
         if (conversation.isTransient()) {
             conversation.begin();
         }

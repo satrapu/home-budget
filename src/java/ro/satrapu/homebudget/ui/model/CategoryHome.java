@@ -2,7 +2,7 @@ package ro.satrapu.homebudget.ui.model;
 
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Named;
-import ro.satrapu.homebudget.services.persistence.model.Category;
+import ro.satrapu.homebudget.services.persistence.Category;
 
 /**
  *
@@ -10,10 +10,7 @@ import ro.satrapu.homebudget.services.persistence.model.Category;
  */
 @Named
 @ConversationScoped
-public class CategoryHome
-        extends EntityHome<Category> {
-
-    private static final long serialVersionUID = 1L;
+public class CategoryHome extends EntityHome<Category> {
 
     @Override
     public Category getInstance() {

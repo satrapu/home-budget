@@ -9,7 +9,7 @@
             <supported-locale>ro</supported-locale>
         </locale-config>
         <resource-bundle>
-            <base-name>ro.satrapu.homebudget.ui.resources.messages</base-name>
+            <base-name>ro.satrapu.homebudget.services.internationalization.messages</base-name>
             <var>msg</var>
         </resource-bundle>
     </application>
