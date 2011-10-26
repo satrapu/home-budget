@@ -21,108 +21,117 @@ import org.slf4j.Logger;
 @Stateless
 @LocalBean
 public class PersistenceService {
-
+    
     @Inject
     Logger logger;
     @PersistenceContext
     EntityManager entityManager;
-
+    
     public <T extends Entity> T persist(T entity) {
         logger.debug("Persist entity: {}", entity);
-
+        
         if (entity == null) {
             throw new PersistenceException("Cannot persist null entity");
         }
-
+        
         entityManager.persist(entity);
+        logger.debug("Persisted entity: {}", entity);
         return entity;
     }
-
+    
     public <T extends Entity> void remove(T entity) {
         logger.debug("Remove entity: {}", entity);
-
+        
         if (entity == null) {
             throw new PersistenceException("Cannot remove null entity");
         }
-
+        
         T mergedEntity = entityManager.merge(entity);
         entityManager.remove(mergedEntity);
     }
-
+    
     public <T extends Entity> T merge(T entity) {
         logger.debug("Merge entity: {}", entity);
-
+        
         if (entity == null) {
             throw new PersistenceException("Cannot merge null entity");
         }
-
-        return entityManager.merge(entity);
+        
+        T mergedEntity = entityManager.merge(entity);
+        logger.debug("Merged entity: {}", mergedEntity);
+        return mergedEntity;
     }
-
+    
     public <T extends Entity> List<T> listAll(Class<T> entityClass) {
         logger.debug("List all entities of type: {}", entityClass);
-
+        
         if (entityClass == null) {
             throw new PersistenceException("Cannot query for entities by using null as entity class");
         }
-
+        
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<T> criteria = builder.createQuery(entityClass);
         Root<T> root = criteria.from(entityClass);
         criteria.select(root);
-
+        
         TypedQuery<T> query = entityManager.createQuery(criteria);
         return query.getResultList();
     }
-
+    
     public <T extends Entity> T find(Class<T> entityClass, Serializable entityId) {
         logger.debug("Find entity of type: {}, using id: {}", entityClass, entityId);
-
+        
         if (entityClass == null) {
             throw new PersistenceException("Cannot find entity by using null as entity class");
         }
-
+        
         if (entityId == null) {
             throw new PersistenceException("Cannot find entity by using null as entity id");
         }
-
-        return entityManager.find(entityClass, entityId);
+        
+        T entity = entityManager.find(entityClass, entityId);
+        logger.debug("Found entity: {}", entity);
+        return entity;
     }
-
+    
     public <T extends Entity> List<T> list(Class<T> entityClass, int firstResult, int maxResults) {
         logger.debug("List maximum: {} entities: {}, starting from index: {} ",
                 new Object[]{maxResults, entityClass, firstResult});
-
+        
         if (entityClass == null) {
             throw new PersistenceException("Cannot query for entities by using null as entity class");
         }
-
+        
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<T> criteria = builder.createQuery(entityClass);
         Root<T> root = criteria.from(entityClass);
         criteria.select(root);
-
+        
         TypedQuery<T> query = entityManager.createQuery(criteria);
         query.setFirstResult(firstResult);
         query.setMaxResults(maxResults);
-        return query.getResultList();
+        List<T> resultList = query.getResultList();
+        logger.debug("Listed: {} {} entities", resultList.size(), entityClass);
+        return resultList;
     }
-
+    
     public <T extends Entity> long count(Class<T> entityClass) {
         logger.debug("Count entities: {}", entityClass);
-
+        
         if (entityClass == null) {
             throw new PersistenceException("Cannot count entities by using null as entity class");
         }
-
+        
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<T> criteria = builder.createQuery(entityClass);
         Root<T> root = criteria.from(entityClass);
-
+        
         CriteriaQuery<Long> countCriteria = builder.createQuery(Long.class);
         countCriteria.select(builder.count(root));
-
+        
         TypedQuery<Long> countQuery = entityManager.createQuery(countCriteria);
-        return countQuery.getSingleResult();
+        long count = countQuery.getSingleResult();
+        logger.debug("Counted: {} {} entities", count, entityClass);
+        return count;
     }
 }
