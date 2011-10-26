@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                template="#{context_path}/resources/templates/page.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <ui:define name="title">#{msg['admin.income.delete.title']}</ui:define>
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="id"
+                         value="#{incomeHome.id}"
+                         converter="#{entityIdConverter}"/>
+            <f:event type="preRenderView"
+                     listener="#{incomeHome.beginConversation}" />
+        </f:metadata>
+        <h:form>
+            <h:panelGrid rendered="#{incomeHome.managed}"
+                         columns="2">
+                <h:outputLabel for="id">
+                    #{msg['income.id']}
+                </h:outputLabel>
+                <h:outputText id="id" 
+                              value="#{incomeHome.instance.id}"/>
+                <h:outputLabel for="name">
+                    #{msg['income.name']}
+                </h:outputLabel>
+                <h:outputText id="description" 
+                              value="#{incomeHome.instance.description}"/>
+            </h:panelGrid>
+            <p:separator/>
+            <div class="actions">
+                <p:commandButton action="#{incomeHome.remove}"
+                                 value="#{msg['global.actions.remove']}"
+                                 ajax="false"
+                                 rendered="#{incomeHome.managed}"/>
+                <p:commandButton action="#{incomeHome.cancel}"
+                                 value="#{msg['global.actions.cancel']}"
+                                 ajax="false"
+                                 immediate="true"/>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

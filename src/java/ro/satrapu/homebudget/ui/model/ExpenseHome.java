@@ -2,7 +2,7 @@ package ro.satrapu.homebudget.ui.model;
 
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Named;
-import ro.satrapu.homebudget.services.persistence.Expense;
+import ro.satrapu.homebudget.services.persistence.model.Expense;
 
 /**
  *
@@ -10,10 +10,15 @@ import ro.satrapu.homebudget.services.persistence.Expense;
  */
 @Named
 @ConversationScoped
-public class ExpenseHome extends EntityHome<Expense> {
+public class ExpenseHome extends EntityEditor<Expense> {
 
     @Override
     public Expense getInstance() {
         return super.getInstance();
+    }
+
+    @Override
+    protected String getOutcome() {
+        return "/admin/expenses/list";
     }
 }

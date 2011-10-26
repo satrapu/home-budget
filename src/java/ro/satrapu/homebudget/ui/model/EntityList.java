@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 import ro.satrapu.homebudget.services.persistence.PersistenceService;
-import ro.satrapu.homebudget.services.persistence.Category;
+import ro.satrapu.homebudget.services.persistence.model.Category;
 import ro.satrapu.homebudget.services.persistence.Entity;
 
 /**

@@ -1,4 +1,4 @@
-package ro.satrapu.homebudget.services.persistence;
+package ro.satrapu.homebudget.services.persistence.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

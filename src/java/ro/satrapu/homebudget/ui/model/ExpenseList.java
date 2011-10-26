@@ -2,7 +2,7 @@ package ro.satrapu.homebudget.ui.model;
 
 import javax.enterprise.inject.Model;
 import org.primefaces.model.LazyDataModel;
-import ro.satrapu.homebudget.services.persistence.Expense;
+import ro.satrapu.homebudget.services.persistence.model.Expense;
 
 /**
  *

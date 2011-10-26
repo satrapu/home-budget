@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                template="#{context_path}/resources/templates/page.xhtml">
+    <ui:define name="title">#{msg['admin.expense.list.title']}</ui:define>
+    <ui:define name="content">
+        <h:form id="list"
+                prependId="false"
+                onsubmit="document.getElementById('list').action='j_security_check';">
+            <p:dataTable value="#{expenseList.data}"
+                         var="expense"
+                         lazy="true"
+                         paginator="true"
+                         paginatorPosition="top"
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"  
+                         rowsPerPageTemplate="5, 10, 25, 50"
+                         rows="25"
+                         rowKey="#{expense.id}"
+                         emptyMessage="#{msg['global.noRecordFound']}">
+                <p:column>
+                    <f:facet name="header">
+                        #{msg['global.actions']}
+                    </f:facet>
+                    <div class="actions">
+                        <h:link outcome="/admin/expenses/edit"
+                                value="#{msg['global.actions.edit']}">
+                            <f:param name="id" 
+                                     value="#{expense.id}"/>
+                        </h:link>
+                        <h:link outcome="/admin/expenses/remove"
+                                value="#{msg['global.actions.remove']}">
+                            <f:param name="id" 
+                                     value="#{expense.id}"/>
+                        </h:link>
+                    </div>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        #{msg['expense.id']}
+                    </f:facet>
+                    <h:outputText value="#{expense.id}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        #{msg['expense.description']}
+                    </f:facet>
+                    <h:outputText value="#{expense.description}" />
+                </p:column>
+            </p:dataTable>
+            <p:separator/>
+        </h:form>
+        <h:form>
+            <div class="actions">
+                <p:commandButton action="/admin/expenses/edit"
+                                 value="#{msg['admin.expense.list.actions.new.title']}"
+                                 ajax="false"
+                                 immediate="true"/>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

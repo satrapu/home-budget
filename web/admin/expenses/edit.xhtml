@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="#{context_path}/resources/templates/page.xhtml">
+    <ui:define name="title">#{expenseHome.managed ? msg['admin.expense.edit.title']: msg['admin.expense.new.title']}</ui:define>
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="id"
+                         value="#{expenseHome.id}"
+                         converter="#{entityIdConverter}"/>
+            <f:event type="preRenderView"
+                     listener="#{expenseHome.beginConversation}" />
+        </f:metadata>
+        <h:form>
+            <h:panelGrid rendered="#{expenseHome.managed}"
+                         columns="2">
+                <h:outputLabel for="id">
+                    #{msg['expense.id']}
+                </h:outputLabel>
+                <h:outputText id="id" 
+                              value="#{expenseHome.instance.id}"/>
+                <h:outputText/>
+            </h:panelGrid>
+            <h:panelGrid id="descriptionEditor"
+                         columns="3">
+                <h:outputLabel for="description">
+                    #{msg['expense.description']}
+                </h:outputLabel>
+                <p:inputTextarea id="description"
+                                 value="#{expenseHome.instance.description}"
+                                 required="true"
+                                 styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
+                                 rows="5"
+                                 cols="40">
+                    <p:ajax event="blur"
+                            immediate="true"
+                            update="descriptionEditor"/>
+                </p:inputTextarea>
+                <p:message for="description"/>
+            </h:panelGrid>
+            <div class="requiredFields">#{msg['global.fields.requiredInfo']}</div>
+            <p:separator/>
+            <div class="actions">
+                <p:commandButton action="#{expenseHome.save}"
+                                 value="#{msg['global.actions.save']}"
+                                 ajax="false"/>
+                <p:commandButton action="#{expenseHome.cancel}"
+                                 value="#{msg['global.actions.cancel']}"
+                                 ajax="false"
+                                 immediate="true"/>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

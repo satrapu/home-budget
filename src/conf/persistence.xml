@@ -3,9 +3,9 @@
   <persistence-unit name="HomeBudgetPersistenceUnit" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <jta-data-source>jdbc/homebudget</jta-data-source>
-    <class>ro.satrapu.homebudget.services.persistence.Category</class>
-    <class>ro.satrapu.homebudget.services.persistence.Expense</class>
-    <class>ro.satrapu.homebudget.services.persistence.Income</class>
+    <class>ro.satrapu.homebudget.services.persistence.model.Category</class>
+    <class>ro.satrapu.homebudget.services.persistence.model.Income</class>
+    <class>ro.satrapu.homebudget.services.persistence.model.Expense</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <validation-mode>CALLBACK</validation-mode>
     <properties>

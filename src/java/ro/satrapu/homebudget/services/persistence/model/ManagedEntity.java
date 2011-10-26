@@ -1,4 +1,4 @@
-package ro.satrapu.homebudget.services.persistence;
+package ro.satrapu.homebudget.services.persistence.model;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,6 +8,7 @@ import javax.persistence.Version;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
+import ro.satrapu.homebudget.services.persistence.Entity;
 
 /**
  * Base class for any entity.

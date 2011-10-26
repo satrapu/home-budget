@@ -99,7 +99,7 @@ public class EntityHome<T extends Entity> extends EntityManager<T> {
                 persistenceService.merge(getInstance());
                 showSuccessfulMergeMessage();
                 conversation.end();
-                return "merged";
+                return getMergedOutcome();
             } catch (Exception e) {
                 showFailedMergeMessage();
             }
@@ -108,7 +108,7 @@ public class EntityHome<T extends Entity> extends EntityManager<T> {
                 persistenceService.persist(getInstance());
                 showSuccessfulPersistMessage();
                 conversation.end();
-                return "persisted";
+                return getPersistedOutcome();
             } catch (Exception e) {
                 showFailedPersistMessage();
             }
@@ -123,7 +123,7 @@ public class EntityHome<T extends Entity> extends EntityManager<T> {
      */
     public String cancel() {
         conversation.end();
-        return "cancelled";
+        return getCancelledOutcome();
     }
 
     /**
@@ -144,7 +144,7 @@ public class EntityHome<T extends Entity> extends EntityManager<T> {
             persistenceService.remove(getInstance());
             showSuccessfulRemoveMessage();
             conversation.end();
-            return "removed";
+            return getRemovedOutcome();
         } catch (Exception e) {
             showFailedRemoveMessage();
         }
@@ -210,5 +210,21 @@ public class EntityHome<T extends Entity> extends EntityManager<T> {
 
     protected String getEntityCrudMessageIdentifier() {
         return getEntityType().getSimpleName().toLowerCase();
+    }
+
+    protected String getPersistedOutcome() {
+        return "persisted";
+    }
+
+    protected String getMergedOutcome() {
+        return "merged";
+    }
+
+    protected String getRemovedOutcome() {
+        return "removed";
+    }
+
+    protected String getCancelledOutcome() {
+        return "cancelled";
     }
 }

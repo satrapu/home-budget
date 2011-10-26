@@ -1,4 +1,4 @@
-package ro.satrapu.homebudget.services.persistence;
+package ro.satrapu.homebudget.services.persistence.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -10,8 +10,8 @@ import lombok.EqualsAndHashCode;
  * @author satrapu
  */
 @Entity
-@Table(name = "INCOMES")
+@Table(name = "EXPENSES")
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Income extends MoneyAmount {
+public class Expense extends MoneyAmount {
 }
