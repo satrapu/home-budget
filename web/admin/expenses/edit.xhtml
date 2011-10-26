@@ -32,6 +32,7 @@
                 <p:inputTextarea id="description"
                                  value="#{expenseHome.instance.description}"
                                  required="true"
+                                 requiredMessage="#{msg['global.fields.required']}"
                                  styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
                                  rows="5"
                                  cols="40">

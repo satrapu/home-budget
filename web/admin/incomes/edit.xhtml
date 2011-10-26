@@ -32,7 +32,10 @@
                 <p:inputTextarea id="description"
                                  value="#{incomeHome.instance.description}"
                                  required="true"
-                                 styleClass="#{not component.valid ? 'ui-input-invalid' : ''}">
+                                 requiredMessage="#{msg['global.fields.required']}"
+                                 styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
+                                 rows="5"
+                                 cols="40">
                     <p:ajax event="blur"
                             immediate="true"
                             update="descriptionEditor"/>
