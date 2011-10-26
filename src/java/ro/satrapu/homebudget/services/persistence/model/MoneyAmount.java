@@ -14,6 +14,7 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  *
@@ -22,6 +23,7 @@ import lombok.Setter;
 @MappedSuperclass
 @Data
 @EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 public abstract class MoneyAmount extends ManagedEntity {
 
     @NotNull

@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  *
@@ -13,5 +14,6 @@ import lombok.EqualsAndHashCode;
 @Table(name = "EXPENSES")
 @Data
 @EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 public class Expense extends MoneyAmount {
 }

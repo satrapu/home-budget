@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  *
@@ -18,6 +19,7 @@ import lombok.EqualsAndHashCode;
 @UniqueConstraint(columnNames = {"NAME"}))
 @Data
 @EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 public class Category extends ManagedEntity {
 
     @NotNull
