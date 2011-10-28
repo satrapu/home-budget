@@ -7,12 +7,12 @@
                 xmlns:f="http://java.sun.com/jsf/core">
     <ui:define name="title">#{msg['application.error.title']}</ui:define>
     <ui:define name="content">
-        <p class="unexpectedError">
+        <p class="unexpectedError-title">
             #{msg['application.error.detail.title']}
         </p>
         <br/>
         <br/>
-        <p:scrollPanel style="width:99%; height:500px">
+        <p:scrollPanel styleClass="unexpectedError-container">
             <pre>
                 #{unexpectedErrorDetails}
             </pre>

@@ -85,7 +85,13 @@ a:link:hover, a:visited:hover  {
     margin-right: 5px;
 }
 
-.unexpectedError{
+.unexpectedError-title{
     font-weight: bold;
     color: red;
+}
+
+.unexpectedError-container{
+    width: 99%; 
+    height: 500px;
+    font-size: 10%;
 }

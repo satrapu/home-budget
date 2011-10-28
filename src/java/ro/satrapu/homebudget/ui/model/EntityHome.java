@@ -180,6 +180,10 @@ public class EntityHome<T extends Entity> extends EntityManager<T> {
         return "global.actions.crudCancelled";
     }
 
+    protected String getRecordDoesNotExistsMessageKey() {
+        return "global.recordDoesNotExist";
+    }
+
     protected void showSuccessfulPersistMessage() {
         messages.info(getSuccessfulPersistMessageKey());
     }
@@ -206,6 +210,10 @@ public class EntityHome<T extends Entity> extends EntityManager<T> {
 
     protected void showCrudOperationCancelledMessage() {
         messages.warning(getCrudOperationCancelledMessageKey());
+    }
+
+    protected void showRecordDoesNotExistMessage() {
+        messages.warning(getRecordDoesNotExistsMessageKey());
     }
 
     protected String getEntityCrudMessageIdentifier() {
