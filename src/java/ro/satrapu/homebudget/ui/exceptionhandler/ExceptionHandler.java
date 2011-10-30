@@ -5,7 +5,6 @@ import java.util.Map;
 import javax.faces.FacesException;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.context.Flash;
 import javax.faces.event.ExceptionQueuedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
