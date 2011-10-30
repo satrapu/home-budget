@@ -12,6 +12,7 @@
             <base-name>ro.satrapu.homebudget.services.internationalization.messages</base-name>
             <var>msg</var>
         </resource-bundle>
+        <action-listener></action-listener>
     </application>
     <factory>
         <exception-handler-factory>ro.satrapu.homebudget.ui.exceptionhandler.ExceptionHandlerFactory</exception-handler-factory>
@@ -21,12 +22,6 @@
         <phase-listener>ro.satrapu.homebudget.ui.jsf.extensions.PostRedirectGetListener</phase-listener>
     </lifecycle>
     -->
-    <navigation-rule id="error-page">
-        <navigation-case>
-            <from-outcome>unexpectedException</from-outcome>
-            <to-view-id>/errors/unexpectedError.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
     <!--
     <navigation-rule>
         <from-view-id>/admin/categories/edit.xhtml</from-view-id>

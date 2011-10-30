@@ -26,9 +26,4 @@ public abstract class ManagedEntity implements Entity {
     @Version
     @Setter(AccessLevel.PRIVATE)
     private Long version;
-
-    @Override
-    public boolean isManaged() {
-        return getId() != null;
-    }
 }

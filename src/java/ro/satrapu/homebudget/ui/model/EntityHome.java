@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.text.MessageFormat;
 import javax.enterprise.context.Conversation;
 import javax.inject.Inject;
+import org.slf4j.Logger;
 import ro.satrapu.homebudget.services.persistence.PersistenceService;
 import ro.satrapu.homebudget.services.persistence.Entity;
 import ro.satrapu.homebudget.services.internationalization.Messages;
@@ -20,11 +21,13 @@ public class EntityHome<T extends Entity> extends EntityManager<T> {
 
     private static final long serialVersionUID = 1L;
     @Inject
-    private PersistenceService persistenceService;
+    PersistenceService persistenceService;
     @Inject
-    private Conversation conversation;
+    Conversation conversation;
     @Inject
-    private Messages messages;
+    Messages messages;
+    @Inject
+    Logger logger;
     private Serializable id;
     private T instance;
 
@@ -65,6 +68,7 @@ public class EntityHome<T extends Entity> extends EntityManager<T> {
      * @return 
      */
     public T loadInstance() {
+        logger.debug("Loading instance: {} using id: {}", getEntityType(), getId());
         return persistenceService.find(getEntityType(), getId());
     }
 
@@ -73,9 +77,12 @@ public class EntityHome<T extends Entity> extends EntityManager<T> {
      * @return A new entity.
      */
     public T createInstance() {
+        logger.debug("Creating instance: {}", getEntityType());
+
         try {
             return getEntityType().newInstance();
         } catch (InstantiationException | IllegalAccessException e) {
+            logger.error("Could not create instance", e);
             throw new RuntimeException(MessageFormat.format("Could not instantiate class {0} using default ctor.",
                     getEntityType().getCanonicalName()), e);
         }
@@ -86,7 +93,7 @@ public class EntityHome<T extends Entity> extends EntityManager<T> {
      * @return True, if the entity is managed; false, otherwise.
      */
     public boolean isManaged() {
-        return getInstance().isManaged();
+        return getInstance().getId() != null;
     }
 
     /**
@@ -96,20 +103,24 @@ public class EntityHome<T extends Entity> extends EntityManager<T> {
     public String save() {
         if (isManaged()) {
             try {
+                logger.debug("Merging instance: {}", getInstance());
                 persistenceService.merge(getInstance());
                 showSuccessfulMergeMessage();
                 conversation.end();
                 return getMergedOutcome();
             } catch (Exception e) {
+                logger.error("Could not merge instance", e);
                 showFailedMergeMessage();
             }
         } else {
             try {
+                logger.debug("Persisting instance: {}", getInstance());
                 persistenceService.persist(getInstance());
                 showSuccessfulPersistMessage();
                 conversation.end();
                 return getPersistedOutcome();
             } catch (Exception e) {
+                logger.error("Could not persist instance", e);
                 showFailedPersistMessage();
             }
         }
@@ -122,6 +133,7 @@ public class EntityHome<T extends Entity> extends EntityManager<T> {
      * @return The operation outcome.
      */
     public String cancel() {
+        logger.debug("Cancel editor");
         conversation.end();
         return getCancelledOutcome();
     }
@@ -132,6 +144,7 @@ public class EntityHome<T extends Entity> extends EntityManager<T> {
     public void beginConversation() {
         if (conversation.isTransient()) {
             conversation.begin();
+            logger.debug("Starting conversation with id: {}", conversation.getId());
         }
     }
 
@@ -140,12 +153,15 @@ public class EntityHome<T extends Entity> extends EntityManager<T> {
      * @return The operation outcome, if successful; null, otherwise.
      */
     public String remove() {
+        logger.debug("Removing instance: {}", getInstance());
+
         try {
             persistenceService.remove(getInstance());
             showSuccessfulRemoveMessage();
             conversation.end();
             return getRemovedOutcome();
         } catch (Exception e) {
+            logger.error("Could not remove instance", e);
             showFailedRemoveMessage();
         }
 

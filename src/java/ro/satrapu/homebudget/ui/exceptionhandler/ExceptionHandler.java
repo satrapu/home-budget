@@ -3,14 +3,18 @@ package ro.satrapu.homebudget.ui.exceptionhandler;
 import java.util.Iterator;
 import java.util.Map;
 import javax.faces.FacesException;
-import javax.faces.application.NavigationHandler;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.faces.event.ExceptionQueuedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
+ * Handles uncaught exceptions.
+ * <br/>
+ * This class is based on an article found 
+ * <a href="http://javalabor.blogspot.com/2011/09/jsf-2-global-exception-handling.html">here</a>.
  * @author satrapu
  */
 public class ExceptionHandler
@@ -35,15 +39,16 @@ public class ExceptionHandler
             logger.error("Caught an unexpected exception", throwable);
 
             FacesContext facesContext = FacesContext.getCurrentInstance();
-            Map<String, Object> requestMap = facesContext.getExternalContext().getRequestMap();
-            NavigationHandler navigationHandler = facesContext.getApplication().getNavigationHandler();
+            ExternalContext externalContext = facesContext.getExternalContext();
+
+//            Map<String, Object> viewMap = facesContext.getViewRoot().getViewMap();
+//            viewMap.put("unexpectedErrorDetails", ExceptionPrettyPrinter.prettyPrint(throwable));
+            Map<String, Object> requestMap = externalContext.getRequestMap();
+            requestMap.put("unexpectedErrorDetails", ExceptionPrettyPrinter.prettyPrint(throwable));
 
             try {
-                String unexpectedErrorDetails = ExceptionPrettyPrinter.prettyPrint(throwable);
-                requestMap.put("unexpectedErrorDetails", unexpectedErrorDetails);
-
-                navigationHandler.handleNavigation(facesContext, null, "unexpectedException");
-                facesContext.renderResponse();
+                String url = externalContext.getRequestContextPath() + "/faces/errors/unexpectedError.xhtml";
+                externalContext.redirect(url);
             } catch (Exception ex) {
                 logger.error("Could not redirect user to error page", ex);
             } finally {

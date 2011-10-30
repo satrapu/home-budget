@@ -16,11 +16,11 @@ import org.slf4j.Logger;
 @Model
 public class Messages {
 
-    private static final String MISSING_MESSAGE_KEY_PATTERN = "???{0}???";
-    private static final String BUNDLE_NAME = "msg";
-    private ResourceBundle bundle;
+    static final String MISSING_MESSAGE_KEY_PATTERN = "???{0}???";
+    static final String BUNDLE_NAME = "msg";
+    ResourceBundle bundle;
     @Inject
-    private Logger logger;
+    Logger logger;
 
     @PostConstruct
     public void init() {

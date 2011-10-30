@@ -97,10 +97,10 @@ public class PostRedirectGetListener implements PhaseListener {
 
     // Helpers ------------------------------------------------------------------------------------
     /**
-     * Save the current viewroot of the given Faces context in session. This is important in JSF 1.2,
-     * because the viewroot would be lost in the new GET request and will only be created during
+     * Save the current view root of the given Faces context in session. This is important in JSF 1.2,
+     * because the view root would be lost in the new GET request and will only be created during
      * the afterPhase of RENDER_RESPONSE. But as we need to restore the input values in the 
-     * beforePhase of RENDER_RESPONSE, we have to save and restore the viewroot first ourselves.
+     * beforePhase of RENDER_RESPONSE, we have to save and restore the view root first ourselves.
      * @param facesContext The involved Faces context.
      */
     private static void saveViewRoot(FacesContext facesContext) {
@@ -109,8 +109,8 @@ public class PostRedirectGetListener implements PhaseListener {
     }
 
     /**
-     * Save all facesmessages of the given Faces context in session. This is done so because the
-     * facesmessages are purely request scoped and would be lost in the new GET request otherwise.
+     * Save all Faces messages of the given Faces context in session. This is done so because the
+     * Faces messages are purely request scoped and would be lost in the new GET request otherwise.
      * @param facesContext The involved Faces context.
      */
     private static void saveFacesMessages(FacesContext facesContext) {
@@ -157,8 +157,7 @@ public class PostRedirectGetListener implements PhaseListener {
      * A recursive method to save all input values of the given Faces context in session.
      * @param facesContext The involved Faces context.
      */
-    private static void saveUIInputValues(
-            FacesContext facesContext, List<UIComponent> components, Map<String, Object> allUIInputValues) {
+    private static void saveUIInputValues(FacesContext facesContext, List<UIComponent> components, Map<String, Object> allUIInputValues) {
         // Walk through the components and if it is an instance of UIInput, then save the value.
         for (UIComponent component : components) {
             if (component instanceof UIInput) {

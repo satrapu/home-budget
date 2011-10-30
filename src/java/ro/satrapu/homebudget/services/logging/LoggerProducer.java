@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
+ * Produces {@link org.slf4j.Logger} instances.
  * @author satrapu
  */
 @Named
@@ -21,7 +21,7 @@ public class LoggerProducer {
      * @return
      */
     @Produces
-    public Logger getLogger(InjectionPoint injectionPoint) {
+    public Logger produce(InjectionPoint injectionPoint) {
         return LoggerFactory.getLogger(injectionPoint.getBean().getBeanClass());
     }
 }

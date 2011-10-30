@@ -15,7 +15,7 @@ import javax.persistence.criteria.Root;
 import org.slf4j.Logger;
 
 /**
- *
+ * Manages all CRUD operations.
  * @author satrapu
  */
 @Stateless
