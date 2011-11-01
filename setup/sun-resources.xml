@@ -43,7 +43,7 @@
     </jdbc-connection-pool>
     -->
     
-    <!-- H2 database -->
+    <!-- H2 database in server mode -->
     <jdbc-connection-pool allow-non-component-callers="false" 
                           associate-with-thread="false" 
                           connection-creation-retry-attempts="0" 
@@ -58,7 +58,8 @@
                           is-isolation-level-guaranteed="true" 
                           lazy-connection-association="false" 
                           lazy-connection-enlistment="false" 
-                          match-connections="false" max-connection-usage-count="0" 
+                          match-connections="false" 
+                          max-connection-usage-count="0" 
                           max-pool-size="32" 
                           max-wait-time-in-millis="60000" 
                           name="HomeBudgetConnectionPool" 
@@ -70,7 +71,7 @@
                           validate-atmost-once-period-in-seconds="0" 
                           wrap-jdbc-objects="false">
         <description>Connection pool for the homebudget database</description>
-        <property name="URL" value="jdbc:h2:tcp://127.0.1.1:9101/~/Programming/Databases/H2/homebudget"/>
+        <property name="URL" value="jdbc:h2:tcp://127.0.1.1:9101/~/Programming/Databases/H2/homebudget/homebudget"/>
         <property name="serverName" value="localhost"/>
         <property name="PortNumber" value="9101"/>
         <property name="DatabaseName" value="homebudget"/>
