@@ -10,12 +10,10 @@
         <p class="unexpectedError-title">
             #{msg['application.error.detail.title']}
         </p>
-        <br/>
-        <br/>
-        <p:scrollPanel styleClass="unexpectedError-container">
-            <pre>
-                #{unexpectedErrorDetails}
+        <p:panel header="Click here for more details" collapsed="true" toggleable="true">
+            <pre style="width: 600px;">
+                #{unexpectedErrorDetails}"
             </pre>
-        </p:scrollPanel>
+        </p:panel>
     </ui:define>
 </ui:composition>
