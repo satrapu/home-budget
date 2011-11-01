@@ -17,45 +17,4 @@
     <factory>
         <exception-handler-factory>ro.satrapu.homebudget.ui.exceptionhandler.ExceptionHandlerFactory</exception-handler-factory>
     </factory>
-    <!--
-    <lifecycle>
-        <phase-listener>ro.satrapu.homebudget.ui.jsf.extensions.PostRedirectGetListener</phase-listener>
-    </lifecycle>
-    -->
-    <!--
-    <navigation-rule>
-        <navigation-case>
-            <from-outcome>unexpectedError</from-outcome>
-            <to-view-id>/errors/unexpecteError.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-    -->
-    <!--
-    <navigation-rule>
-        <from-view-id>/admin/categories/edit.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>merged</from-outcome>
-            <to-view-id>/admin/categories/list.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>persisted</from-outcome>
-            <to-view-id>/admin/categories/list.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>cancelled</from-outcome>
-            <to-view-id>/admin/categories/list.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-    <navigation-rule>
-        <from-view-id>/admin/categories/remove.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>removed</from-outcome>
-            <to-view-id>/admin/categories/list.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>cancelled</from-outcome>
-            <to-view-id>/admin/categories/list.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-    -->
 </faces-config>
