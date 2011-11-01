@@ -1,7 +1,6 @@
 package ro.satrapu.homebudget.ui.exceptionhandler;
 
 import java.util.Iterator;
-import java.util.Map;
 import javax.faces.FacesException;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -39,11 +38,7 @@ public class ExceptionHandler
 
             FacesContext facesContext = FacesContext.getCurrentInstance();
             ExternalContext externalContext = facesContext.getExternalContext();
-
-//            Map<String, Object> viewMap = facesContext.getViewRoot().getViewMap();
-//            viewMap.put("unexpectedErrorDetails", ExceptionPrettyPrinter.prettyPrint(throwable));
-            Map<String, Object> requestMap = externalContext.getRequestMap();
-            requestMap.put("unexpectedErrorDetails", ExceptionPrettyPrinter.prettyPrint(throwable));
+            externalContext.getSessionMap().put("unexpectedErrorDetails", ExceptionPrettyPrinter.prettyPrint(throwable));
 
             try {
                 String url = externalContext.getRequestContextPath() + "/faces/errors/unexpectedError.xhtml";
