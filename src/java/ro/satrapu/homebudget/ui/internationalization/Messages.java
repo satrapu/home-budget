@@ -1,4 +1,4 @@
-package ro.satrapu.homebudget.services.internationalization;
+package ro.satrapu.homebudget.ui.internationalization;
 
 import java.text.MessageFormat;
 import java.util.ResourceBundle;

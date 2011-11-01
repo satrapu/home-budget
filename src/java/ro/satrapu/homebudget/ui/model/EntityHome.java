@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import ro.satrapu.homebudget.services.persistence.PersistenceService;
 import ro.satrapu.homebudget.services.persistence.Entity;
-import ro.satrapu.homebudget.services.internationalization.Messages;
+import ro.satrapu.homebudget.ui.internationalization.Messages;
 
 /**
  * Manages an entity from an persistent storage.
