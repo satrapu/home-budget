@@ -71,7 +71,7 @@
                           validate-atmost-once-period-in-seconds="0" 
                           wrap-jdbc-objects="false">
         <description>Connection pool for the homebudget database</description>
-        <property name="URL" value="jdbc:h2:tcp://127.0.1.1:9101/~/Programming/Databases/H2/homebudget/homebudget"/>
+        <property name="URL" value="jdbc:h2:tcp://localhost:9101/file:F:/Satrapu/Programming/Databases/H2/HomeBudget/homebudget"/>
         <property name="serverName" value="localhost"/>
         <property name="PortNumber" value="9101"/>
         <property name="DatabaseName" value="homebudget"/>

@@ -7,31 +7,31 @@
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <web-module-libraries>
                 <library dirs="200">
-                    <file>${libs.PrimeFaces_Themes.classpath}</file>
+                    <file>${libs.H2.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${libs.Lombok_0.10.0.classpath}</file>
+                    <file>${libs.JUnit.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${libs.PrimeFaces_3.0.M3.classpath}</file>
+                    <file>${libs.Logback.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${libs.SLF4J_1.6.2.classpath}</file>
+                    <file>${libs.Lombok.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${libs.Logback_0.9.30.classpath}</file>
+                    <file>${libs.PrimeFaces.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${libs.JUnit_4.10.classpath}</file>
+                    <file>${libs.PrimeFacesThemes.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${libs.H2_1.3.161.classpath}</file>
+                    <file>${libs.SLF4J.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
