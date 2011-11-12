@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration scan="true" scanPeriod="60 seconds">
-    <appender name="ConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+<configuration scan="true" 
+               scanPeriod="60 seconds">
+    <appender name="ConsoleAppender" 
+              class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%-5level %d{HH:mm:ss.SSS} %logger{36} %message%n</pattern>
         </encoder>
     </appender>
-    <appender name="RollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="RollingFileAppender" 
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>logs/homebudget/homebudget.log</file>
         <append>true</append>
         <encoder>
@@ -20,7 +23,8 @@
             <maxFileSize>10MB</maxFileSize>
         </triggeringPolicy>
     </appender>
-    <logger name="ro.satrapu.homebudget" level="DEBUG">
+    <logger name="ro.satrapu.homebudget" 
+            level="DEBUG">
         <appender-ref ref="RollingFileAppender"/>
     </logger>
     <root level="DEBUG">
