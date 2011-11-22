@@ -4,6 +4,7 @@ import ro.satrapu.homebudget.services.persistence.Entity;
 
 /**
  *
+ * @param <T> 
  * @author satrapu
  */
 public abstract class EntityEditor<T extends Entity> extends EntityHome<T> {

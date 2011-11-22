@@ -42,6 +42,70 @@
                 </p:inputTextarea>
                 <p:message for="description"/>
             </h:panelGrid>
+            <h:panelGrid id="amountEditor"
+                         columns="3">
+                <h:outputLabel for="amount">
+                    #{msg['expense.amount']}
+                </h:outputLabel>
+                <p:inputText id="amount"
+                             value="#{expenseHome.instance.amount}"
+                             required="true"
+                             requiredMessage="#{msg['global.fields.required']}"
+                             styleClass="#{not component.valid ? 'ui-input-invalid' : ''}">
+                    <p:ajax event="blur"
+                            immediate="true"
+                            update="amountEditor"/>
+                </p:inputText>
+                <p:message for="amount"/>
+            </h:panelGrid>
+            <h:panelGrid id="currencyCodeEditor"
+                         columns="3">
+                <h:outputLabel for="currencyCode">
+                    #{msg['expense.currencyCode']}
+                </h:outputLabel>
+                <p:inputText id="currencyCode"
+                             value="#{expenseHome.instance.currencyCode}"
+                             required="true"
+                             requiredMessage="#{msg['global.fields.required']}"
+                             styleClass="#{not component.valid ? 'ui-input-invalid' : ''}">
+                    <p:ajax event="blur"
+                            immediate="true"
+                            update="currencyCodeEditor"/>
+                </p:inputText>
+                <p:message for="currencyCode"/>
+            </h:panelGrid>
+            <h:panelGrid id="categoryEditor"
+                         columns="3">
+                <h:outputLabel for="category">
+                    #{msg['expense.category']}
+                </h:outputLabel>
+                <p:selectOneMenu id="category"
+                                 required="true"
+                                 requiredMessage="#{msg['global.fields.required']}"
+                                 styleClass="#{not component.valid ? 'ui-input-invalid' : ''}">
+                    <f:selectItems value="#{expenseHome.categories}" />
+                    <p:ajax event="blur"
+                            immediate="true"
+                            update="categoryEditor"/>
+                </p:selectOneMenu>
+                <p:message for="category"/>
+            </h:panelGrid>
+            <h:panelGrid id="inputDateEditor"
+                         columns="3">
+                <h:outputLabel for="inputDate">
+                    #{msg['expense.inputDate']}
+                </h:outputLabel>
+                <p:calendar id="inputDate"
+                            value="#{expenseHome.instance.inputDate}"
+                            required="true"
+                            requiredMessage="#{msg['global.fields.required']}"
+                            styleClass="#{not component.valid ? 'ui-input-invalid' : ''}">
+                    <p:ajax event="blur"
+                            immediate="true"
+                            update="inputDateEditor"/>
+                </p:calendar>
+                <p:message for="inputDate"/>
+            </h:panelGrid>
             <div class="requiredFields">#{msg['global.fields.requiredInfo']}</div>
             <p:separator/>
             <div class="actions">

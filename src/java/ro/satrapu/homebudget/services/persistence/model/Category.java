@@ -22,6 +22,7 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class Category extends ManagedEntity {
 
+    private static final long serialVersionUID = 1L;
     @NotNull
     @Size(min = 2, max = 200)
     @Column(nullable = false, length = 200, name = "NAME")

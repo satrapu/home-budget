@@ -11,6 +11,8 @@ import ro.satrapu.homebudget.services.persistence.model.Income;
 @Model
 public class IncomeList extends EntityList<Income> {
 
+    private static final long serialVersionUID = 1L;
+
     @Override
     public LazyDataModel<Income> getData() {
         return super.getData();

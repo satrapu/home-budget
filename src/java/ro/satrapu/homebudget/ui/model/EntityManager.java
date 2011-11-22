@@ -11,6 +11,7 @@ import ro.satrapu.homebudget.services.persistence.Entity;
  */
 public class EntityManager<T extends Entity> implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private Class<T> entityType;
 
     @SuppressWarnings("unchecked")

@@ -12,6 +12,8 @@ import ro.satrapu.homebudget.services.persistence.model.Category;
 @ConversationScoped
 public class CategoryHome extends EntityEditor<Category> {
 
+    private static final long serialVersionUID = 1L;
+
     @Override
     public Category getInstance() {
         return super.getInstance();

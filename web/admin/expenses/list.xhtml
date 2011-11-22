@@ -49,6 +49,36 @@
                     </f:facet>
                     <h:outputText value="#{expense.description}" />
                 </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        #{msg['expense.amount']}
+                    </f:facet>
+                    <h:outputText value="#{expense.amount}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        #{msg['expense.currencyCode']}
+                    </f:facet>
+                    <h:outputText value="#{expense.currencyCode}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        #{msg['expense.category']}
+                    </f:facet>
+                    <h:outputText value="#{expense.category.name}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        #{msg['expense.createDate']}
+                    </f:facet>
+                    <h:outputText value="#{expense.createDate}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        #{msg['expense.inputDate']}
+                    </f:facet>
+                    <h:outputText value="#{expense.inputDate}" />
+                </p:column>
             </p:dataTable>
             <p:separator/>
         </h:form>

@@ -16,4 +16,6 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class Expense extends MoneyAmount {
+
+    private static final long serialVersionUID = 1L;
 }

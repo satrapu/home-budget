@@ -17,6 +17,7 @@ import ro.satrapu.homebudget.services.persistence.Entity;
  */
 public class EntityList<T extends Entity> extends EntityManager<T> {
 
+    private static final long serialVersionUID = 1L;
     @Inject
     PersistenceService persistenceService;
     LazyDataModel<T> data;
