@@ -8,7 +8,6 @@
     <h:head>
         <meta http-equiv="Content-Type"
               content="text/html; charset=UTF-8" />
-        <h:outputStylesheet name="layout.css" library="css"/>
         <h:outputStylesheet name="main.css" library="css"/>
         <title>#{msg['application.title']}</title>
     </h:head>
@@ -26,30 +25,6 @@
                     </div>
                 </f:facet>
                 <ui:include src="menu.xhtml"/>
-                <!--
-                <p:ajaxStatus>
-                    <f:facet name="prestart">
-                        <h:outputText value="Starting..."/>
-                    </f:facet>
-                    <f:facet name="error">
-                        <h:outputText value="Error"/>
-                    </f:facet>
-                    <f:facet name="success">
-                        <h:outputText value="Success"/>
-                    </f:facet>
-                    <f:facet name="default">
-                        <h:outputText value="Idle"/>
-                    </f:facet>
-                    <f:facet name="start">
-                        <h:graphicImage library="primefaces"
-                                        name="jquery/ui/ui-anim_basic_16x16.gif"/>
-                        <h:graphicImage value="#{context_path}/resources/images/ajax-loader.gif"/>
-                    </f:facet>
-                    <f:facet name="complete">
-                        <h:outputText value="Done"/>
-                    </f:facet>
-                </p:ajaxStatus>
-                -->
                 <p:messages id="messages"
                             globalOnly="true"
                             showSummary="true"

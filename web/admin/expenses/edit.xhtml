@@ -48,10 +48,10 @@
                     #{msg['expense.amount']}
                 </h:outputLabel>
                 <p:inputText id="amount"
-                             value="#{expenseHome.instance.amount}"
                              required="true"
                              requiredMessage="#{msg['global.fields.required']}"
-                             styleClass="#{not component.valid ? 'ui-input-invalid' : ''}">
+                             styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
+                             value="#{expenseHome.instance.amount}">
                     <p:ajax event="blur"
                             immediate="true"
                             update="amountEditor"/>
@@ -63,15 +63,18 @@
                 <h:outputLabel for="currencyCode">
                     #{msg['expense.currencyCode']}
                 </h:outputLabel>
-                <p:inputText id="currencyCode"
-                             value="#{expenseHome.instance.currencyCode}"
-                             required="true"
-                             requiredMessage="#{msg['global.fields.required']}"
-                             styleClass="#{not component.valid ? 'ui-input-invalid' : ''}">
+                <p:selectOneMenu id="currencyCode"
+                                 required="true"
+                                 requiredMessage="#{msg['global.fields.required']}"
+                                 styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
+                                 value="#{expenseHome.instance.currencyCode}">
+                    <f:selectItem itemLabel="#{msg['global.fields.selectOneValue']}" 
+                                  itemValue="" />
+                    <f:selectItems value="#{currencyManager.allCurrencies}" />
                     <p:ajax event="blur"
                             immediate="true"
                             update="currencyCodeEditor"/>
-                </p:inputText>
+                </p:selectOneMenu>
                 <p:message for="currencyCode"/>
             </h:panelGrid>
             <h:panelGrid id="categoryEditor"
@@ -82,8 +85,11 @@
                 <p:selectOneMenu id="category"
                                  required="true"
                                  requiredMessage="#{msg['global.fields.required']}"
-                                 styleClass="#{not component.valid ? 'ui-input-invalid' : ''}">
-                    <f:selectItems value="#{expenseHome.categories}" />
+                                 styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
+                                 value="#{expenseHome.categoryId}">
+                    <f:selectItem itemLabel="#{msg['global.fields.selectOneValue']}" 
+                                  itemValue="" />  
+                    <f:selectItems value="#{expenseHome.categories}"/>
                     <p:ajax event="blur"
                             immediate="true"
                             update="categoryEditor"/>
@@ -99,10 +105,11 @@
                             value="#{expenseHome.instance.inputDate}"
                             required="true"
                             requiredMessage="#{msg['global.fields.required']}"
-                            styleClass="#{not component.valid ? 'ui-input-invalid' : ''}">
-                    <p:ajax event="blur"
-                            immediate="true"
-                            update="inputDateEditor"/>
+                            styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
+                            navigator="true"
+                            showOtherMonths="true"
+                            showWeek="true"
+                            selectOtherMonths="true">
                 </p:calendar>
                 <p:message for="inputDate"/>
             </h:panelGrid>

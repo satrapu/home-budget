@@ -42,6 +42,14 @@
                 </p:inputTextarea>
                 <p:message for="description"/>
             </h:panelGrid>
+            <h:panelGrid columns="3">
+                <h:outputLabel for="category">
+                    #{msg['income.category']}
+                </h:outputLabel>
+                <h:outputText id="id" 
+                              value="#{incomeHome.instance.category}"/>
+                <h:outputText/>
+            </h:panelGrid>
             <div class="requiredFields">#{msg['global.fields.requiredInfo']}</div>
             <p:separator/>
             <div class="actions">

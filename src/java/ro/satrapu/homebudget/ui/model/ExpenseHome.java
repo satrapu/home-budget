@@ -15,11 +15,6 @@ public class ExpenseHome extends MoneyAmountEditor<Expense> {
     private static final long serialVersionUID = 1L;
 
     @Override
-    public Expense getInstance() {
-        return super.getInstance();
-    }
-
-    @Override
     protected String getOutcome() {
         return "/admin/expenses/list";
     }

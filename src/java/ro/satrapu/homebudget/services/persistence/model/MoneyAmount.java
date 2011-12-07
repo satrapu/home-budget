@@ -2,11 +2,11 @@ package ro.satrapu.homebudget.services.persistence.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -32,7 +32,7 @@ public abstract class MoneyAmount extends ManagedEntity {
     @Column(nullable = false, length = 4000, name = "DESCRIPTION")
     private String description;
     @NotNull
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     private Category category;
     @NotNull
     @Size(min = 3, max = 3)
@@ -53,4 +53,9 @@ public abstract class MoneyAmount extends ManagedEntity {
     @NotNull
     @Column(nullable = false, name = "AMOUNT")
     private BigDecimal amount;
+
+    @PrePersist
+    protected void onBeforePersist() {
+        createDate = new Date();
+    }
 }

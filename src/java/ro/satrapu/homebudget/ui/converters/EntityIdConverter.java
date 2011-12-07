@@ -10,8 +10,7 @@ import javax.inject.Named;
  * @author satrapu
  */
 @Named
-public class EntityIdConverter
-        implements Converter {
+public class EntityIdConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {

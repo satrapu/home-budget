@@ -10,6 +10,8 @@
         <h:form id="list"
                 prependId="false"
                 onsubmit="document.getElementById('list').action='j_security_check';">
+            <h:outputText rendered="#{not expenseList.dataAvailable}"
+                          value="#{msg['global.noRecords']}"/>
             <p:dataTable value="#{expenseList.data}"
                          var="expense"
                          lazy="true"
@@ -19,7 +21,7 @@
                          rowsPerPageTemplate="5, 10, 25, 50"
                          rows="25"
                          rowKey="#{expense.id}"
-                         emptyMessage="#{msg['global.noRecordFound']}">
+                         rendered="#{expenseList.dataAvailable}">
                 <p:column>
                     <f:facet name="header">
                         #{msg['global.actions']}
@@ -39,9 +41,9 @@
                 </p:column>
                 <p:column>
                     <f:facet name="header">
-                        #{msg['expense.id']}
+                        #{msg['expense.inputDate']}
                     </f:facet>
-                    <h:outputText value="#{expense.id}" />
+                    <h:outputText value="#{dateTimeManager.getDisplayableDate(expense.inputDate)}" />
                 </p:column>
                 <p:column>
                     <f:facet name="header">
@@ -59,7 +61,7 @@
                     <f:facet name="header">
                         #{msg['expense.currencyCode']}
                     </f:facet>
-                    <h:outputText value="#{expense.currencyCode}" />
+                    <h:outputText value="#{currencyManager.getDisplayableName(expense.currencyCode)}" />
                 </p:column>
                 <p:column>
                     <f:facet name="header">
@@ -71,13 +73,7 @@
                     <f:facet name="header">
                         #{msg['expense.createDate']}
                     </f:facet>
-                    <h:outputText value="#{expense.createDate}" />
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        #{msg['expense.inputDate']}
-                    </f:facet>
-                    <h:outputText value="#{expense.inputDate}" />
+                    <h:outputText value="#{dateTimeManager.getDisplayableDate(expense.createDate)}" />
                 </p:column>
             </p:dataTable>
             <p:separator/>

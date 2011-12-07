@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 import ro.satrapu.homebudget.services.persistence.PersistenceService;
-import ro.satrapu.homebudget.services.persistence.model.Category;
 import ro.satrapu.homebudget.services.persistence.Entity;
 
 /**
@@ -24,20 +23,25 @@ public class EntityList<T extends Entity> extends EntityManager<T> {
 
     @PostConstruct
     public void init() {
+
         data = new LazyDataModel<T>() {
 
             private static final long serialVersionUID = 1L;
 
             @Override
-            public List<T> load(int first, int pageSize, String sortField, SortOrder sortOrder,
-                    Map<String, String> filters) {
+            public List<T> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
                 return persistenceService.list(getEntityType(), first, pageSize);
             }
         };
-        data.setRowCount((int) persistenceService.count(Category.class));
+
+        data.setRowCount((int) persistenceService.count(getEntityType()));
     }
 
     public LazyDataModel<T> getData() {
         return data;
+    }
+
+    public boolean isDataAvailable() {
+        return data.getRowCount() > 0;
     }
 }

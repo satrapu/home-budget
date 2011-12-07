@@ -18,8 +18,8 @@
                          paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"  
                          rowsPerPageTemplate="5, 10, 25, 50"
                          rows="25"
-                         rowKey="#{expense.id}"
-                         emptyMessage="#{msg['global.noRecordFound']}">
+                         rowKey="#{income.id}"
+                         emptyMessage="#{msg['global.noRecords']}">
                 <p:column>
                     <f:facet name="header">
                         #{msg['global.actions']}
@@ -41,13 +41,37 @@
                     <f:facet name="header">
                         #{msg['income.id']}
                     </f:facet>
-                    <h:outputText value="#{expense.id}" />
+                    <h:outputText value="#{income.id}" />
                 </p:column>
                 <p:column>
                     <f:facet name="header">
                         #{msg['income.description']}
                     </f:facet>
-                    <h:outputText value="#{expense.description}" />
+                    <h:outputText value="#{income.description}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        #{msg['income.amount']}
+                    </f:facet>
+                    <h:outputText value="#{income.amount}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        #{msg['income.currency']}
+                    </f:facet>
+                    <h:outputText value="#{income.currency}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        #{msg['income.category']}
+                    </f:facet>
+                    <h:outputText value="#{income.category.name}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        #{msg['income.inputDate']}
+                    </f:facet>
+                    <h:outputText value="#{income.inputDate}" />
                 </p:column>
             </p:dataTable>
             <p:separator/>
