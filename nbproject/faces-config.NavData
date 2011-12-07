@@ -7,12 +7,12 @@
         <Node id="resources/templates/page.xhtml" x="650" y="150" zoom="false"/>
         <Node id="resources/templates/menu.xhtml" x="150" y="300" zoom="false"/>
         <Node id="admin/incomes/remove.xhtml" x="150" y="300" zoom="true"/>
-        <Node id="errors/unexpectedError.xhtml" x="150" y="150" zoom="true"/>
         <Node id="admin/categories/remove.xhtml" x="400" y="150" zoom="true"/>
-        <Node id="admin/expenses/remove.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="errors/unexpectedError.xhtml" x="150" y="150" zoom="true"/>
         <Node id="admin/incomes/edit.xhtml" x="400" y="450" zoom="true"/>
-        <Node id="admin/categories/list.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="admin/expenses/remove.xhtml" x="650" y="150" zoom="true"/>
         <Node id="admin/expenses/list.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="admin/categories/list.xhtml" x="900" y="150" zoom="true"/>
         <Node id="config/skins.xhtml" x="476" y="383" zoom="false"/>
         <Node id="admin/categories/edit.xhtml" x="650" y="300" zoom="true"/>
         <Node id="index.xhtml" x="150" y="150" zoom="false"/>

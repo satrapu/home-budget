@@ -20,13 +20,16 @@ public class CurrencyManager {
 
     @Inject
     Locale currentLocale;
+    @Inject
+    Collection<Locale> supportedLocales;
     private List<SelectItem> currencies;
 
     public Collection<SelectItem> getAllCurrencies() {
         if (currencies == null) {
             currencies = new ArrayList<>();
 
-            for (Currency currency : Currency.getAvailableCurrencies()) {
+            for (Locale locale : supportedLocales) {
+                Currency currency = Currency.getInstance(locale);
                 currencies.add(new SelectItem(currency.getCurrencyCode(), currency.getDisplayName(currentLocale)));
             }
 
