@@ -10,6 +10,8 @@
         <h:form id="list"
                 prependId="false"
                 onsubmit="document.getElementById('list').action='j_security_check';">
+            <h:outputText rendered="#{not incomeList.dataAvailable}"
+                          value="#{msg['global.noRecords']}"/>
             <p:dataTable value="#{incomeList.data}"
                          var="income"
                          lazy="true"
@@ -19,7 +21,7 @@
                          rowsPerPageTemplate="5, 10, 25, 50"
                          rows="25"
                          rowKey="#{income.id}"
-                         emptyMessage="#{msg['global.noRecords']}">
+                         rendered="#{incomeList.dataAvailable}">
                 <p:column>
                     <f:facet name="header">
                         #{msg['global.actions']}
@@ -39,9 +41,9 @@
                 </p:column>
                 <p:column>
                     <f:facet name="header">
-                        #{msg['income.id']}
+                        #{msg['income.inputDate']}
                     </f:facet>
-                    <h:outputText value="#{income.id}" />
+                    <h:outputText value="#{dateTimeManager.getDisplayableDate(income.inputDate)}" />
                 </p:column>
                 <p:column>
                     <f:facet name="header">
@@ -57,9 +59,9 @@
                 </p:column>
                 <p:column>
                     <f:facet name="header">
-                        #{msg['income.currency']}
+                        #{msg['income.currencyCode']}
                     </f:facet>
-                    <h:outputText value="#{income.currency}" />
+                    <h:outputText value="#{currencyManager.getDisplayableName(income.currencyCode)}" />
                 </p:column>
                 <p:column>
                     <f:facet name="header">
@@ -69,9 +71,9 @@
                 </p:column>
                 <p:column>
                     <f:facet name="header">
-                        #{msg['income.inputDate']}
+                        #{msg['income.createDate']}
                     </f:facet>
-                    <h:outputText value="#{income.inputDate}" />
+                    <h:outputText value="#{dateTimeManager.getDisplayableDate(income.createDate)}" />
                 </p:column>
             </p:dataTable>
             <p:separator/>

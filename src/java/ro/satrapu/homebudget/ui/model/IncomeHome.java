@@ -10,14 +10,9 @@ import ro.satrapu.homebudget.services.persistence.model.Income;
  */
 @Named
 @ConversationScoped
-public class IncomeHome extends EntityEditor<Income> {
+public class IncomeHome extends MoneyAmountEditor<Income> {
 
     private static final long serialVersionUID = 1L;
-
-    @Override
-    public Income getInstance() {
-        return super.getInstance();
-    }
 
     @Override
     protected String getOutcome() {

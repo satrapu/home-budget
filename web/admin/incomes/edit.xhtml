@@ -42,13 +42,76 @@
                 </p:inputTextarea>
                 <p:message for="description"/>
             </h:panelGrid>
-            <h:panelGrid columns="3">
+            <h:panelGrid id="amountEditor"
+                         columns="3">
+                <h:outputLabel for="amount">
+                    #{msg['income.amount']}
+                </h:outputLabel>
+                <p:inputText id="amount"
+                             required="true"
+                             requiredMessage="#{msg['global.fields.required']}"
+                             styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
+                             value="#{incomeHome.instance.amount}">
+                    <p:ajax event="blur"
+                            immediate="true"
+                            update="amountEditor"/>
+                </p:inputText>
+                <p:message for="amount"/>
+            </h:panelGrid>
+            <h:panelGrid id="currencyCodeEditor"
+                         columns="3">
+                <h:outputLabel for="currencyCode">
+                    #{msg['income.currencyCode']}
+                </h:outputLabel>
+                <p:selectOneMenu id="currencyCode"
+                                 required="true"
+                                 requiredMessage="#{msg['global.fields.required']}"
+                                 styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
+                                 value="#{incomeHome.instance.currencyCode}">
+                    <f:selectItem itemLabel="#{msg['global.fields.selectOneValue']}" 
+                                  itemValue="" />
+                    <f:selectItems value="#{currencyManager.allCurrencies}" />
+                    <p:ajax event="blur"
+                            immediate="true"
+                            update="currencyCodeEditor"/>
+                </p:selectOneMenu>
+                <p:message for="currencyCode"/>
+            </h:panelGrid>
+            <h:panelGrid id="categoryEditor"
+                         columns="3">
                 <h:outputLabel for="category">
                     #{msg['income.category']}
                 </h:outputLabel>
-                <h:outputText id="id" 
-                              value="#{incomeHome.instance.category}"/>
-                <h:outputText/>
+                <p:selectOneMenu id="category"
+                                 required="true"
+                                 requiredMessage="#{msg['global.fields.required']}"
+                                 styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
+                                 value="#{incomeHome.categoryId}">
+                    <f:selectItem itemLabel="#{msg['global.fields.selectOneValue']}" 
+                                  itemValue="" />  
+                    <f:selectItems value="#{incomeHome.categories}"/>
+                    <p:ajax event="blur"
+                            immediate="true"
+                            update="categoryEditor"/>
+                </p:selectOneMenu>
+                <p:message for="category"/>
+            </h:panelGrid>
+            <h:panelGrid id="inputDateEditor"
+                         columns="3">
+                <h:outputLabel for="inputDate">
+                    #{msg['income.inputDate']}
+                </h:outputLabel>
+                <p:calendar id="inputDate"
+                            value="#{incomeHome.instance.inputDate}"
+                            required="true"
+                            requiredMessage="#{msg['global.fields.required']}"
+                            styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
+                            navigator="true"
+                            showOtherMonths="true"
+                            showWeek="true"
+                            selectOtherMonths="true">
+                </p:calendar>
+                <p:message for="inputDate"/>
             </h:panelGrid>
             <div class="requiredFields">#{msg['global.fields.requiredInfo']}</div>
             <p:separator/>
