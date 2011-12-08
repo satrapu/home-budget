@@ -68,7 +68,7 @@
                                  requiredMessage="#{msg['global.fields.required']}"
                                  styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
                                  value="#{incomeHome.instance.currencyCode}">
-                    <f:selectItems value="#{currencyManager.allCurrencies}" />
+                    <f:selectItems value="#{currencyManager.availableCurrencies}" />
                     <p:ajax event="blur"
                             immediate="true"
                             update="currencyCodeEditor"/>

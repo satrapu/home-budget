@@ -3,8 +3,8 @@ package ro.satrapu.homebudget.ui.internationalization;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Locale;
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Produces;
@@ -21,53 +21,53 @@ import javax.inject.Singleton;
 @Named
 @Singleton
 public class LocaleProducer {
-    
-    private List<Locale> supportedLocales;
-    
+
+    private Collection<Locale> availableLocales;
+
     @PostConstruct
     public void init() {
-        supportedLocales = new ArrayList<>();
-        
+        availableLocales = new ArrayList<>();
+
         Application facesApplication = FacesContext.getCurrentInstance().getApplication();
         Locale defaultLocale = facesApplication.getDefaultLocale();
-        
+
         if (defaultLocale == null) {
             defaultLocale = Locale.getDefault();
         }
-        
+
         if (defaultLocale.getCountry() == null || defaultLocale.getCountry().isEmpty()) {
             throw new FacesException(MessageFormat.format("Default locale {0} must have the country specified. Please add the country info inside faces.config file.", defaultLocale));
         }
-        
+
         Iterator<Locale> supportedLocalesIterator = facesApplication.getSupportedLocales();
-        Locale[] availableLocales = Locale.getAvailableLocales();
-        
+        Locale[] javaAvailableLocales = Locale.getAvailableLocales();
+
         while (supportedLocalesIterator.hasNext()) {
             Locale locale = supportedLocalesIterator.next();
-            
+
             if (locale.getCountry() == null || locale.getCountry().isEmpty()) {
                 throw new FacesException(MessageFormat.format("Locale {0} must have the country specified. Please add the country info inside faces.config file.", locale));
             }
-            
-            for (Locale availableLocale : availableLocales) {
+
+            for (Locale availableLocale : javaAvailableLocales) {
                 if (availableLocale.getLanguage().compareToIgnoreCase(locale.getLanguage()) == 0) {
-                    supportedLocales.add(availableLocale);
+                    availableLocales.add(availableLocale);
                     break;
                 }
             }
         }
-        
+
         boolean containsDefaultLocale = false;
-        
-        for (Locale supportedLocale : supportedLocales) {
+
+        for (Locale supportedLocale : availableLocales) {
             if (supportedLocale.getLanguage().compareToIgnoreCase(defaultLocale.getLanguage()) == 0) {
                 containsDefaultLocale = true;
                 break;
             }
         }
-        
+
         if (!containsDefaultLocale) {
-            supportedLocales.add(defaultLocale);
+            availableLocales.add(defaultLocale);
         }
     }
 
@@ -76,12 +76,14 @@ public class LocaleProducer {
      * @return
      */
     @Produces
+    @CurrentLocale
     public Locale getCurrentLocale() {
         return FacesContext.getCurrentInstance().getViewRoot().getLocale();
     }
-    
+
     @Produces
-    public Collection<Locale> getSupportedLocales() {
-        return supportedLocales;
+    @AvailableLocales
+    public Collection<Locale> getAvailableLocales() {
+        return Collections.unmodifiableCollection(availableLocales);
     }
 }

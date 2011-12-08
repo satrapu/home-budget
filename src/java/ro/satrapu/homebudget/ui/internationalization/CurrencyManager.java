@@ -19,16 +19,18 @@ import javax.inject.Inject;
 public class CurrencyManager {
 
     @Inject
+    @CurrentLocale
     Locale currentLocale;
     @Inject
-    Collection<Locale> supportedLocales;
+    @AvailableLocales
+    Collection<Locale> availableLocales;
     private List<SelectItem> currencies;
 
-    public Collection<SelectItem> getAllCurrencies() {
+    public Collection<SelectItem> getAvailableCurrencies() {
         if (currencies == null) {
             currencies = new ArrayList<>();
 
-            for (Locale locale : supportedLocales) {
+            for (Locale locale : availableLocales) {
                 Currency currency = Currency.getInstance(locale);
                 currencies.add(new SelectItem(currency.getCurrencyCode(), currency.getDisplayName(currentLocale)));
             }
@@ -42,7 +44,7 @@ public class CurrencyManager {
             });
         }
 
-        return currencies;
+        return Collections.unmodifiableCollection(currencies);
     }
 
     public String getDisplayableName(String currencyCode) {

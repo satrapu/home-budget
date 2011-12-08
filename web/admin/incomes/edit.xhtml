@@ -70,7 +70,7 @@
                                  value="#{incomeHome.instance.currencyCode}">
                     <f:selectItem itemLabel="#{msg['global.fields.selectOneValue']}" 
                                   itemValue="" />
-                    <f:selectItems value="#{currencyManager.allCurrencies}" />
+                    <f:selectItems value="#{currencyManager.availableCurrencies}" />
                     <p:ajax event="blur"
                             immediate="true"
                             update="currencyCodeEditor"/>

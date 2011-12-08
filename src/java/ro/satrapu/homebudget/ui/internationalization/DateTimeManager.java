@@ -14,6 +14,7 @@ import javax.inject.Inject;
 public class DateTimeManager {
 
     @Inject
+    @CurrentLocale
     Locale currentLocale;
 
     public String getDisplayableDate(Date date) {
