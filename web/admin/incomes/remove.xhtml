@@ -18,95 +18,61 @@
             <h:panelGrid rendered="#{incomeHome.managed}"
                          columns="2">
                 <h:outputLabel for="id">
-                    #{msg['income.id']}
+                    #{msg['income.id']}:
                 </h:outputLabel>
                 <h:outputText id="id" 
                               value="#{incomeHome.instance.id}"/>
                 <h:outputText/>
             </h:panelGrid>
-            <h:panelGrid id="descriptionEditor"
-                         columns="3">
+            <h:panelGrid columns="2">
                 <h:outputLabel for="description">
-                    #{msg['income.description']}
+                    #{msg['income.description']}:
                 </h:outputLabel>
-                <p:inputTextarea id="description"
-                                 value="#{incomeHome.instance.description}"
-                                 required="true"
-                                 requiredMessage="#{msg['global.fields.required']}"
-                                 styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
-                                 rows="5"
-                                 cols="40">
-                    <p:ajax event="blur"
-                            immediate="true"
-                            update="descriptionEditor"/>
-                </p:inputTextarea>
-                <p:message for="description"/>
+                <h:outputText id="description" 
+                              value="#{incomeHome.instance.description}"/>
+                <h:outputText/>
             </h:panelGrid>
-            <h:panelGrid id="amountEditor"
-                         columns="3">
+            <h:panelGrid columns="2">
                 <h:outputLabel for="amount">
-                    #{msg['income.amount']}
+                    #{msg['income.amount']}:
                 </h:outputLabel>
-                <p:inputText id="amount"
-                             required="true"
-                             requiredMessage="#{msg['global.fields.required']}"
-                             styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
-                             value="#{incomeHome.instance.amount}">
-                    <p:ajax event="blur"
-                            immediate="true"
-                            update="amountEditor"/>
-                </p:inputText>
-                <p:message for="amount"/>
+                <h:outputText id="amount" 
+                              value="#{incomeHome.instance.amount}"/>
+                <h:outputText/>
             </h:panelGrid>
-            <h:panelGrid id="currencyCodeEditor"
-                         columns="3">
+            <h:panelGrid columns="2">
                 <h:outputLabel for="currencyCode">
-                    #{msg['income.currencyCode']}
+                    #{msg['income.currencyCode']}:
                 </h:outputLabel>
-                <p:selectOneMenu id="currencyCode"
-                                 required="true"
-                                 requiredMessage="#{msg['global.fields.required']}"
-                                 styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
-                                 value="#{incomeHome.instance.currencyCode}">
-                    <f:selectItems value="#{currencyManager.availableCurrencies}" />
-                    <p:ajax event="blur"
-                            immediate="true"
-                            update="currencyCodeEditor"/>
-                </p:selectOneMenu>
+                <h:outputText id="currencyCode" 
+                              value="#{currencyManager.getDisplayValue(incomeHome.instance.currencyCode)}"/>
+                <h:outputText/>
             </h:panelGrid>
-            <h:panelGrid id="categoryEditor"
-                         columns="3">
+            <h:panelGrid columns="2">
                 <h:outputLabel for="category">
-                    #{msg['income.category']}
+                    #{msg['income.category']}:
                 </h:outputLabel>
-                <p:selectOneMenu id="category"
-                                 required="true"
-                                 requiredMessage="#{msg['global.fields.required']}"
-                                 styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
-                                 value="#{incomeHome.categoryId}">
-                    <f:selectItems value="#{incomeHome.categories}"/>
-                    <p:ajax event="blur"
-                            immediate="true"
-                            update="categoryEditor"/>
-                </p:selectOneMenu>
-                <p:message for="category"/>
+                <h:outputText id="category" 
+                              value="#{incomeHome.instance.category.name}"/>
+                <h:outputText/>
             </h:panelGrid>
-            <h:panelGrid id="inputDateEditor"
-                         columns="3">
+            <h:panelGrid columns="2">
+                <h:outputLabel for="createDate">
+                    #{msg['income.createDate']}:
+                </h:outputLabel>
+                <h:outputText id="createDate" 
+                              value="#{dateTimeManager.getDisplayValue(incomeHome.instance.createDate)}"/>
+                <h:outputText/>
+            </h:panelGrid>
+            <h:panelGrid columns="2">
                 <h:outputLabel for="inputDate">
-                    #{msg['income.inputDate']}
+                    #{msg['income.inputDate']}:
                 </h:outputLabel>
-                <p:calendar id="inputDate"
-                            value="#{incomeHome.instance.inputDate}"
-                            required="true"
-                            requiredMessage="#{msg['global.fields.required']}"
-                            styleClass="#{not component.valid ? 'ui-input-invalid' : ''}">
-                    <p:ajax event="blur"
-                            immediate="true"
-                            update="inputDateEditor"/>
-                </p:calendar>
-                <p:message for="inputDate"/>
+                <h:outputText id="inputDate" 
+                              value="#{dateTimeManager.getDisplayValue(incomeHome.instance.inputDate)}"/>
+                <h:outputText/>
             </h:panelGrid>
+
             <p:separator/>
             <div class="actions">
                 <p:commandButton action="#{incomeHome.remove}"

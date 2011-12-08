@@ -43,7 +43,7 @@
                     <f:facet name="header">
                         #{msg['expense.inputDate']}
                     </f:facet>
-                    <h:outputText value="#{dateTimeManager.getDisplayableDate(expense.inputDate)}" />
+                    <h:outputText value="#{dateTimeManager.getDisplayValue(expense.inputDate)}" />
                 </p:column>
                 <p:column>
                     <f:facet name="header">
@@ -61,7 +61,7 @@
                     <f:facet name="header">
                         #{msg['expense.currencyCode']}
                     </f:facet>
-                    <h:outputText value="#{currencyManager.getDisplayableName(expense.currencyCode)}" />
+                    <h:outputText value="#{currencyManager.getDisplayValue(expense.currencyCode)}" />
                 </p:column>
                 <p:column>
                     <f:facet name="header">
@@ -73,7 +73,7 @@
                     <f:facet name="header">
                         #{msg['expense.createDate']}
                     </f:facet>
-                    <h:outputText value="#{dateTimeManager.getDisplayableDate(expense.createDate)}" />
+                    <h:outputText value="#{dateTimeManager.getDisplayValue(expense.createDate)}" />
                 </p:column>
             </p:dataTable>
             <p:separator/>

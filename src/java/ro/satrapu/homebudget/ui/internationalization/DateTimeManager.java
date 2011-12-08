@@ -17,7 +17,7 @@ public class DateTimeManager {
     @CurrentLocale
     Locale currentLocale;
 
-    public String getDisplayableDate(Date date) {
+    public String getDisplayValue(Date date) {
         return DateFormat.getDateInstance(DateFormat.MEDIUM, currentLocale).format(date);
     }
 }

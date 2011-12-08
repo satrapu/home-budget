@@ -47,7 +47,7 @@ public class CurrencyManager {
         return Collections.unmodifiableCollection(currencies);
     }
 
-    public String getDisplayableName(String currencyCode) {
+    public String getDisplayValue(String currencyCode) {
         return Currency.getInstance(currencyCode).getDisplayName(currentLocale);
     }
 }
