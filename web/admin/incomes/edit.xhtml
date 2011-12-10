@@ -33,14 +33,16 @@
                                  value="#{incomeHome.instance.description}"
                                  required="true"
                                  requiredMessage="#{msg['global.fields.required']}"
-                                 styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
+                                 styleClass="#{not component.valid ? 'invalid' : ''}"
                                  rows="5"
                                  cols="40">
                     <p:ajax event="blur"
                             immediate="true"
                             update="descriptionEditor"/>
                 </p:inputTextarea>
-                <p:message for="description"/>
+                <p:message for="description"
+                           showDetail="false"
+                           showSummary="true"/>
             </h:panelGrid>
             <h:panelGrid id="amountEditor"
                          columns="3">
@@ -50,13 +52,15 @@
                 <p:inputText id="amount"
                              required="true"
                              requiredMessage="#{msg['global.fields.required']}"
-                             styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
+                             styleClass="#{not component.valid ? 'invalid' : ''}"
                              value="#{incomeHome.instance.amount}">
                     <p:ajax event="blur"
                             immediate="true"
                             update="amountEditor"/>
                 </p:inputText>
-                <p:message for="amount"/>
+                <p:message for="amount"
+                           showDetail="false"
+                           showSummary="true"/>
             </h:panelGrid>
             <h:panelGrid id="currencyCodeEditor"
                          columns="3">
@@ -66,16 +70,18 @@
                 <p:selectOneMenu id="currencyCode"
                                  required="true"
                                  requiredMessage="#{msg['global.fields.required']}"
-                                 styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
+                                 styleClass="#{not component.valid ? 'invalid' : ''}"
                                  value="#{incomeHome.instance.currencyCode}">
                     <f:selectItem itemLabel="#{msg['global.fields.selectOneValue']}" 
                                   itemValue="" />
                     <f:selectItems value="#{currencyManager.availableCurrencies}" />
-                    <p:ajax event="blur"
+                    <p:ajax event="change"
                             immediate="true"
                             update="currencyCodeEditor"/>
                 </p:selectOneMenu>
-                <p:message for="currencyCode"/>
+                <p:message for="currencyCode"
+                           showDetail="false"
+                           showSummary="true"/>
             </h:panelGrid>
             <h:panelGrid id="categoryEditor"
                          columns="3">
@@ -85,16 +91,18 @@
                 <p:selectOneMenu id="category"
                                  required="true"
                                  requiredMessage="#{msg['global.fields.required']}"
-                                 styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
+                                 styleClass="#{not component.valid ? 'invalid' : ''}"
                                  value="#{incomeHome.categoryId}">
                     <f:selectItem itemLabel="#{msg['global.fields.selectOneValue']}" 
                                   itemValue="" />  
                     <f:selectItems value="#{incomeHome.categories}"/>
-                    <p:ajax event="blur"
+                    <p:ajax event="change"
                             immediate="true"
                             update="categoryEditor"/>
                 </p:selectOneMenu>
-                <p:message for="category"/>
+                <p:message for="category"
+                           showDetail="false"
+                           showSummary="true"/>
             </h:panelGrid>
             <h:panelGrid id="inputDateEditor"
                          columns="3">
@@ -105,13 +113,15 @@
                             value="#{incomeHome.instance.inputDate}"
                             required="true"
                             requiredMessage="#{msg['global.fields.required']}"
-                            styleClass="#{not component.valid ? 'ui-input-invalid' : ''}"
+                            styleClass="#{not component.valid ? 'invalid' : ''}"
                             navigator="true"
                             showOtherMonths="true"
                             showWeek="true"
                             selectOtherMonths="true">
                 </p:calendar>
-                <p:message for="inputDate"/>
+                <p:message for="inputDate"
+                           showDetail="false"
+                           showSummary="true"/>
             </h:panelGrid>
             <div class="requiredFields">#{msg['global.fields.requiredInfo']}</div>
             <p:separator/>

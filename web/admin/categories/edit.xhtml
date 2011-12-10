@@ -33,12 +33,14 @@
                              value="#{categoryHome.instance.name}"
                              required="true"
                              requiredMessage="#{msg['global.fields.required']}"
-                             styleClass="#{not component.valid ? 'ui-input-invalid' : ''}">
+                             styleClass="#{not component.valid ? 'invalid' : ''}">
                     <p:ajax event="blur"
                             immediate="true"
                             update="nameEditor"/>
                 </p:inputText>
-                <p:message for="name"/>
+                <p:message for="name"
+                           showDetail="false"
+                           showSummary="true"/>
             </h:panelGrid>
             <div class="requiredFields">#{msg['global.fields.requiredInfo']}</div>
             <p:separator/>

@@ -61,13 +61,13 @@ a:link:hover, a:visited:hover  {
     font-weight: bold;
 }
 
-.ui-input-invalid {
+.invalid {
     border-color: red !important;
     border-width: 2px !important;
 }
 
 /*satrapu 03.12.2011 - added this class to support PrimeFaces calendar */
-*[class="ui-input-invalid"] input {
+*[class="invalid"] input {
     border-color: red !important;
     border-width: 2px !important;
 }
@@ -97,4 +97,15 @@ a:link:hover, a:visited:hover  {
     width: 99%; 
     height: 500px;
     font-size: 10%;
+}
+
+.editor{
+}
+
+.editor .label {
+    float: left;
+    width: 120px;
+}
+
+.editor .control{
 }
