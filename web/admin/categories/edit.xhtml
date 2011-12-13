@@ -4,6 +4,7 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.prime.com.tr/ui"
                 xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:my="http://java.sun.com/jsf/composite/components"
                 template="#{context_path}/resources/templates/page.xhtml">
     <ui:define name="title">#{categoryHome.managed ? msg['admin.category.edit.title']: msg['admin.category.new.title']}</ui:define>
     <ui:define name="content">
@@ -24,24 +25,10 @@
                               value="#{categoryHome.instance.id}"/>
                 <h:outputText/>
             </h:panelGrid>
-            <h:panelGrid id="nameEditor"
-                         columns="3">
-                <h:outputLabel for="name">
-                    #{msg['category.name']}
-                </h:outputLabel>
-                <p:inputText id="name"
-                             value="#{categoryHome.instance.name}"
-                             required="true"
-                             requiredMessage="#{msg['global.fields.required']}"
-                             styleClass="#{not component.valid ? 'invalid' : ''}">
-                    <p:ajax event="blur"
-                            immediate="true"
-                            update="nameEditor"/>
-                </p:inputText>
-                <p:message for="name"
-                           showDetail="false"
-                           showSummary="true"/>
-            </h:panelGrid>
+            <my:inputText componentId="name"
+                          required="true"
+                          label="#{msg['category.name']}"
+                          value="#{categoryHome.instance.name}"/>
             <div class="requiredFields">#{msg['global.fields.requiredInfo']}</div>
             <p:separator/>
             <div class="actions">

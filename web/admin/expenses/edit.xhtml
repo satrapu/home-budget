@@ -4,6 +4,7 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.prime.com.tr/ui"
                 xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:my="http://java.sun.com/jsf/composite/components"
                 template="#{context_path}/resources/templates/page.xhtml">
     <ui:define name="title">#{expenseHome.managed ? msg['admin.expense.edit.title']: msg['admin.expense.new.title']}</ui:define>
     <ui:define name="content">
@@ -24,105 +25,30 @@
                               value="#{expenseHome.instance.id}"/>
                 <h:outputText/>
             </h:panelGrid>
-            <h:panelGrid id="descriptionEditor"
-                         columns="3">
-                <h:outputLabel for="description">
-                    #{msg['expense.description']}
-                </h:outputLabel>
-                <p:inputTextarea id="description"
-                                 value="#{expenseHome.instance.description}"
-                                 required="true"
-                                 requiredMessage="#{msg['global.fields.required']}"
-                                 styleClass="#{not component.valid ? 'invalid' : ''}"
-                                 rows="5"
-                                 cols="40">
-                    <p:ajax event="blur"
-                            immediate="true"
-                            update="descriptionEditor"/>
-                </p:inputTextarea>
-                <p:message for="description"
-                           showDetail="false"
-                           showSummary="true"/>
-            </h:panelGrid>
-            <h:panelGrid id="amountEditor"
-                         columns="3">
-                <h:outputLabel for="amount">
-                    #{msg['expense.amount']}
-                </h:outputLabel>
-                <p:inputText id="amount"
-                             required="true"
-                             requiredMessage="#{msg['global.fields.required']}"
-                             styleClass="#{not component.valid ? 'invalid' : ''}"
-                             value="#{expenseHome.instance.amount}">
-                    <p:ajax event="blur"
-                            immediate="true"
-                            update="amountEditor"/>
-                </p:inputText>
-                <p:message for="amount" 
-                           showDetail="false"
-                           showSummary="true"/>
-            </h:panelGrid>
-            <h:panelGrid id="currencyCodeEditor"
-                         columns="3">
-                <h:outputLabel for="currencyCode">
-                    #{msg['expense.currencyCode']}
-                </h:outputLabel>
-                <p:selectOneMenu id="currencyCode"
-                                 required="true"
-                                 requiredMessage="#{msg['global.fields.required']}"
-                                 styleClass="#{not component.valid ? 'invalid' : ''}"
-                                 value="#{expenseHome.instance.currencyCode}">
-                    <f:selectItem itemLabel="#{msg['global.fields.selectOneValue']}" 
-                                  itemValue="" />
-                    <f:selectItems value="#{currencyManager.availableCurrencies}" />
-                    <p:ajax event="change"
-                            immediate="true"
-                            update="currencyCodeEditor"/>
-                </p:selectOneMenu>
-                <p:message for="currencyCode"
-                           showDetail="false"
-                           showSummary="true"/>
-            </h:panelGrid>
-            <h:panelGrid id="categoryEditor"
-                         columns="3">
-                <h:outputLabel for="category">
-                    #{msg['expense.category']}
-                </h:outputLabel>
-                <p:selectOneMenu id="category"
-                                 required="true"
-                                 requiredMessage="#{msg['global.fields.required']}"
-                                 styleClass="#{not component.valid ? 'invalid' : ''}"
-                                 value="#{expenseHome.categoryId}">
-                    <f:selectItem itemLabel="#{msg['global.fields.selectOneValue']}" 
-                                  itemValue="" />  
-                    <f:selectItems value="#{expenseHome.categories}"/>
-                    <p:ajax event="change"
-                            immediate="true"
-                            update="categoryEditor"/>
-                </p:selectOneMenu>
-                <p:message for="category"
-                           showDetail="false"
-                           showSummary="true"/>
-            </h:panelGrid>
-            <h:panelGrid id="inputDateEditor"
-                         columns="3">
-                <h:outputLabel for="inputDate">
-                    #{msg['expense.inputDate']}
-                </h:outputLabel>
-                <p:calendar id="inputDate"
-                            value="#{expenseHome.instance.inputDate}"
-                            required="true"
-                            requiredMessage="#{msg['global.fields.required']}"
-                            styleClass="#{not component.valid ? 'invalid' : ''}"
-                            navigator="true"
-                            showOtherMonths="true"
-                            showWeek="true"
-                            selectOtherMonths="true">
-                </p:calendar>
-                <p:message for="inputDate"
-                           showDetail="false"
-                           showSummary="true"/>
-            </h:panelGrid>
+            <my:inputTextarea componentId="description"
+                              required="true"
+                              label="#{msg['expense.description']}"
+                              value="#{expenseHome.instance.description}"/>
+            <my:inputText componentId="amount"
+                          required="true"
+                          label="#{msg['expense.amount']}"
+                          value="#{expenseHome.instance.amount}"/>
+            <my:select componentId="currencyCode"
+                       label="#{msg['expense.currencyCode']}"
+                       value="#{expenseHome.instance.currencyCode}"
+                       required="true">
+                <f:selectItems value="#{currencyManager.availableCurrencies}" />
+            </my:select>
+            <my:select componentId="category"
+                       label="#{msg['expense.category']}"
+                       value="#{expenseHome.categoryId}"
+                       required="true">
+                <f:selectItems value="#{expenseHome.categories}"/>
+            </my:select>
+            <my:calendar componentId="inputDate"
+                         label="#{msg['expense.inputDate']}"
+                         value="#{expenseHome.instance.inputDate}"
+                         required="true"/>
             <div class="requiredFields">#{msg['global.fields.requiredInfo']}</div>
             <p:separator/>
             <div class="actions">

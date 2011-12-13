@@ -61,25 +61,6 @@ a:link:hover, a:visited:hover  {
     font-weight: bold;
 }
 
-.invalid {
-    border-color: red !important;
-    border-width: 2px !important;
-}
-
-/*satrapu 03.12.2011 - added this class to support PrimeFaces calendar */
-*[class="invalid"] input {
-    border-color: red !important;
-    border-width: 2px !important;
-}
-
-.requiredFields{
-    padding-left: 2px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-size: 80%;
-    color: red;
-}
-
 .actions button{
     margin-right: 5px;
 }
@@ -90,7 +71,7 @@ a:link:hover, a:visited:hover  {
 
 .unexpectedError-title{
     font-weight: bold;
-    color: red;
+    color: #ff0000;
 }
 
 .unexpectedError-container{
@@ -108,4 +89,32 @@ a:link:hover, a:visited:hover  {
 }
 
 .editor .control{
+}
+
+.invalid {
+    border-color: #ff0000 !important;
+    border-width: 2px !important;
+}
+
+/*satrapu 03.12.2011 - added this class to support PrimeFaces calendar */
+*[class="invalid"] input {
+    border-color: #ff0000 !important;
+    border-width: 2px !important;
+}
+
+label *[class="invalid"] {
+    color: #ff0000 !important;
+    font-weight: bold;
+}
+
+.required{
+    font-weight: bold;
+}
+
+.requiredFields{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 80%;
+    font-style: italic;
+    color: #ff0000;
 }
