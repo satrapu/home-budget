@@ -5,7 +5,12 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 template="#{context_path}/resources/templates/page.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html">
-    <ui:define name="title">#{msg['skins.title']}</ui:define>
+    <ui:define name="title">#{msg['themes.title']}</ui:define>
     <ui:define name="content">
+        <p:themeSwitcher style="width:150px" effect="fade" var="t">  
+            <f:selectItem itemLabel="Choose Theme" itemValue="" />  
+            <f:selectItem itemLabel="Aristo" itemValue="aristo" />  
+            <f:selectItem itemLabel="Black Tie" itemValue="black-tie" />  
+        </p:themeSwitcher>  
     </ui:define>
 </ui:composition>
