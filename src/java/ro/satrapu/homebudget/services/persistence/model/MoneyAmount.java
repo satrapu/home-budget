@@ -44,8 +44,8 @@ public abstract class MoneyAmount extends ManagedEntity {
     @NotNull
     @Temporal(TemporalType.DATE)
     @Column(nullable = false, name = "CREATE_DATE")
-    @Setter(AccessLevel.PRIVATE)
-    private Date createDate;
+    @Setter(AccessLevel.PRIVATE) 
+   private Date createDate;
     @NotNull
     @Temporal(TemporalType.DATE)
     @Column(nullable = false, name = "INPUT_DATE")
