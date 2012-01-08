@@ -16,12 +16,21 @@ import org.slf4j.LoggerFactory;
 public class LoggerProducer {
 
     /**
-     * Creates a new {@link Logger} instance.
+     * Creates a new {@link Logger} instance for the given {@link InjectionPoint} instance.
      * @param injectionPoint
-     * @return
+     * @return A new {@link Logger} instance.
      */
     @Produces
-    public Logger produce(InjectionPoint injectionPoint) {
-        return LoggerFactory.getLogger(injectionPoint.getBean().getBeanClass());
+    public static Logger produce(InjectionPoint injectionPoint) {
+        return produce(injectionPoint.getBean().getBeanClass());
+    }
+
+    /**
+     * Creates a new {@link Logger} instance for the given {@link Class} instance.
+     * @param clazz
+     * @return A new {@link Logger} instance.
+     */
+    public static Logger produce(Class<?> clazz) {
+        return LoggerFactory.getLogger(clazz);
     }
 }
