@@ -6,19 +6,17 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ExceptionQueuedEvent;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import ro.satrapu.homebudget.services.logging.LoggerProducer;
 
 /**
- * Handles uncaught exceptions.
- * <br/>
- * This class is based on an article found 
- * <a href="http://javalabor.blogspot.com/2011/09/jsf-2-global-exception-handling.html">here</a>.
+ * Handles uncaught exceptions. <br/> This class is based on an article found <a
+ * href="http://javalabor.blogspot.com/2011/09/jsf-2-global-exception-handling.html"> here</a>.
+ *
  * @author satrapu
  */
-public class ExceptionHandler
-        extends javax.faces.context.ExceptionHandlerWrapper {
+public class ExceptionHandler extends javax.faces.context.ExceptionHandlerWrapper {
 
-    private final Logger logger = LoggerFactory.getLogger(getClass());
+    private static final Logger logger = LoggerProducer.produce(ExceptionHandler.class);
     private javax.faces.context.ExceptionHandler wrapped;
 
     public ExceptionHandler(final javax.faces.context.ExceptionHandler wrapped) {
