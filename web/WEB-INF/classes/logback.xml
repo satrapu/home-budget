@@ -4,7 +4,7 @@
     <appender name="ConsoleAppender" 
               class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%-5level %d{HH:mm:ss.SSS} %logger{36} %message%n</pattern>
+            <pattern>%-5level %d{HH:mm:ss.SSS} %logger %message%n</pattern>
         </encoder>
     </appender>
     <appender name="RollingFileAppender" 
@@ -24,7 +24,7 @@
         </triggeringPolicy>
     </appender>
     <logger name="ro.satrapu.homebudget" 
-            level="DEBUG">
+            level="ERROR">
         <appender-ref ref="RollingFileAppender"/>
     </logger>
     <root level="DEBUG">
