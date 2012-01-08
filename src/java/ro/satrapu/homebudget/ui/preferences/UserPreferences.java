@@ -16,9 +16,10 @@ import lombok.Data;
 public class UserPreferences implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private String theme = "cupertino";
+    private String theme;
 
     @PostConstruct
     public void init() {
+        setTheme("cupertino");
     }
 }
