@@ -5,19 +5,20 @@ import java.text.MessageFormat;
 import javax.enterprise.context.Conversation;
 import javax.inject.Inject;
 import org.slf4j.Logger;
-import ro.satrapu.homebudget.services.persistence.PersistenceService;
 import ro.satrapu.homebudget.services.persistence.Entity;
+import ro.satrapu.homebudget.services.persistence.EntityClass;
+import ro.satrapu.homebudget.services.persistence.PersistenceService;
 import ro.satrapu.homebudget.ui.internationalization.Messages;
 
 /**
- * Manages an entity from an persistent storage.
- * Base class for all CRUD related JSF beans.
- * @see <a href="http://www.andygibson.net/blog/tutorial/pattern-for-conversational-crud-in-java-ee-6/">
- * Conversational CRUD in Java EE 6 by Andy Gibson.</a>
+ * Manages an entity from an persistent storage. Base class for all CRUD related JSF beans.
+ *
+ * @see <a href="http://www.andygibson.net/blog/tutorial/pattern-for-conversational-crud-in-java-ee-6"> 
+ * Conversational CRUD in Java EE 6</a> by Andy Gibson.
  * @author satrapu
  * @param <T>
  */
-public class EntityHome<T extends Entity> extends EntityManager<T> {
+public abstract class EntityHome<T extends Entity> implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Inject
@@ -28,11 +29,15 @@ public class EntityHome<T extends Entity> extends EntityManager<T> {
     Messages messages;
     @Inject
     Logger logger;
+    @Inject
+    @EntityClass
+    Class entityClass;
     private Serializable id;
     private T instance;
 
     /**
      * Gets the entity managed by this instance.
+     *
      * @return An entity managed by this instance.
      */
     public T getInstance() {
@@ -49,6 +54,7 @@ public class EntityHome<T extends Entity> extends EntityManager<T> {
 
     /**
      * Gets the entity identifier.
+     *
      * @return The entity identifier.
      */
     public Serializable getId() {
@@ -57,6 +63,7 @@ public class EntityHome<T extends Entity> extends EntityManager<T> {
 
     /**
      * Sets the entity identifier.
+     *
      * @param id The identifier to set.
      */
     public void setId(Serializable id) {
@@ -65,31 +72,36 @@ public class EntityHome<T extends Entity> extends EntityManager<T> {
 
     /**
      * Loads an entity based on the value returned by the {@link EntityHome#getId()} method.
-     * @return 
+     *
+     * @return
      */
+    @SuppressWarnings("unchecked")
     public T loadInstance() {
-        logger.debug("Loading instance: {} using id: {}", getEntityType(), getId());
-        return persistenceService.find(getEntityType(), getId());
+        logger.debug("Loading instance: {} using id: {}", entityClass, getId());
+        return persistenceService.find((Class<T>) entityClass, getId());
     }
 
     /**
      * Creates a new entity.
+     *
      * @return A new entity.
      */
+    @SuppressWarnings("unchecked")
     public T createInstance() {
-        logger.debug("Creating instance: {}", getEntityType());
+        logger.debug("Creating instance: {}", entityClass);
 
         try {
-            return getEntityType().newInstance();
+            return (T) entityClass.newInstance();
         } catch (InstantiationException | IllegalAccessException e) {
             logger.error("Could not create instance", e);
             throw new RuntimeException(MessageFormat.format("Could not instantiate class {0} using default ctor.",
-                    getEntityType().getCanonicalName()), e);
+                    entityClass.getCanonicalName()), e);
         }
     }
 
     /**
      * Gets whether the current entity is managed or not.
+     *
      * @return True, if the entity is managed; false, otherwise.
      */
     public boolean isManaged() {
@@ -98,6 +110,7 @@ public class EntityHome<T extends Entity> extends EntityManager<T> {
 
     /**
      * Saves the changes of the current entity to the underlying persistent storage.
+     *
      * @return The operation outcome, if successful; null, otherwise.
      */
     public String save() {
@@ -130,6 +143,7 @@ public class EntityHome<T extends Entity> extends EntityManager<T> {
 
     /**
      * Cancels the current operation and closes the current conversation.
+     *
      * @return The operation outcome.
      */
     public String cancel() {
@@ -150,6 +164,7 @@ public class EntityHome<T extends Entity> extends EntityManager<T> {
 
     /**
      * Removes the current entity from the underlying persistent storage.
+     *
      * @return The operation outcome, if successful; null, otherwise.
      */
     public String remove() {
@@ -233,7 +248,7 @@ public class EntityHome<T extends Entity> extends EntityManager<T> {
     }
 
     protected String getEntityCrudMessageIdentifier() {
-        return getEntityType().getSimpleName().toLowerCase();
+        return entityClass.getSimpleName().toLowerCase();
     }
 
     protected String getPersistedOutcome() {
