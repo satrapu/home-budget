@@ -78,7 +78,7 @@ public abstract class EntityHome<T extends Entity> implements Serializable {
     @SuppressWarnings("unchecked")
     public T loadInstance() {
         logger.debug("Loading instance: {} using id: {}", entityClass, getId());
-        return persistenceService.find((Class<T>) entityClass, getId());
+        return persistenceService.fetch((Class<T>) entityClass, getId());
     }
 
     /**

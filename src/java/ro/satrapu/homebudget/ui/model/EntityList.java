@@ -22,20 +22,20 @@ public abstract class EntityList<T extends Entity> {
     PersistenceService persistenceService;
     @Inject
     @EntityClass
-    Class entityClass;
+    Class<T> entityClass;
     LazyDataModel<T> data;
 
     @PostConstruct
     public void init() {
         @SuppressWarnings("unchecked")
-        final Class<T> clazz = (Class<T>) entityClass;
+        final Class<T> clazz = entityClass;
         data = new LazyDataModel<T>() {
 
             private static final long serialVersionUID = 1L;
 
             @Override
             public List<T> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
-                return persistenceService.list(clazz, first, pageSize);
+                return persistenceService.fetch(clazz, first, pageSize);
             }
         };
 
