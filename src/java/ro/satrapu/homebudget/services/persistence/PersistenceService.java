@@ -92,7 +92,7 @@ public class PersistenceService {
         logger.debug("Found entity: {}", entity);
         return entity;
     }
-    
+
     public <T extends Entity> T fetchReference(Class<T> entityClass, Serializable entityId) {
         if (entityClass == null) {
             throw new PersistenceException("Cannot fetch entity reference by using null as entity class");
@@ -134,15 +134,10 @@ public class PersistenceService {
         }
 
         logger.debug("Counting entities {} ...", entityClass);
-        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<T> criteria = builder.createQuery(entityClass);
-        Root<T> root = criteria.from(entityClass);
-
-        CriteriaQuery<Long> countCriteria = builder.createQuery(Long.class);
-        countCriteria.select(builder.count(root));
-
-        TypedQuery<Long> countQuery = entityManager.createQuery(countCriteria);
-        long count = countQuery.getSingleResult();
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
+        criteriaQuery.select(criteriaBuilder.count(criteriaQuery.from(entityClass)));
+        long count = entityManager.createQuery(criteriaQuery).getSingleResult();
         logger.debug("Counted {} entities of type {}", count, entityClass);
         return count;
     }
