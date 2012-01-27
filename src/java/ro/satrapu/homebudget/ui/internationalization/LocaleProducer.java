@@ -22,12 +22,10 @@ import javax.inject.Singleton;
 @Singleton
 public class LocaleProducer {
 
-    private Collection<Locale> availableLocales;
+    private static final Collection<Locale> availableLocales = new ArrayList<>();
 
     @PostConstruct
     public void init() {
-        availableLocales = new ArrayList<>();
-
         Application facesApplication = FacesContext.getCurrentInstance().getApplication();
         Locale defaultLocale = facesApplication.getDefaultLocale();
 
@@ -73,17 +71,18 @@ public class LocaleProducer {
 
     /**
      * Gets the {@link Locale} instance associated with the current Faces request.
+     *
      * @return
      */
     @Produces
     @CurrentLocale
-    public Locale getCurrentLocale() {
+    public static Locale getCurrentLocale() {
         return FacesContext.getCurrentInstance().getViewRoot().getLocale();
     }
 
     @Produces
     @AvailableLocales
-    public Collection<Locale> getAvailableLocales() {
+    public static Collection<Locale> getAvailableLocales() {
         return Collections.unmodifiableCollection(availableLocales);
     }
 }

@@ -16,7 +16,4 @@ public class ExceptionPrettyPrinter {
         throwable.printStackTrace(printWriter);
         return writer.toString();
     }
-
-    private ExceptionPrettyPrinter() {
-    }
 }

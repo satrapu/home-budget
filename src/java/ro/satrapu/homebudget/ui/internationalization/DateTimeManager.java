@@ -18,6 +18,10 @@ public class DateTimeManager {
     Locale currentLocale;
 
     public String getDisplayValue(Date date) {
+        if (date == null) {
+            return "";
+        }
+
         return DateFormat.getDateInstance(DateFormat.MEDIUM, currentLocale).format(date);
     }
 }

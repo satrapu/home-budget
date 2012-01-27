@@ -27,16 +27,16 @@ public class EntityClassProducer {
     }
 
     /**
-     * 
+     *
      * @param clazz
-     * @return 
+     * @return
      */
-    public static Class getEntityClass(Class clazz) {
+    public static Class<?> getEntityClass(Class<?> clazz) {
         Type genericSuperclass = clazz.getGenericSuperclass();
 
         if (ParameterizedType.class.isAssignableFrom(genericSuperclass.getClass())) {
             ParameterizedType parameterizedType = (ParameterizedType) genericSuperclass;
-            return (Class) parameterizedType.getActualTypeArguments()[0];
+            return (Class<?>) parameterizedType.getActualTypeArguments()[0];
         }
 
         return getEntityClass(clazz.getSuperclass());
