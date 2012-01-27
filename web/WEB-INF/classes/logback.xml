@@ -7,7 +7,7 @@
             <pattern>%-5level %d{HH:mm:ss.SSS} %logger{36} %message%n</pattern>
         </encoder>
     </appender>
-    <appender name="RollingFileAppender" 
+    <appender name="ApplicationRollingFileAppender" 
               class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>logs/homebudget/homebudget.application.log</file>
         <append>true</append>
@@ -15,13 +15,29 @@
             <pattern>%-5level %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %logger - %message%n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>homebudget.application-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>logs/homebudget.application-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+    <appender name="PersistenceRollingFileAppender" 
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/homebudget/homebudget.persistence.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%-5level %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %logger - %message%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/homebudget.persistence-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
     </appender>
     <logger name="ro.satrapu.homebudget" 
             level="DEBUG">
-        <appender-ref ref="RollingFileAppender"/>
+        <appender-ref ref="ApplicationRollingFileAppender"/>
+    </logger>
+    <logger name="org.hibernate" 
+            level="DEBUG">
+        <appender-ref ref="PersistenceRollingFileAppender"/>
     </logger>
     <root level="ERROR">
         <appender-ref ref="ConsoleAppender"/>
