@@ -34,8 +34,12 @@
                           validate-atmost-once-period-in-seconds="0" 
                           wrap-jdbc-objects="false">
         <description>Connection pool for the HomeBudget application</description>
+        <!--
         <property name="URL"
-                  value="jdbc:h2:file:f:/satrapu/programming/databases/h2/homebudget/homebudget-db;USER=homebudget-user;PASSWORD=homebudget-pwd;AUTO_SERVER=TRUE" />
+                  value="jdbc:h2:file:~/h2/datbases/homebudget-db;USER=homebudget-user;PASSWORD=homebudget-pwd;AUTO_SERVER=TRUE" />
+        -->
+        <property name="URL"
+                  value="jdbc:h2:mem:homebudget-db;USER=homebudget-user;PASSWORD=homebudget-pwd;DB_CLOSE_DELAY=-1" />
         <property name="DatabaseName"
                   value="homebudget-db" />
         <property name="User"
