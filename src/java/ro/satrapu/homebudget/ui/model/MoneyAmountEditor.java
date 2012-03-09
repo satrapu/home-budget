@@ -19,7 +19,7 @@ public abstract class MoneyAmountEditor<E extends MoneyAmount> extends EntityEdi
 
     public Collection<SelectItem> getCategories() {
         if (categories == null) {
-            List<Category> categoryList = persistenceService.fetchAll(Category.class);
+            List<Category> categoryList = persistenceService.fetch(Category.class);
             categories = new ArrayList<>(categoryList.size());
 
             for (Category category : categoryList) {

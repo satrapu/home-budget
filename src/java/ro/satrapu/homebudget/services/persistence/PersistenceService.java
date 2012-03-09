@@ -61,9 +61,9 @@ public class PersistenceService {
         return mergedEntity;
     }
 
-    public <T extends Entity> List<T> fetchAll(Class<T> entityClass) {
+    public <T extends Entity> List<T> fetch(Class<T> entityClass) {
         if (entityClass == null) {
-            throw new PersistenceException("Cannot query for entities by using null as entity class");
+            throw new PersistenceException("Cannot fetch entities by using null as entity class");
         }
 
         logger.debug("Fetching all entities of type {} ...", entityClass);
@@ -80,16 +80,16 @@ public class PersistenceService {
 
     public <T extends Entity> T fetch(Class<T> entityClass, Serializable entityId) {
         if (entityClass == null) {
-            throw new PersistenceException("Cannot find entity by using null as entity class");
+            throw new PersistenceException("Cannot fetch entity by using null as entity class");
         }
 
         if (entityId == null) {
-            throw new PersistenceException("Cannot find entity by using null as entity id");
+            throw new PersistenceException("Cannot fetch entity by using null as entity id");
         }
 
-        logger.debug("Finding entity of type {}, using id {} ...", entityClass, entityId);
+        logger.debug("Fetching entity of type {}, using id {} ...", entityClass, entityId);
         T entity = entityManager.find(entityClass, entityId);
-        logger.debug("Found entity: {}", entity);
+        logger.debug("Fetched entity: {}", entity);
         return entity;
     }
 
