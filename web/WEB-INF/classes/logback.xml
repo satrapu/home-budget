@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" 
                scanPeriod="60 seconds">
-    <appender name="ConsoleAppender" 
+    <appender name="Console" 
               class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%-5level %d{HH:mm:ss.SSS} %logger{36} %message%n</pattern>
         </encoder>
     </appender>
-    <appender name="ApplicationRollingFileAppender" 
+    <appender name="Application" 
               class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>logs/homebudget/homebudget.application.log</file>
         <append>true</append>
@@ -19,7 +19,7 @@
             <maxHistory>30</maxHistory>
         </rollingPolicy>
     </appender>
-    <appender name="PersistenceRollingFileAppender" 
+    <appender name="Persistence" 
               class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>logs/homebudget/homebudget.persistence.log</file>
         <append>true</append>
@@ -33,13 +33,14 @@
     </appender>
     <logger name="ro.satrapu.homebudget" 
             level="DEBUG">
-        <appender-ref ref="ApplicationRollingFileAppender"/>
+        <appender-ref ref="Application"/>
     </logger>
     <logger name="org.hibernate" 
             level="DEBUG">
-        <appender-ref ref="PersistenceRollingFileAppender"/>
+        <appender-ref ref="Persistence"/>
     </logger>
     <root level="ERROR">
-        <appender-ref ref="ConsoleAppender"/>
+        <appender-ref ref="Console"/>
+        <appender-ref ref="Application"/>
     </root>
 </configuration>

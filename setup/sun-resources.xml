@@ -5,8 +5,7 @@
                    jndi-name="jdbc/homebudget-db"
                    object-type="user"
                    pool-name="HomeBudgetDBConnectionPool" />
-                   
-    <!-- H2 database (embedded mode) -->
+    <!-- H2 database -->
     <jdbc-connection-pool allow-non-component-callers="false"
                           associate-with-thread="false"
                           connection-creation-retry-attempts="0"
@@ -34,12 +33,13 @@
                           validate-atmost-once-period-in-seconds="0" 
                           wrap-jdbc-objects="false">
         <description>Connection pool for the HomeBudget application</description>
-        <!--
+        <!-- File database -->
         <property name="URL"
-                  value="jdbc:h2:file:~/h2/datbases/homebudget-db;USER=homebudget-user;PASSWORD=homebudget-pwd;AUTO_SERVER=TRUE" />
-        -->
+                  value="jdbc:h2:file:applications/homebudget/databases/homebudget-db;USER=homebudget-user;PASSWORD=homebudget-pwd;AUTO_SERVER=TRUE" />
+        <!-- In memory database
         <property name="URL"
                   value="jdbc:h2:mem:homebudget-db;USER=homebudget-user;PASSWORD=homebudget-pwd;DB_CLOSE_DELAY=-1" />
+        -->
         <property name="DatabaseName"
                   value="homebudget-db" />
         <property name="User"
