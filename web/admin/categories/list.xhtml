@@ -10,6 +10,8 @@
         <h:form id="list"
                 prependId="false"
                 onsubmit="document.getElementById('list').action='j_security_check';">
+            <h:outputText rendered="#{not categoryList.dataAvailable}"
+                          value="#{msg['global.noRecords']}"/>
             <p:dataTable value="#{categoryList.data}"
                          var="category"
                          paginator="true"
@@ -18,7 +20,7 @@
                          rowsPerPageTemplate="5, 10, 25, 50"
                          rows="25"
                          rowKey="#{category.id}"
-                         emptyMessage="#{msg['global.noRecords']}">
+                         rendered="#{categoryList.dataAvailable}">
                 <p:column>
                     <f:facet name="header">
                         #{msg['global.actions']}
