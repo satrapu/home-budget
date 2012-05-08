@@ -1,6 +1,8 @@
 package ro.satrapu.homebudget.ui.exceptionhandler;
 
 import java.util.Iterator;
+import java.util.Map;
+import java.util.UUID;
 import javax.faces.FacesException;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -36,10 +38,13 @@ public class ExceptionHandler extends javax.faces.context.ExceptionHandlerWrappe
 
             FacesContext facesContext = FacesContext.getCurrentInstance();
             ExternalContext externalContext = facesContext.getExternalContext();
-            externalContext.getSessionMap().put("unexpectedErrorDetails", ExceptionPrettyPrinter.prettyPrint(throwable));
+
+            Map<String, Object> sessionMap = externalContext.getSessionMap();
+            sessionMap.put("errorDetails", ExceptionPrettyPrinter.prettyPrint(throwable));
+            sessionMap.put("errorToken", UUID.randomUUID().toString());
 
             try {
-                String url = externalContext.getRequestContextPath() + "/faces/errors/unexpectedError.xhtml";
+                String url = externalContext.getRequestContextPath() + "/faces/errors/error.xhtml";
                 externalContext.redirect(url);
             } catch (Exception ex) {
                 logger.error("Could not redirect user to error page", ex);

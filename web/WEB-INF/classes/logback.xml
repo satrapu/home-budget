@@ -32,14 +32,16 @@
         </rollingPolicy>
     </appender>
     <logger name="ro.satrapu.homebudget" 
-            level="DEBUG">
+            level="DEBUG"
+            additivity="false">
         <appender-ref ref="Application"/>
     </logger>
     <logger name="org.hibernate" 
-            level="DEBUG">
+            level="OFF"
+            additivity="false">
         <appender-ref ref="Persistence"/>
     </logger>
-    <root level="ERROR">
+    <root level="WARN">
         <appender-ref ref="Console"/>
         <appender-ref ref="Application"/>
     </root>

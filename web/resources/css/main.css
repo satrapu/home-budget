@@ -69,12 +69,12 @@ a:link:hover, a:visited:hover  {
     margin-right: 5px;
 }
 
-.unexpectedError-title{
+.error-title{
     font-weight: bold;
     color: #ff0000;
 }
 
-.unexpectedError-container{
+.error-container{
     width: 99%; 
     height: 500px;
     font-size: 10%;
