@@ -5,4 +5,10 @@
 <!--    <interceptors>
         <class>ro.satrapu.homebudget.services.logging.TraceInterceptor</class>
     </interceptors>-->
+    <alternatives>
+        <!--
+        <class>ro.satrapu.homebudget.services.persistence.RandomizedPersistentStorageInitializer</class>
+        -->
+        <class>ro.satrapu.homebudget.services.persistence.EmptyPersistentStorageInitializer</class>
+    </alternatives>
 </beans>
