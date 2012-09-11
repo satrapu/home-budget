@@ -4,3 +4,6 @@
 \.rej$
 \.conflict\~$
 ^logs/homebudget/homebudget\.log$
+syntax: glob
+dist/HomeBudget.war
+build/
