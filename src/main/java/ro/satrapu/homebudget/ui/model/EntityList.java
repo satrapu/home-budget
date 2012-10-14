@@ -36,22 +36,9 @@ public abstract class EntityList<T extends Entity> {
             public List<T> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
                 return persistenceService.fetch(clazz, first, pageSize);
             }
-
-            @Override
-            public void setRowIndex(int rowIndex) {
-                /*
-                 * The following is in ancestor (LazyDataModel):
-                 * this.rowIndex = rowIndex == -1 ? rowIndex : (rowIndex % pageSize);
-                 */
-                if (rowIndex == -1 || getPageSize() == 0) {
-                    super.setRowIndex(-1);
-                } else {
-                    super.setRowIndex(rowIndex % getPageSize());
-                }
-            }
         };
 
-        data.setRowCount((int) persistenceService.count(clazz));
+        data.setRowCount((int) persistenceService.count(entityClass));
     }
 
     public LazyDataModel<T> getData() {
