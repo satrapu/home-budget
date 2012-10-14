@@ -9,25 +9,25 @@
     </appender>
     <appender name="Application" 
               class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>logs/homebudget/homebudget.application.log</file>
+        <file>homebudget/logs/homebudget.application.log</file>
         <append>true</append>
         <encoder>
             <pattern>%-5level %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %logger - %message%n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/homebudget.application-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>homebudget/logs/old/homebudget.application-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
     </appender>
     <appender name="Persistence" 
               class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>logs/homebudget/homebudget.persistence.log</file>
+        <file>homebudget/logs/homebudget.persistence.log</file>
         <append>true</append>
         <encoder>
             <pattern>%-5level %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %logger - %message%n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/homebudget.persistence-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>homebudget/logs/old/homebudget.persistence-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
     </appender>
