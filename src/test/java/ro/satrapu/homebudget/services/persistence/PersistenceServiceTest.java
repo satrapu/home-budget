@@ -2,11 +2,12 @@ package ro.satrapu.homebudget.services.persistence;
 
 import org.slf4j.LoggerFactory;
 import javax.persistence.PersistenceException;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 /**
  * Tests the {@link PersistenceService} class.
+ *
  * @author satrapu
  */
 public class PersistenceServiceTest {
@@ -18,9 +19,9 @@ public class PersistenceServiceTest {
 
         try {
             persistenceService.count(nullEntityClass);
-            fail("Expected not to be able to count null for entity class");
+            Assert.fail("Expected not to be able to count null for entity class");
         } catch (PersistenceException e) {
-            e.printStackTrace(System.out);
+            //do nothing, exception expected
         }
     }
 

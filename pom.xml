@@ -31,18 +31,11 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>0.11.4</version>
-            <scope>provided</scope>
         </dependency>
         <dependency> 
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.0.7</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.10</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.primefaces</groupId>
@@ -70,6 +63,12 @@
             <version>6.0</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.8</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -91,7 +90,7 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.1.1</version>
                 <configuration>
-                    <warName>homebudget-app</warName>
+                    <warName>homebudget-${project.version}</warName>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
@@ -127,7 +126,7 @@
                 <configuration>
                     <goalPrefix>embedded-glassfish</goalPrefix>
                     <app>test.war</app>
-                    <port>8080</port> 
+                    <port>17894</port> 
                     <contextRoot>test</contextRoot> 
                     <autoDelete>true</autoDelete>
                 </configuration>
