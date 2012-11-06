@@ -2,7 +2,6 @@ package ro.satrapu.homebudget.services.persistence;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -25,16 +24,9 @@ import org.slf4j.Logger;
 public class PersistenceService {
 
     @Inject
-    PersistentStorageInitializerService persistentStorageInitializerService;
-    @Inject
     Logger logger;
     @PersistenceContext
     EntityManager entityManager;
-
-    @PostConstruct
-    public void init() {
-        persistentStorageInitializerService.init(); 
-    }
 
     public <T extends Entity> T persist(T entity) {
         if (entity == null) {
