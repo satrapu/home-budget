@@ -28,7 +28,7 @@ public abstract class EntityHome<T extends Entity> implements Serializable {
     @Inject
     Messages messages;
     @Inject
-    Logger logger;
+    transient Logger logger;
     @Inject
     @EntityClass
     Class entityClass;
