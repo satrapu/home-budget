@@ -20,6 +20,6 @@ public class UserPreferences implements Serializable {
 
     @PostConstruct
     public void init() {
-        setTheme("cupertino");
+        setTheme("aristo");
     }
 }
