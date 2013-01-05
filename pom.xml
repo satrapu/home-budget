@@ -13,18 +13,12 @@
         <url>https://crossprogramming.ci.cloudbees.com</url>
     </ciManagement>
     <scm>
-        <connection>
-            scm:hg:https://satrapu@bitbucket.org/satrapu/homebudget
-        </connection>
-        <url>
-            https://bitbucket.org/satrapu/homebudget/src
-        </url>
+        <connection>scm:hg:https://satrapu@bitbucket.org/satrapu/homebudget</connection>
+        <url>https://bitbucket.org/satrapu/homebudget/src</url>
     </scm>
     <issueManagement>
         <system>Bitbucket</system>
-        <url>
-            https://bitbucket.org/satrapu/homebudget/issues
-        </url>
+        <url>https://bitbucket.org/satrapu/homebudget/issues</url>
     </issueManagement>
     <licenses>
         <license>
@@ -38,13 +32,9 @@
             <name>Bogdan Marian</name>
             <email>bogdan.marian77@gmail.com</email>
             <timezone>2</timezone>
-            <url>
-                https://www.linkedin.com/in/bmarian
-            </url>
+            <url>https://www.linkedin.com/in/bmarian</url>
             <roles>
-                <role>
-                    Main commiter
-                </role>
+                <role>Main commiter</role>
             </roles>
         </developer> 
     </developers>
@@ -80,6 +70,11 @@
             <groupId>org.primefaces.extensions</groupId>
             <artifactId>all-themes</artifactId>
             <version>1.0.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>4.1.9.Final</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
