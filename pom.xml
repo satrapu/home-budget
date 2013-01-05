@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>ro.satrapu</groupId>
@@ -6,14 +7,47 @@
     <version>0.9.0-alpha1</version>
     <packaging>war</packaging>
     <name>homebudget</name>
+    <inceptionYear>2011</inceptionYear>
+    <ciManagement>
+        <system>Jenkins</system>
+        <url>https://crossprogramming.ci.cloudbees.com</url>
+    </ciManagement>
+    <scm>
+        <connection>
+            scm:hg:https://satrapu@bitbucket.org/satrapu/homebudget
+        </connection>
+        <url>
+            https://bitbucket.org/satrapu/homebudget/src
+        </url>
+    </scm>
+    <issueManagement>
+        <system>Bitbucket</system>
+        <url>
+            https://bitbucket.org/satrapu/homebudget/issues
+        </url>
+    </issueManagement>
+    <licenses>
+        <license>
+            <name>Apache License 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
     <developers>
         <developer>
             <id>satrapu</id>
             <name>Bogdan Marian</name>
             <email>bogdan.marian77@gmail.com</email>
             <timezone>2</timezone>
+            <url>
+                https://www.linkedin.com/in/bmarian
+            </url>
+            <roles>
+                <role>
+                    Main commiter
+                </role>
+            </roles>
         </developer> 
-   </developers>
+    </developers>
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -48,21 +82,6 @@
             <version>1.0.8</version>
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>4.1.9.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-jpamodelgen</artifactId>
-            <version>1.2.0.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>4.3.1.Final</version>
-        </dependency>
-        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>6.0</version>
@@ -92,20 +111,21 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.12.4</version>
+                <configuration>
+                    <excludedGroups>integration-tests</excludedGroups>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.3</version>
                 <configuration>
-                    <warName>homebudget-${project.version}</warName>
+                    <warName>${project.name}-${project.version}</warName>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>maven2-repository.dev.java.net</id>
-            <name>Java.net Repository for Maven</name>
-            <url>http://download.java.net/maven/glassfish/</url>
-        </pluginRepository>
-    </pluginRepositories>
 </project>
