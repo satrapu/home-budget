@@ -1,7 +1,7 @@
 package ro.satrapu.homebudget.services.persistence;
 
-import org.slf4j.LoggerFactory;
 import javax.persistence.PersistenceException;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
