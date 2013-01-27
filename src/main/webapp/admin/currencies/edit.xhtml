@@ -29,10 +29,12 @@
                           required="true"
                           label="#{msg['currency.name']}"
                           value="#{currencyHome.instance.name}"/>
-            <my:inputText componentId="threeLettersIsoName"
-                          required="true"
-                          label="#{msg['currency.threeLettersIsoName']}"
-                          value="#{currencyHome.instance.threeLettersIsoName}"/>
+            <my:select componentId="threeLettersIsoName"
+                       label="#{msg['currency.threeLettersIsoName']}"
+                       value="#{currencyHome.instance.threeLettersIsoName}"
+                       required="true">
+                <f:selectItems value="#{currencyManager.currencies}" />
+            </my:select>
             <div class="requiredFields">#{msg['global.fields.requiredInfo']}</div>
             <p:separator/>
             <div class="actions">

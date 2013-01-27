@@ -1,5 +1,6 @@
 package ro.satrapu.homebudget.ui.internationalization;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -15,7 +16,7 @@ import javax.inject.Inject;
 /**
  * Manages currencies using the current {@link Locale} instance.
  *
- * @author Satrapu
+ * @author satrapu
  */
 @Model
 public class CurrencyManager {
@@ -23,22 +24,18 @@ public class CurrencyManager {
     @Inject
     @CurrentLocale
     Locale currentLocale;
-    @Inject
-    @AvailableLocales
-    Collection<Locale> availableLocales;
     private List<SelectItem> currencies;
 
     @PostConstruct
     public void init() {
         currencies = new ArrayList<>();
 
-        for (Locale locale : availableLocales) {
-            Currency currency = Currency.getInstance(locale);
-            currencies.add(new SelectItem(currency.getCurrencyCode(), currency.getDisplayName(currentLocale)));
+        for (Currency currency : Currency.getAvailableCurrencies()) {
+            currencies.add(new SelectItem(currency.getCurrencyCode(),
+                    MessageFormat.format("{0} ({1})", currency.getDisplayName(currentLocale), currency.getCurrencyCode())));
         }
 
         Collections.sort(currencies, new Comparator<SelectItem>() {
-
             @Override
             public int compare(SelectItem leftCurrency, SelectItem rightCurrency) {
                 return leftCurrency.getLabel().compareTo(rightCurrency.getLabel());
@@ -46,11 +43,7 @@ public class CurrencyManager {
         });
     }
 
-    public Collection<SelectItem> getAvailableCurrencies() {
+    public Collection<SelectItem> getCurrencies() {
         return currencies;
-    }
-
-    public String getDisplayValue(String currencyCode) {
-        return Currency.getInstance(currencyCode).getDisplayName(currentLocale);
     }
 }
