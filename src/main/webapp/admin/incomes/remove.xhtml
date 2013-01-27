@@ -45,7 +45,7 @@
                     #{msg['income.currencyCode']}:
                 </h:outputLabel>
                 <h:outputText id="currencyCode" 
-                              value="#{currencyManager.getDisplayValue(incomeHome.instance.currencyCode)}"/>
+                              value="#{incomeHome.instance.currency.threeLettersIsoName}"/>
                 <h:outputText/>
             </h:panelGrid>
             <h:panelGrid columns="2">

@@ -4,6 +4,7 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:my="http://java.sun.com/jsf/composite/components"
                 template="#{context_path}/resources/templates/page.xhtml">
     <ui:define name="title">#{incomeHome.managed ? msg['admin.income.edit.title']: msg['admin.income.new.title']}</ui:define>
     <ui:define name="content">
@@ -62,27 +63,12 @@
                            showDetail="false"
                            showSummary="true"/>
             </h:panelGrid>
-            <h:panelGrid id="currencyCodeEditor"
-                         columns="3">
-                <h:outputLabel for="currencyCode">
-                    #{msg['income.currencyCode']}
-                </h:outputLabel>
-                <p:selectOneMenu id="currencyCode"
-                                 required="true"
-                                 requiredMessage="#{msg['global.fields.required']}"
-                                 styleClass="#{not component.valid ? 'invalid' : ''}"
-                                 value="#{incomeHome.instance.currencyCode}">
-                    <f:selectItem itemLabel="#{msg['global.fields.selectOneValue']}" 
-                                  itemValue="" />
-                    <f:selectItems value="#{currencyManager.availableCurrencies}" />
-                    <p:ajax event="change"
-                            immediate="true"
-                            update="currencyCodeEditor"/>
-                </p:selectOneMenu>
-                <p:message for="currencyCode"
-                           showDetail="false"
-                           showSummary="true"/>
-            </h:panelGrid>
+            <my:select componentId="currencyCode"
+                       label="#{msg['income.currencyCode']}"
+                       value="#{incomeHome.currencyId}"
+                       required="true">
+                <f:selectItems value="#{incomeHome.currencies}" />
+            </my:select>
             <h:panelGrid id="categoryEditor"
                          columns="3">
                 <h:outputLabel for="category">

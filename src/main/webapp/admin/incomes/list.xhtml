@@ -60,7 +60,7 @@
                     <f:facet name="header">
                         #{msg['income.currencyCode']}
                     </f:facet>
-                    <h:outputText value="#{currencyManager.getDisplayValue(income.currencyCode)}" />
+                    <h:outputText value="#{income.currency.threeLetterIsoName}" />
                 </p:column>
                 <p:column>
                     <f:facet name="header">

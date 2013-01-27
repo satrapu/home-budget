@@ -35,9 +35,9 @@
                           value="#{expenseHome.instance.amount}"/>
             <my:select componentId="currencyCode"
                        label="#{msg['expense.currencyCode']}"
-                       value="#{expenseHome.instance.currencyCode}"
+                       value="#{expenseHome.currencyId}"
                        required="true">
-                <f:selectItems value="#{currencyManager.availableCurrencies}" />
+                <f:selectItems value="#{expenseHome.currencies}" />
             </my:select>
             <my:select componentId="category"
                        label="#{msg['expense.category']}"

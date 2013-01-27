@@ -29,29 +29,25 @@ public abstract class MoneyAmount extends ManagedEntity {
 
     @NotNull
     @Size(min = 2, max = 4000)
-    @Column(nullable = false, length = 4000, name = "DESCRIPTION")
+    @Column(nullable = false, length = 4000, name = "Description")
     private String description;
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     private Category category;
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @NotNull
-    @Size(min = 3, max = 3)
-    @Column(nullable = false, length = 3, name = "CURRENCY_CODE")
-    /**
-     * @see Represents a value from the <a href="http://www.xe.com/iso4217.php">ISO 4217 currency code list</a>.
-     */
-    private String currencyCode;
+    private Currency currency;
     @NotNull
     @Temporal(TemporalType.DATE)
-    @Column(nullable = false, name = "CREATE_DATE")
+    @Column(nullable = false, name = "CreateDate")
     @Setter(AccessLevel.PRIVATE)
     private Date createDate;
     @NotNull
     @Temporal(TemporalType.DATE)
-    @Column(nullable = false, name = "INPUT_DATE")
+    @Column(nullable = false, name = "InputDate")
     private Date inputDate;
     @NotNull
-    @Column(nullable = false, name = "AMOUNT")
+    @Column(nullable = false, name = "Amount")
     private BigDecimal amount;
 
     @PrePersist
