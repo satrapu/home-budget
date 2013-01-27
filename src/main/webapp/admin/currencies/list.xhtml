@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="#{context_path}/resources/templates/page.xhtml">
+    <ui:define name="title">#{msg['admin.currency.list.title']}</ui:define>
+    <ui:define name="content">
+        <h:form id="list"
+                prependId="false"
+                onsubmit="document.getElementById('list').action='j_security_check';">
+            <h:outputText rendered="#{not currencyList.dataAvailable}"
+                          value="#{msg['global.noRecords']}"/>
+            <p:dataTable value="#{currencyList.data}"
+                         var="currency"
+                         paginator="true"
+                         paginatorPosition="top"
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"  
+                         rowsPerPageTemplate="5,10,25,50"
+                         rows="25"
+                         rowKey="#{currency.id}"
+                         rendered="#{currencyList.dataAvailable}"
+                         lazy="true">
+                <p:column>
+                    <f:facet name="header">
+                        #{msg['global.actions']}
+                    </f:facet>
+                    <div class="actions">
+                        <h:link outcome="/admin/currencies/edit"
+                                value="#{msg['global.actions.edit']}">
+                            <f:param name="id" 
+                                     value="#{currency.id}"/>
+                        </h:link>
+                        <h:link outcome="/admin/currencies/remove"
+                                value="#{msg['global.actions.remove']}">
+                            <f:param name="id" 
+                                     value="#{currency.id}"/>
+                        </h:link>
+                    </div>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        #{msg['currency.id']}
+                    </f:facet>
+                    <h:outputText value="#{currency.id}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        #{msg['currency.name']}
+                    </f:facet>
+                    <h:outputText value="#{currency.name}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        #{msg['currency.threeLettersIsoName']}
+                    </f:facet>
+                    <h:outputText value="#{currency.threeLettersIsoName}" />
+                </p:column>
+            </p:dataTable>
+            <p:separator/>
+        </h:form>
+        <h:form>
+            <div class="actions">
+                <p:commandButton action="/admin/currencies/edit"
+                                 value="#{msg['admin.currency.list.actions.new.title']}"
+                                 ajax="false"
+                                 immediate="true"/>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

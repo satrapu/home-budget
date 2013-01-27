@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="#{context_path}/resources/templates/page.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <ui:define name="title">#{msg['admin.currency.delete.title']}</ui:define>
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="id"
+                         value="#{currencyHome.id}"
+                         converter="#{entityIdConverter}"/>
+            <f:event type="preRenderView"
+                     listener="#{currencyHome.beginConversation}" />
+        </f:metadata>
+        <h:form>
+            <h:panelGrid rendered="#{currencyHome.managed}"
+                         columns="2">
+                <h:outputLabel for="id">
+                    #{msg['category.id']}
+                </h:outputLabel>
+                <h:outputText id="id" 
+                              value="#{currencyHome.instance.id}"/>
+                <h:outputLabel for="name">
+                    #{msg['category.name']}
+                </h:outputLabel>
+                <h:outputText id="name" 
+                              value="#{currencyHome.instance.name}"/>
+                <h:outputLabel for="threeLettersIsoName">
+                    #{msg['currency.threeLettersIsoName']}
+                </h:outputLabel>
+                <h:outputText id="threeLettersIsoName" 
+                              value="#{currencyHome.instance.threeLettersIsoName}"/>
+            </h:panelGrid>
+            <p:separator/>
+            <div class="actions">
+                <p:commandButton action="#{currencyHome.remove}"
+                                 value="#{msg['global.actions.remove']}"
+                                 ajax="false"
+                                 rendered="#{currencyHome.managed}"/>
+                <p:commandButton action="#{currencyHome.cancel}"
+                                 value="#{msg['global.actions.cancel']}"
+                                 ajax="false"
+                                 immediate="true"/>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>
