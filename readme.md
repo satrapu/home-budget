@@ -4,10 +4,11 @@ HomeBudget
 
 Description
 -
-A web application used for managing personal budget. It serves also as a learning, teaching and experimenting application for JEE6 technologies (EJB, JPA, JSF, CDI). 
+A web application used for managing personal budget. 
+It serves also as a learning, teaching and experimenting application for JEE6 technologies (EJB, JPA, JSF, CDI). 
 
 
-Version
+Current version
 -
 0.9.0-alpha1
 
