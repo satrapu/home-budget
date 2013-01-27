@@ -11,7 +11,7 @@ import lombok.ToString;
  * @author satrapu
  */
 @Entity
-@Table(name = "EXPENSES")
+@Table(name = "Expenses")
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
