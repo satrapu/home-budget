@@ -3,8 +3,12 @@
 \.chg\..*$
 \.rej$
 \.conflict\~$
-^logs/homebudget/homebudget\.log$
+logs/
 syntax: glob
-dist/HomeBudget.war
+dist/
 build/
-target
+target/
+.idea/
+.settings/
+homebudget.iml
+faces-config.NavData
