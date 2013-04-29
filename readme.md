@@ -1,4 +1,4 @@
-HomeBudget [![Build Status](https://crossprogramming.ci.cloudbees.com/job/homebudget-trunk-commit-build/badge/icon)](https://crossprogramming.ci.cloudbees.com/job/homebudget-trunk-commit-build/)
+HomeBudget [![Build Status](https://crossprogramming.ci.cloudbees.com/job/homebudget-branch-default-commit-build/badge/icon)](https://crossprogramming.ci.cloudbees.com/job/homebudget-branch-default-commit-build/)
 =========
 
 
