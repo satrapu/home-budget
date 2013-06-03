@@ -6,7 +6,7 @@
     <persistence-unit name="homebudget" 
                       transaction-type="JTA">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <jta-data-source>jdbc/homebudget</jta-data-source>
+        <jta-data-source>${datasource.name}</jta-data-source>
         <class>ro.satrapu.homebudget.services.persistence.model.Category</class>
         <class>ro.satrapu.homebudget.services.persistence.model.Currency</class>
         <class>ro.satrapu.homebudget.services.persistence.model.Expense</class>

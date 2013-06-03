@@ -12,3 +12,4 @@ target/
 .settings/
 homebudget.iml
 faces-config.NavData
+nbactions*.xml
