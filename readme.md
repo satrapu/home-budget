@@ -1,4 +1,4 @@
-home-budget [![Build Status](https://crossprogramming.ci.cloudbees.com/buildStatus/icon?job=home-budget-master-commit-build)](https://crossprogramming.ci.cloudbees.com/job/home-budget-master-commit-build/)
+Home Budget [![Build Status](https://crossprogramming.ci.cloudbees.com/buildStatus/icon?job=home-budget-master-commit-build)](https://crossprogramming.ci.cloudbees.com/job/home-budget-master-commit-build/)
 =========
 
 
