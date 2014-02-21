@@ -27,7 +27,7 @@ public class EntityClassProducer {
     }
 
     /**
-     *
+     * See http://www.andygibson.net/blog/tutorial/pattern-for-conversational-crud-in-java-ee-6/, section Our bean home, point 5.
      * @param clazz
      * @return
      */
