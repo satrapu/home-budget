@@ -118,6 +118,17 @@ application for JEE6 technologies (EJB, JPA, JSF, CDI).
                 </filters>
             </build>
         </profile>
+        <profile>
+            <id>openshift</id>
+            <properties>
+                <appserver.discriminator>openshift</appserver.discriminator>
+            </properties>
+            <build>
+                <filters>
+                    <filter>src/main/filters/${appserver.discriminator}.properties</filter>
+                </filters>
+            </build>
+        </profile>
     </profiles>
     <build>
         <defaultGoal>clean compile war:war</defaultGoal>
