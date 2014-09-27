@@ -1,4 +1,4 @@
-Home Budget <a href="http://teamcity.codebetter.com/viewType.html?buildTypeId=bt1093&tab=buildTypeStatusDiv&guest=1"><img src="http://teamcity.codebetter.com/app/rest/builds/buildType:(id:bt1093)/statusIcon"/></a> [![Build Status](https://drone.io/github.com/satrapu/home-budget/status.png)](https://drone.io/github.com/satrapu/home-budget/latest) [![Build Status](https://crossprogramming.ci.cloudbees.com/buildStatus/icon?job=home-budget-master-commit-build)](https://crossprogramming.ci.cloudbees.com/job/home-budget-master-commit-build/)
+Home Budget <a href="http://teamcity.codebetter.com/viewType.html?buildTypeId=bt1093&tab=buildTypeStatusDiv&guest=1"><img src="http://teamcity.codebetter.com/app/rest/builds/buildType:(id:bt1093)/statusIcon"/></a> [![Build Status](https://drone.io/github.com/satrapu/home-budget/status.png)](https://drone.io/github.com/satrapu/home-budget/latest) 
 =========
 
 Description
